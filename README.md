@@ -135,6 +135,6 @@ number can go stale.
 | 2 | Shared chart grammar and the instrument ribbon | done |
 | 3 | Overview and Competency explorer | done |
 | 4 | Competency map and Changes | done |
-| 5 | Distributions and DiD snapshot | next |
-| 6 | Methods, exports, presentation mode, mobile | |
+| 5 | Distributions and DiD snapshot | done |
+| 6 | Methods, exports, presentation mode, mobile | next |
 | 7 | QA and deployment | |

@@ -1473,3 +1473,128 @@ table.data tbody tr:nth-child(even) {
 .not-comparable-block table.data tbody tr:nth-child(even) {
   background: transparent;
 }
+
+/* --- Distribution panels --------------------------------------------------- */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--s-6) var(--s-6);
+  margin-top: var(--s-2);
+}
+
+.panel-grid__item {
+  min-width: 0;
+}
+
+.panel-grid .chart {
+  margin-top: 0;
+}
+
+.panel-grid .chart__title {
+  font-size: var(--t-sm);
+}
+
+/* --- Competency filter chips ------------------------------------------------ */
+.filter-chips {
+  margin-top: var(--s-4);
+}
+
+.filter-chips__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+
+.chip {
+  padding: var(--s-1) var(--s-3);
+  font-size: var(--t-xs);
+  color: var(--slate);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: var(--mist);
+  color: var(--ink);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--csf-sky);
+  border-color: var(--csf-blue);
+  color: var(--csf-navy);
+  font-weight: var(--w-semibold);
+}
+
+.chip--clear {
+  margin-top: var(--s-2);
+  border-style: dashed;
+}
+
+/* --- DiD domain summary ------------------------------------------------------
+   Two discrete objects, so cards are appropriate here. */
+.did-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.did-summary__item {
+  padding: var(--s-4);
+  background: var(--mist);
+  border-left: 3px solid var(--did-neutral);
+}
+
+.did-summary__label {
+  font-size: var(--t-sm);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.did-summary__track {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+.did-summary__from,
+.did-summary__to {
+  font-size: var(--t-lg);
+  font-weight: var(--w-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.did-summary__from {
+  color: var(--slate);
+}
+
+.did-summary__to {
+  color: var(--did-neutral);
+}
+
+.did-summary__arrow {
+  color: var(--change-flat);
+}
+
+.did-summary__change {
+  margin-top: var(--s-1);
+  font-size: var(--t-sm);
+  font-weight: var(--w-semibold);
+}
+
+.did-summary__note {
+  margin-top: var(--s-3);
+  font-size: var(--t-xs);
+  line-height: var(--leading-normal);
+  color: var(--slate);
+}
+
+@media (max-width: 768px) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+}
