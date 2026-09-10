@@ -29,6 +29,12 @@ N_THIN, N_ROBUST = 30, 100       # stability thresholds
 CEILING_PCT = 95
 BASELINE_N = None                # DiD baseline total n unknown; if supplied, pooling becomes n-weighted
 MIDLINE_N = 177
+# Where a district tool and a DiD round measured the same competency in the same period
+# (Nov 2025 / Q3 2025), do NOT average them into one number (confirmed by Adi).
+# The district value carries the trend line; the DiD value is emitted as a separate
+# row_type="reference_point" so it can be shown as its own point beside the line.
+# Set True to restore the old equal-weight pooling.
+POOL_DID_WITH_DISTRICT = False
 # bands aligned to the clearance rule: b5 (>=75) == cleared
 BAND_LABELS = ["b1_0", "b2_lt25", "b3_25_50", "b4_50_75", "b5_75plus"]
 TIERS = {"b1_0": "critical", "b2_lt25": "critical", "b3_25_50": "developing", "b4_50_75": "developing", "b5_75plus": "cleared"}
@@ -260,6 +266,13 @@ def build(period_col):
     for (scn, per), g in t.groupby(["std_competency", period_col]):
         gv = g[g.has_clearance_value]
         if gv.empty: continue
+        # Hold DiD rounds out of the trend point where a district tool also measured
+        # this competency in this period. The district value carries the line; the DiD
+        # value is emitted below as a reference_point. Where DiD is the ONLY source,
+        # it still becomes the trend point, so no series loses its only value.
+        ref = gv.iloc[0:0]
+        if not POOL_DID_WITH_DISTRICT and gv.is_did_point.any() and (~gv.is_did_point).any():
+            ref, gv = gv[gv.is_did_point], gv[~gv.is_did_point]
         if len(gv) == 1:
             r = gv.iloc[0].to_dict(); r["pooling_method"] = "single_source"
         else:
@@ -285,6 +298,9 @@ def build(period_col):
             r["reliability_flags"] = ";".join(sorted(fl | {"pooled_sources"}))
             r["raw_keys"] = "|".join(gv.raw_keys)
         r["row_type"] = "trend_point"; tp.append(r)
+        for _, rr in ref.iterrows():
+            rr = rr.to_dict(); rr["row_type"] = "reference_point"; rr["pooling_method"] = "single_source"
+            tp.append(rr)
     return pd.concat([pd.DataFrame(tp), t], ignore_index=True)
 
 def add_changes(df, period_col, order):
@@ -358,6 +374,12 @@ def domain_rows(period_col):
     df["has_clearance_value"] = df.overall_pct.notna(); df["row_type"] = "source_detail"
     tps = []
     for per, g in df[df.has_clearance_value].groupby(period_col):
+        # Same rule as the competency lines: a DiD round alongside a district tool is a
+        # reference point, not part of the district rollup.
+        ref = g.iloc[0:0]
+        if not POOL_DID_WITH_DISTRICT:
+            is_did = g.source_tool.str.contains("did")
+            if is_did.any() and (~is_did).any(): ref, g = g[is_did], g[~is_did]
         if len(g) == 1: r = g.iloc[0].to_dict(); r["pooling_method"] = "single_source"
         else:
             nknown = g.n_students.notna().all()
@@ -369,6 +391,9 @@ def domain_rows(period_col):
             for dom_ in ["literacy", "numeracy"]: r[f"{dom_}_competencies"] = " || ".join(g[f"{dom_}_competencies"])
             r["pooling_method"] = "n_weighted" if nknown else "equal_weight_sources"
         r["row_type"] = "trend_point"; tps.append(r)
+        for _, rr in ref.iterrows():
+            rr = rr.to_dict(); rr["row_type"] = "reference_point"; rr["pooling_method"] = "single_source"
+            tps.append(rr)
     out = pd.concat([pd.DataFrame(tps), df], ignore_index=True)
     out["source_tool_label"] = out.source_tool.map(lambda x: " + ".join(TOOL_LABEL.get(t, t) for t in x.replace("pooled:", "").split("+")))
     out["includes_did"] = out.source_tool.str.contains("did")

@@ -249,6 +249,16 @@ export const strings = {
     noData: 'No data to show for this selection.',
   },
 
+  /** Reference points: a DiD round measured alongside a district tool. */
+  reference: {
+    label: 'DiD baseline (% correct)',
+    legend: 'DiD baseline — a second reading, shown for reference',
+    note:
+      'The DiD study measured this competency in the same period as the district tool. ' +
+      'Its number is an average % correct, not the share of children achieving, so it sits ' +
+      'beside the line rather than on it. The dotted link shows where it sat; it is not a change.',
+  },
+
   /** Comparability, in plain words. Keyed by stacking_status. */
   comparability: {
     stack: 'Same task across rounds',

@@ -1,0 +1,27 @@
+raw_competency,unit,domain,stated_mean,band_1_label,band_1_pct_students,band_2_label,band_2_pct_students,band_3_label,band_3_pct_students,band_4_label,band_4_pct_students,band_5_label,band_5_pct_students,band_6_label,band_6_pct_students
+Oral Reading Fluency,cpm,literacy,35.0,0,8.0,1-15,23.0,16-29,15.0,30-44,16.0,45-59,15.0,60+,23.0
+Letter Writing,pct,literacy,84.0,b1_0,8.0,b2_lt25,2.0,b3_25_50,3.0,b4_50_75,7.0,b5_75plus,80.0,,
+Word Writing,pct,literacy,58.0,b1_0,16.0,b2_lt25,10.0,b3_25_50,14.0,b4_50_75,17.0,b5_75plus,43.0,,
+Sentence Writing,pct,literacy,49.0,b1_0,42.0,b2_lt25,0.0,b3_25_50,9.0,b4_50_75,11.0,b5_75plus,39.0,,
+Independent Writing,pct,literacy,34.0,b1_0,60.0,b2_lt25,0.0,b3_25_50,13.0,b4_50_75,0.0,b5_75plus,28.0,,
+Number Identification Untimed,pct,numeracy,73.0,b1_0,2.0,b2_lt25,8.0,b3_25_50,17.0,b4_50_75,22.0,b5_75plus,52.0,,
+Number comparison,pct,numeracy,75.0,b1_0,4.0,b2_lt25,8.0,b3_25_50,15.0,b4_50_75,15.0,b5_75plus,58.0,,
+Addition 2,pct,numeracy,53.0,b1_0,11.0,b2_lt25,27.0,b3_25_50,13.0,b4_50_75,17.0,b5_75plus,31.0,,
+Subtraction 2,pct,numeracy,46.0,b1_0,19.0,b2_lt25,26.0,b3_25_50,15.0,b4_50_75,15.0,b5_75plus,25.0,,
+Number Pattern,pct,numeracy,30.0,b1_0,30.0,b2_lt25,34.0,b3_25_50,11.0,b4_50_75,15.0,b5_75plus,10.0,,
+Shapes,pct,numeracy,16.0,b1_0,63.0,b2_lt25,0.0,b3_25_50,32.0,b4_50_75,2.0,b5_75plus,4.0,,
+Measurement,pct,numeracy,93.0,b1_0,0.0,b2_lt25,1.0,b3_25_50,0.0,b4_50_75,27.0,b5_75plus,72.0,,
+Word Problems,pct,numeracy,61.0,b1_0,12.0,b2_lt25,13.0,b3_25_50,27.0,b4_50_75,15.0,b5_75plus,33.0,,
+Listening Comprehension,pct,literacy,,b1_0,9.0,b2_lt25,9.0,b3_25_50,15.0,b4_50_75,28.0,b5_75plus,38.0,,
+Oral Vocabulary,pct,literacy,,b1_0,0.0,b2_lt25,0.0,b3_25_50,0.0,b4_50_75,0.0,b5_75plus,100.0,,
+Picture Comprehension,pct,literacy,,b1_0,0.0,b2_lt25,0.0,b3_25_50,0.0,b4_50_75,9.0,b5_75plus,91.0,,
+Word Reading (Untimed),pct,literacy,,b1_0,5.0,b2_lt25,5.0,b3_25_50,8.0,b4_50_75,12.0,b5_75plus,70.0,,
+Sentence Reading,pct,literacy,,b1_0,22.0,b2_lt25,5.0,b3_25_50,8.0,b4_50_75,8.0,b5_75plus,57.0,,
+Reading Comprehension,pct,literacy,,b1_0,27.0,b2_lt25,6.0,b3_25_50,10.0,b4_50_75,9.0,b5_75plus,47.0,,
+Letter Naming (Timed),cpm,literacy,,0,2.0,1-15,12.0,16-29,21.0,30-44,30.0,45-59,21.0,60+,14.0
+Word Reading (Timed),cpm,literacy,,0,6.0,1-15,34.0,16-29,26.0,30-44,27.0,45-59,7.0,60+,1.0
+Counting in Bundles,pct,numeracy,,b1_0,11.0,b2_lt25,19.0,b3_25_50,18.0,b4_50_75,24.0,b5_75plus,29.0,,
+Word Problems - Subtraction,pct,numeracy,,b1_0,20.0,b2_lt25,20.0,b3_25_50,22.0,b4_50_75,15.0,b5_75plus,23.0,,
+Multiplication,pct,numeracy,,b1_0,11.0,b2_lt25,0.0,b3_25_50,25.0,b4_50_75,25.0,b5_75plus,39.0,,
+Data Handling,pct,numeracy,,b1_0,1.0,b2_lt25,7.0,b3_25_50,23.0,b4_50_75,39.0,b5_75plus,30.0,,
+Number Writing,pct,numeracy,,b1_0,13.0,b2_lt25,17.0,b3_25_50,10.0,b4_50_75,12.0,b5_75plus,48.0,,

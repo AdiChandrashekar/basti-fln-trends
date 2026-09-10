@@ -309,6 +309,58 @@ export function drawSeries(group, { points, segments, x, y, colour, showCI = tru
 }
 
 /**
+ * Reference points: a DiD round that measured the same competency in the same
+ * period as a district tool.
+ *
+ * These are deliberately NOT part of the series. The district value carries the
+ * line; this sits beside it as a second reading of the same competency taken by
+ * a different study, on a different measure (the baseline reports mean % correct,
+ * the line reports the share of children achieving).
+ *
+ * The connector to the points either side is a fine dotted line in a neutral
+ * grey — not the series colour, not either of the two dash patterns the series
+ * uses. It says "here is where the other study sat", not "this is the path the
+ * children took". The pipeline attaches no change value to these rows, so
+ * nothing downstream can present the step as movement.
+ */
+export function drawReferencePoints(group, links, { x, y } = {}) {
+  const layer = group.append('g').attr('class', 'references');
+  const colour = token('--did-neutral');
+
+  for (const { reference, before, after } of links) {
+    const rx = x(reference.period);
+    const ry = y(reference.pct_students_cleared);
+
+    for (const neighbour of [before, after]) {
+      if (!neighbour) continue;
+      layer.append('path')
+        .attr('class', 'reference-link')
+        .attr('d', `M${x(neighbour.period)},${y(neighbour.pct_students_cleared)} L${rx},${ry}`)
+        .attr('fill', 'none')
+        .attr('stroke', colour)
+        .attr('stroke-width', 1.25)
+        .attr('stroke-dasharray', '1.5 4')
+        .attr('stroke-linecap', 'round')
+        .attr('opacity', 0.75)
+        .attr('pointer-events', 'none');
+    }
+  }
+
+  // Markers drawn after every connector, so no line crosses a point.
+  const markers = layer.append('g').attr('class', 'reference-markers');
+  for (const { reference } of links) {
+    drawMarker(markers, reference, {
+      x: x(reference.period),
+      y: y(reference.pct_students_cleared),
+      colour,
+      r: R,
+    });
+  }
+
+  return { layer, markers };
+}
+
+/**
  * Source-detail markers, at 50% opacity beside a pooled trend point, so the
  * user can see both instruments behind a combined number.
  */

@@ -480,6 +480,39 @@ export function sourceDetails(rows, { competency: id, period, showDid = true } =
   );
 }
 
+/**
+ * Reference points: a DiD round that measured the same competency in the same
+ * period as a district tool. These are NOT part of the trend line — the district
+ * value carries the line — and they hold a different kind of number (the
+ * baseline's mean % correct rather than a share of children achieving).
+ *
+ * They carry no change columns, which is deliberate: the pipeline does not treat
+ * the step between a reference point and the line as a change, so nothing here
+ * can present it as one.
+ */
+export function referencePoints(rows, { competency: id, period, showDid = true } = {}) {
+  if (!showDid) return [];
+  return plottable(rows).filter(
+    (row) =>
+      row.row_type === 'reference_point' &&
+      (!id || row.std_competency === id) &&
+      (!period || row.period === period)
+  );
+}
+
+/**
+ * Pair each reference point with the trend points either side of it, so it can
+ * be joined to the line by a reference connector rather than left floating.
+ * Either neighbour may be absent at the ends of a series.
+ */
+export function referenceLinks(points, references) {
+  return references.map((reference) => {
+    const before = points.filter((p) => p.period_sort < reference.period_sort).at(-1) || null;
+    const after = points.find((p) => p.period_sort > reference.period_sort) || null;
+    return { reference, before, after };
+  });
+}
+
 /** A competency's trend points, in period order. */
 export function seriesFor(rows, id, { showDid = true } = {}) {
   return trendPoints(rows, { competency: id, showDid }).sort((a, b) =>

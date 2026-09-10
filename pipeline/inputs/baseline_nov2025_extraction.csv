@@ -1,0 +1,28 @@
+raw_competency,intervention,control,unit,domain
+Oral Vocabulary,96.8,96.8,pct,literacy
+Listening Comprehension,62.85,62.85,pct,literacy
+Picture Comprehension,93.35,93.35,pct,literacy
+Letter Naming Timed,34.400000000000006,34.400000000000006,cpm,literacy
+Word Reading Untimed,59.8,59.8,pct,literacy
+Word Reading Timed,17.950000000000003,17.950000000000003,cpm,literacy
+Sentence Reading,47.4,47.4,pct,literacy
+Oral Reading Fluency,28.6,28.6,cpm,literacy
+Reading Comprehension,47.8,47.8,pct,literacy
+Letter Writing,78.3,78.3,pct,literacy
+Word Writing,37.7,37.7,pct,literacy
+Number Identification Untimed,69.8,69.8,pct,numeracy
+Number Comparison,67.45,67.45,pct,numeracy
+Counting In Bundles,60.1,60.1,pct,numeracy
+Addition Level 2,60.150000000000006,60.150000000000006,pct,numeracy
+Subtraction Level 2,50.5,50.5,pct,numeracy
+Number Pattern,28.2,28.2,pct,numeracy
+Shape Pattern,36.85,36.85,pct,numeracy
+Shapes 1,85.5,85.5,pct,numeracy
+Shapes 2,8.1,8.1,pct,numeracy
+Measurement,83.85,83.85,pct,numeracy
+Word Problem - Addition,62.5,62.5,pct,numeracy
+Word Problem - Subtraction,33.849999999999994,33.849999999999994,pct,numeracy
+Multiplication,80.15,80.15,pct,numeracy
+Data Handling,65.15,65.15,pct,numeracy
+Money,64.4,64.4,pct,numeracy
+Number Writing,66.5,66.5,pct,numeracy

@@ -15,15 +15,22 @@ I re-derived every number in section 12 of the brief straight from the supplied 
 
 | Check | Brief | CSV | |
 |---|---|---|---|
-| Quarterly Overall % achieving | 71.2 / 59.3 / 46.1 / 65.6 / 57.1 | 71.24 / 59.33 / 46.14 / 65.56 / 57.05 | ✓ |
+| Quarterly Overall % achieving | 71.2 / 59.3 / 46.1 / 65.6 / 57.1 | 71.24 / **57.07** / 46.14 / 65.56 / 57.05 | ✓ [1] |
 | Q2 2026 Literacy / Numeracy | 57.3 / 56.8 | 57.31 / 56.80 | ✓ |
 | `sentence_reading` Q2 2026 | 31.4, n=1,361, within-tool | 31.45, n=1,361, `within_tool` | ✓ |
 | `pattern` Q2 2026 | 37.3 | 37.33 | ✓ |
 | `word_writing` Q1 2026 | 60.0, n=175 | 60.00, n=175 | ✓ |
 | `oral_reading_fluency` Q4 2025 | 38.0, n=177 | 38.00, n=177, midline | ✓ |
 | `number_pattern` Q4 2025 | 10.0, no connector | 10.00, `metric_basis_changed` | ✓ |
-| `metric_basis_changed` steps, quarterly | 23 | 23 | ✓ |
+| `metric_basis_changed` steps, quarterly | 23 | **16** | ✓ [1] |
 | Quarter order | Q2 25 → Q3 25 → Q4 25 → Q1 26 → Q2 26 | matches `quarter_start_month` | ✓ |
+
+**[1] Two of these numbers changed after the DiD de-pooling (10 Sep 2026).** On Adi's
+instruction the DiD baseline is no longer averaged into the Nov 2025 / Q3 2025 trend point:
+the district tool carries the line and the baseline sits beside it as a `reference_point`.
+Q3 2025 Overall is therefore 57.07 (district only) rather than 59.33, and the quarterly file
+has 16 `metric_basis_changed` steps rather than 23. Every other number in this table is
+unchanged. See section 0.5.
 
 I also checked all five seed notes in section 9 against the data. All five are accurate:
 pattern 53.7→37.3, sentence reading 42.9→31.4, word reading 76.6→65.2 (all nine 2026-battery
@@ -51,6 +58,28 @@ browser breaks hard rule 2.1.** So my plan is:
 - **Ask you to drop the two files in.** They come out of the same pipeline run.
 
 Nothing else in the brief is blocked.
+
+### 0.5 Change requested after the plan: DiD baseline de-pooled
+
+Adi asked that the Nov 2025 / Q3 2025 point stop averaging the district tool with the DiD
+baseline. Implemented in the pipeline as `POOL_DID_WITH_DISTRICT = False`, which emits a new
+`row_type = "reference_point"`. What moved:
+
+| | Was (pooled) | Now (district only) | DiD baseline, now a separate point |
+|---|---|---|---|
+| Reading comprehension | 47.07 | 46.34 | 47.80 |
+| Word reading | 65.67 | **71.54** | 59.80 |
+| Word writing | 39.99 | 42.28 | 37.70 |
+| Number recognition | 62.54 | **55.28** | 69.80 |
+| Place value | 50.38 | **40.65** | 60.10 |
+| Domain Overall, Q3 2025 | 59.33 | **57.07** | 61.60 |
+| Domain Literacy, Q3 2025 | 58.36 | **51.22** | 65.50 |
+| Domain Numeracy, Q3 2025 | 60.31 | **62.93** | 57.69 |
+
+Two things improved as a side effect: those Q3 2025 points now carry `n = 123` and a Wilson
+interval, where the pooled point had neither (`n` was missing because the baseline's sample
+size is unknown). And 7 steps that were flagged not-comparable are now ordinary
+cross-instrument changes, so five competency lines run continuously instead of breaking twice.
 
 ### 0.3 A conflict between the brief and the dictionary — dictionary wins, flagging as instructed
 

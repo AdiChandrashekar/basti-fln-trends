@@ -97,10 +97,14 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
 - **`source_detail` rows:** one row per competency × period × source.
   - They include: `n`, `pct_students_cleared`, `se` (binomial), the Wilson 95% interval (`ci95_low`, `ci95_high`), `pct_cleared_tool_flag`, `mean_pct_score`, `median_pct_score`, `sd_pct_score`, `mean_cpm`, `median_cpm`, `n_distinct_scores`, and `n_schools` (2025 only).
 - **`trend_point` rows:** one per competency × period. Use these for lines.
-  - Where several sources have a value in the same period, they are pooled:
-    - n-weighted in Aug 2025 (July tool + Aug tool).
-    - Equal-weight in Nov 2025 and Q3_2025 (Q3 2025 tool + DiD baseline), because the baseline n is unknown. Set `BASELINE_N` in the config to switch to n-weighting.
+  - Where several **district** sources have a value in the same period, they are pooled n-weighted (Aug 2025: July tool + Aug tool).
   - `pooling_method` records the rule used.
+- **`reference_point` rows:** a DiD round that measured the same competency in the same period as a district tool. **Not pooled into the trend point and never part of the line** (`POOL_DID_WITH_DISTRICT = False`, confirmed by Adi).
+  - Today this is only Nov 2025 / Q3_2025, where the Q3 2025 tool and the DiD baseline both measured 5 competencies: reading comprehension, word reading, word writing, number recognition and place value.
+  - The district value carries the line; the baseline value sits beside it as a second reading. It carries **no change columns**, because the step between it and the line is not a change: the two sit on different bases.
+  - Where a DiD round is the **only** source in a period, it is still the `trend_point` (Q4_2025 midline, and the 19 competencies only the baseline measured).
+  - The domain rollup follows the same rule: `domain_level_trend.csv` carries a `reference_point` row for the Nov 2025 / Q3_2025 baseline.
+  - Set `POOL_DID_WITH_DISTRICT = True` in the config to restore the old equal-weight pooling.
 - **DiD points** sit at 2025-11 / Q3_2025 (baseline) and 2026-03 / Q4_2025 (midline), marked with `is_did_point`.
 
 ## 8. Flags
@@ -124,7 +128,8 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
   - `within_tool`: same tool family; the cleanest change.
   - `cross_tool_matched_construct`
   - `cross_tool_caveat`
-  - `metric_basis_changed`: one end of the change is the DiD baseline's % correct and the other is a clearance rate. This covers every baseline → midline step, and the steps into or out of a pooled Nov 2025 point. **Do not present these as real change.** Break the line or show the two points without a connector.
+  - `metric_basis_changed`: one end of the change is the DiD baseline's % correct and the other is a clearance rate. This covers every baseline → midline step. **Do not present these as real change.** Break the line or show the two points without a connector.
+    - Since the baseline stopped being pooled into Nov 2025 / Q3_2025, the quarterly file has **16** of these steps (previously 23). The 7 that went away were the steps into and out of the old pooled points, which are now ordinary cross-instrument changes between district tools.
 - **`tool_calibration_nov2025.csv`** compares the Q3 2025 tool with the DiD baseline in the same month. It has to use mean scores, because the baseline has no clearance data.
   - ORF agrees within 0.5 cpm.
   - Word reading, word writing and place value differ by 18-22 points.
@@ -138,7 +143,7 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
   - ORF (≥45 cpm) counts as a literacy competency wherever a tool tested it, matching how the 2025 tools built their own literacy counts.
 - **`overall_pct_cleared`** is the mean of the literacy and numeracy values.
 - **DiD midline domain** is the mean of competency clearance rates across the 11 literacy and 13 numeracy items with band data.
-- **DiD baseline domain** is the mean of the baseline's 24 % correct items. It is pooled with equal weight with the Q3 2025 tool in Nov 2025 and Q3_2025, so the domain point in those periods mixes two metric bases.
+- **DiD baseline domain** is the mean of the baseline's 24 % correct items. It is **not** pooled with the Q3 2025 tool: in Nov 2025 and Q3_2025 it is a `reference_point`, and the district tool alone carries the domain trend point. Q3_2025 overall is therefore **57.07** (district only), not the 59.33 the old equal-weight pooling produced.
 - **The competency set changes by tool.** It is recorded in `*_competencies` and `*_n_competencies`.
 
 ## 11. Non-stacking views
@@ -178,6 +183,7 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
 
 **Confirmed by Adi**
 - The primary metric is the share of students scoring 75% or more.
+- The DiD baseline is **not** averaged into the district trend line. Where both measured the same competency in the same period, the district value carries the line and the baseline is a `reference_point` beside it.
 - Q3 2025 three-item competencies are cleared at 2 of 3, the tool's rule at the time.
 - DiD baseline % correct is used directly as its value.
 - Grade 1 and Grade 3 students are excluded from Q1 2026.

@@ -12,12 +12,13 @@
 import { d3 } from '../vendor.js';
 import {
   load, loadTrends, periodSlots, seriesFor, segmentsFor, sourceDetails, trendPoints,
+  referencePoints, referenceLinks,
 } from '../data.js';
 import { chart, sourceNoteFor } from '../chart.js';
 import { timePlot } from '../timeplot.js';
 import {
   drawSeries, drawSourceSatellites, drawLatestLabel, domainColour, token,
-  createTooltip, bindTooltip, tooltipContent, markerPath,
+  createTooltip, bindTooltip, tooltipContent, markerPath, drawReferencePoints,
 } from '../grammar.js';
 import { competencyName } from '../competencies.js';
 import { periodLabel, pct1, nLabel, int } from '../format.js';
@@ -48,6 +49,7 @@ function legend(root) {
     { svg: `<path d="${markerPath('circle', 9)}" transform="translate(16,8)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/><path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'Two instruments combined' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="#fff" stroke="currentColor" stroke-width="2"/>`, label: 'Thin or unreported sample, or a ceiling' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,10)" fill="currentColor"/><line x1="16" y1="1" x2="16" y2="4" stroke="#FFC000" stroke-width="2.5" stroke-linecap="round"/>`, label: 'Achieving needs full marks' },
+    { svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token('--did-neutral')}" stroke-width="1.25" stroke-dasharray="1.5 4"/><path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="${token('--did-neutral')}"/>`, label: 'DiD baseline, shown beside the line for reference' },
     { svg: '<rect x="2" y="0" width="28" height="16" fill="rgba(255,192,0,0.14)"/>', label: 'The latest round' },
   ];
 
@@ -71,6 +73,8 @@ export async function mount(root, ctx) {
   const points = seriesFor(rows, id);
   const segments = segmentsFor(points);
   const details = sourceDetails(rows, { competency: id });
+  const references = referencePoints(rows, { competency: id, showDid: ctx.state.showDid });
+  const links = referenceLinks(points, references);
   const slots = periodSlots(rows, granularity, quarterly);
   const domain = points[0]?.domain || 'literacy';
 
@@ -100,6 +104,9 @@ export async function mount(root, ctx) {
       if (p.ci95_low !== null) bits.push('has an uncertainty interval');
       return `${periodLabel(p.period, { granularity, quarterLabel: p.period_label })}: ${pct1(p.pct_students_cleared)}, ${nLabel(p.n)}${bits.length ? ` — ${bits.join('; ')}` : ''}`;
     }),
+    ...references.map((r) =>
+      `${periodLabel(r.period, { granularity, quarterLabel: r.period_label })}: DiD baseline ` +
+      `${pct1(r.pct_students_cleared)} — a second reading beside the line, not on it`),
     ...segments.map((s) =>
       `${periodLabel(s.from.period, { granularity, quarterLabel: s.from.period_label })} → ` +
       `${periodLabel(s.to.period, { granularity, quarterLabel: s.to.period_label })}: ` +
@@ -169,6 +176,9 @@ export async function mount(root, ctx) {
         return point && point.is_pooled;
       }), { x, y, colour });
 
+      // Reference points sit under the series: the district line is the subject,
+      // the DiD reading is context beside it.
+      const refs = drawReferencePoints(plot, links, { x, y });
       const series = drawSeries(plot, { points, segments, x, y, colour });
       drawLatestLabel(plot, points, { x, y, colour });
 
@@ -185,6 +195,7 @@ export async function mount(root, ctx) {
         satellites.selectAll('g').data(details.filter((d) => points.find((p) => p.period === d.period)?.is_pooled)),
         tooltip, label
       );
+      bindTooltip(refs.markers.selectAll('g').data(references), tooltip, label);
     },
   });
 
