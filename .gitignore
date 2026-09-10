@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# PRIVACY. The raw data contains children's names and school names.
+# This site is published from a public repository. Nothing below may be committed.
+# ---------------------------------------------------------------------------
+*.xlsx
+*.xls
+*.xlsm
+student_scores_long.csv
+pipeline/data/student_scores_long.csv
+pipeline/audit/
+audit/
+
+# The original drop zone for files handed over by the pipeline owner.
+# Contains student_scores_long.csv, so the whole folder stays out of git.
+# Publishable aggregates are copied into pipeline/data/ and committed from there.
+files/
+
+# ---------------------------------------------------------------------------
+# Local noise
+# ---------------------------------------------------------------------------
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.vscode/
+.idea/

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "same-test-lower-scores",
+    "title": "Same test, lower scores",
+    "body": "From Apr–Jun to Jul–Sep 2026 the same battery showed a lower share of children achieving on every one of its nine competencies. Patterns fell from 54% to 37%, sentence reading from 43% to 31%, and word reading from 77% to 65%. The gap spans the summer break, and the sample grew from 175 children to 1,361.",
+    "link_hash": "#/changes",
+    "as_of": "Q2_2026"
+  },
+  {
+    "id": "sentence-reading-weakest",
+    "title": "Sentence reading is the weakest literacy task on the district tools",
+    "body": "31% of children achieved it in Jul–Sep 2026. The task has only two items, so achieving it means full marks — which holds it down relative to longer tasks.",
+    "link_hash": "#/competency/sentence_reading",
+    "as_of": "Q2_2026"
+  },
+  {
+    "id": "writing-moved-most",
+    "title": "Writing moved most between the DiD rounds",
+    "body": "Word writing rose from 38% to 58% correct between the Nov 2025 baseline and the Mar 2026 midline, the largest gain of any competency measured in both rounds. Oral reading fluency rose from 28.6 to 35 correct words per minute, still short of the 45 cpm benchmark.",
+    "link_hash": "#/did",
+    "as_of": "Q4_2025"
+  },
+  {
+    "id": "weakest-at-midline",
+    "title": "The weakest areas at midline",
+    "body": "Number patterns 10% achieving, shapes 4%, 2-digit subtraction 25% and independent writing 28%. On shapes and independent writing, more than half the children scored nothing at all.",
+    "link_hash": "#/distributions",
+    "as_of": "Q4_2025"
+  },
+  {
+    "id": "steps-follow-instruments",
+    "title": "The biggest steps coincide with instrument changes",
+    "body": "Sep to Oct 2025 and Mar to Apr 2026 are both points where the assessment tool changed. In Nov 2025, when two instruments tested the same children in the same month, same-named tasks differed by up to 22 points. Read every cross-instrument move as indicative.",
+    "link_hash": "#/changes",
+    "as_of": "Q2_2026"
+  }
+]

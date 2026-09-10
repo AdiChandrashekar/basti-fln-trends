@@ -1,0 +1,668 @@
+/* ===========================================================================
+   Application shell: rail, content grid, control bar, prose, tables.
+   Chart-specific rules live alongside the grammar in phase 2.
+   No colour value appears here — everything reads a token from tokens.css.
+   =========================================================================== */
+
+/* --- Reset ---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--t-base);
+  font-weight: var(--w-regular);
+  line-height: var(--leading-normal);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, p, figure, ul, ol {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+img, svg {
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: var(--csf-blue);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* One focus treatment, everywhere, always visible. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--s-2);
+  left: var(--s-2);
+  z-index: 100;
+  padding: var(--s-2) var(--s-4);
+  background: var(--paper);
+  color: var(--csf-navy);
+  font-weight: var(--w-semibold);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* --- App layout ----------------------------------------------------------- */
+.app {
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* --- Navigation rail ------------------------------------------------------ */
+/* Echoes the blue edge bar on CSF slides. */
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-5) 0;
+  background: var(--csf-navy);
+  color: var(--paper);
+  overflow-y: auto;
+}
+
+.rail__wordmark {
+  padding: 0 var(--s-5) var(--s-6);
+}
+
+.rail__title {
+  font-size: var(--t-base);
+  font-weight: var(--w-semibold);
+  line-height: var(--leading-tight);
+  color: var(--paper);
+}
+
+.rail__subtitle {
+  margin-top: var(--s-1);
+  font-size: var(--t-xs);
+  color: var(--csf-sky);
+}
+
+/* Compact mark, shown only on the collapsed rail. */
+.rail__mark {
+  display: none;
+  font-size: var(--t-md);
+  font-weight: var(--w-bold);
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+
+.rail__nav {
+  flex: 1;
+}
+
+.rail__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-5);
+  font-size: var(--t-sm);
+  color: var(--csf-sky);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+/* A glyph that depicts the page's chart type: line, grid, slope, stacked bar,
+   dumbbell. Meaningful rather than decorative, which is what earns it a place
+   on the collapsed rail where the full label cannot fit. */
+.rail__glyph {
+  width: 19px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.rail__link[aria-current='page'] .rail__glyph {
+  opacity: 1;
+}
+
+.rail__label-short {
+  display: none;
+}
+
+.rail__link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+/* The active item gets a gold left marker and a slightly lighter background. */
+.rail__link[aria-current='page'] {
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: var(--csf-gold);
+  color: var(--paper);
+  font-weight: var(--w-semibold);
+}
+
+.rail__footer {
+  padding: var(--s-5) var(--s-5) 0;
+  font-size: var(--t-xs);
+  color: var(--csf-sky);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  margin-top: var(--s-5);
+}
+
+.rail__footer dt {
+  opacity: 0.75;
+}
+
+.rail__footer dd {
+  margin: var(--s-1) 0 0;
+  font-weight: var(--w-medium);
+  color: var(--paper);
+}
+
+/* --- Content -------------------------------------------------------------- */
+.content {
+  min-width: 0;
+  padding: var(--s-6) var(--gutter) var(--s-8);
+}
+
+.content__inner {
+  max-width: var(--content-max);
+}
+
+.page-title {
+  font-size: var(--t-xl);
+  font-weight: var(--w-bold);
+  line-height: var(--leading-tight);
+  color: var(--csf-navy);
+}
+
+.page-intro {
+  margin-top: var(--s-3);
+  max-width: var(--measure);
+  font-size: var(--t-base);
+  line-height: var(--leading-prose);
+  color: var(--slate);
+}
+
+/* Sections are separated by whitespace and one hairline, never boxed cards. */
+.section {
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule);
+}
+
+.section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.section__title {
+  font-size: var(--t-md);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.section__subtitle {
+  margin-top: var(--s-2);
+  max-width: var(--measure);
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+.prose {
+  max-width: var(--measure);
+  line-height: var(--leading-prose);
+}
+
+.prose > * + * {
+  margin-top: var(--s-4);
+}
+
+/* --- Control bar ---------------------------------------------------------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  align-items: flex-end;
+  margin-top: var(--s-4);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.control__label {
+  font-size: var(--t-xs);
+  font-weight: var(--w-medium);
+  color: var(--slate);
+}
+
+/* Segmented control for granularity and domain. */
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.segmented button {
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--t-sm);
+  color: var(--slate);
+  background: var(--paper);
+  border-right: 1px solid var(--rule);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.segmented button:last-child {
+  border-right: none;
+}
+
+.segmented button:hover {
+  background: var(--mist);
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--csf-sky);
+  color: var(--csf-navy);
+  font-weight: var(--w-semibold);
+}
+
+.control__checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--t-sm);
+  color: var(--ink);
+  cursor: pointer;
+  padding: var(--s-2) 0;
+}
+
+.control__checkbox input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--csf-blue);
+  cursor: pointer;
+}
+
+/* --- Notices -------------------------------------------------------------- */
+.notice {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+  margin-top: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  background: var(--csf-sky);
+  border-left: 3px solid var(--csf-blue);
+  font-size: var(--t-sm);
+  line-height: var(--leading-prose);
+  color: var(--ink);
+}
+
+.notice p {
+  max-width: var(--measure);
+}
+
+.notice__dismiss {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  color: var(--csf-navy);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Empty state: a missing file or an unassessed period. Named, never blank. */
+.empty-state {
+  padding: var(--s-5);
+  background: var(--mist);
+  border: 1px dashed var(--rule);
+  font-size: var(--t-sm);
+  color: var(--slate);
+  max-width: var(--measure);
+}
+
+.empty-state code {
+  font-family: var(--font-sans);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+/* --- Tables --------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+  margin-top: var(--s-4);
+}
+
+table.data {
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+  width: 100%;
+}
+
+table.data caption {
+  text-align: left;
+  font-size: var(--t-sm);
+  color: var(--slate);
+  padding-bottom: var(--s-2);
+}
+
+table.data th,
+table.data td {
+  padding: var(--s-2) var(--s-3);
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+table.data th {
+  font-weight: var(--w-semibold);
+  color: var(--slate);
+  font-size: var(--t-xs);
+  border-bottom-width: 2px;
+}
+
+table.data td.num,
+table.data th.num {
+  text-align: right;
+}
+
+table.data tbody tr:nth-child(even) {
+  background: var(--mist);
+}
+
+/* --- Loading and error ---------------------------------------------------- */
+.loading {
+  padding: var(--s-7) 0;
+  color: var(--slate);
+  font-size: var(--t-sm);
+}
+
+.error {
+  padding: var(--s-5);
+  border-left: 3px solid var(--tier-critical);
+  background: var(--mist);
+  font-size: var(--t-sm);
+  max-width: var(--measure);
+}
+
+.error h2 {
+  font-size: var(--t-base);
+  font-weight: var(--w-semibold);
+  color: var(--tier-critical);
+  margin-bottom: var(--s-2);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+/* 1024px and below: the rail collapses to a glyph rail.
+   Nothing is truncated or broken mid-word — the full label is swapped for a
+   short one, and the full name stays in aria-label and title. */
+@media (max-width: 1024px) {
+  .app {
+    grid-template-columns: var(--rail-width-collapsed) minmax(0, 1fr);
+  }
+
+  .rail__wordmark {
+    padding: 0 var(--s-2) var(--s-5);
+    text-align: center;
+  }
+
+  .rail__title,
+  .rail__subtitle {
+    display: none;
+  }
+
+  .rail__mark {
+    display: block;
+  }
+
+  .rail__link {
+    flex-direction: column;
+    gap: var(--s-1);
+    padding: var(--s-3) var(--s-1);
+    text-align: center;
+    border-left-width: 0;
+    border-top: 2px solid transparent;
+  }
+
+  .rail__link[aria-current='page'] {
+    border-left-color: transparent;
+    border-top-color: var(--csf-gold);
+  }
+
+  .rail__label {
+    display: none;
+  }
+
+  .rail__label-short {
+    display: block;
+    font-size: 0.6875rem; /* 11px: the one place the scale is stepped below --t-xs */
+    line-height: 1.15;
+  }
+
+  .rail__footer {
+    padding: var(--s-4) var(--s-1) 0;
+    text-align: center;
+  }
+
+  .rail__footer dt {
+    display: none;
+  }
+
+  .rail__footer dd {
+    font-size: 0.6875rem;
+    line-height: 1.2;
+  }
+
+  :root {
+    --gutter: 1.5rem;
+  }
+}
+
+/* 390–768px: rail becomes a top bar with a menu button. */
+@media (max-width: 768px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    /* Without this the 100vh min-height stretches both auto rows evenly and the
+       top bar inflates to half the screen. The bar hugs its content; the page
+       takes the rest. */
+    grid-template-rows: auto 1fr;
+  }
+
+  .rail {
+    position: static;
+    height: auto;
+    padding: var(--s-3) var(--s-4);
+  }
+
+  /* Back to the full wordmark and full labels: a top bar has the width for them. */
+  .rail__wordmark {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: 0 0 var(--s-2);
+    text-align: left;
+  }
+
+  .rail__title,
+  .rail__subtitle {
+    display: block;
+  }
+
+  .rail__mark {
+    display: none;
+  }
+
+  .rail__nav[data-open='false'] {
+    display: none;
+  }
+
+  .rail__link {
+    flex-direction: row;
+    text-align: left;
+    font-size: var(--t-sm);
+    padding: var(--s-3);
+    border-top-width: 0;
+    border-left: 3px solid transparent;
+  }
+
+  .rail__link[aria-current='page'] {
+    border-top-color: transparent;
+    border-left-color: var(--csf-gold);
+  }
+
+  .rail__label {
+    display: block;
+  }
+
+  .rail__label-short {
+    display: none;
+  }
+
+  /* The build date belongs with the navigation on mobile, not in the top bar
+     where it would push the page down on every screen. */
+  .rail__footer {
+    text-align: left;
+    margin-top: 0;
+    border-top: none;
+    padding: 0 var(--s-3) var(--s-3);
+    display: flex;
+    gap: var(--s-2);
+  }
+
+  .rail__footer dt {
+    display: block;
+  }
+
+  .rail__footer dd {
+    font-size: var(--t-xs);
+    margin: 0;
+  }
+
+  .rail[data-nav-open='false'] .rail__footer {
+    display: none;
+  }
+
+  .rail__menu {
+    display: block;
+    padding: var(--s-2) var(--s-3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    color: var(--paper);
+    font-size: var(--t-sm);
+  }
+
+  .rail__footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .content {
+    padding: var(--s-5) var(--s-4) var(--s-7);
+  }
+
+  :root {
+    --gutter: 1rem;
+  }
+
+  .controls {
+    gap: var(--s-3);
+  }
+}
+
+@media (min-width: 769px) {
+  .rail__menu {
+    display: none;
+  }
+
+  .rail__nav {
+    display: block !important;
+  }
+}
+
+/* Presentation mode: hide the rail and the control bar for a projector. */
+:root[data-presentation='on'] .rail,
+:root[data-presentation='on'] .controls {
+  display: none;
+}
+
+:root[data-presentation='on'] .app {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* --- Debug page (phase 1 acceptance) -------------------------------------- */
+.debug-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-5);
+  margin-top: var(--s-4);
+}
+
+.debug-check {
+  font-weight: var(--w-semibold);
+}
+
+.debug-check[data-ok='true'] {
+  color: var(--csf-blue);
+}
+
+.debug-check[data-ok='false'] {
+  color: var(--tier-critical);
+}

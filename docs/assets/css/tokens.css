@@ -1,0 +1,139 @@
+/* ===========================================================================
+   Design tokens. The ONLY file in this site that contains a colour value.
+   Everything downstream — CSS and JS alike — reads a custom property.
+   Palette and type scale come from Central Square Foundation's deck template.
+   =========================================================================== */
+
+:root {
+  /* --- Brand and surface ------------------------------------------------ */
+  --csf-blue: #003DA5;   /* primary. Literacy series, links, "achieving" tier */
+  --csf-navy: #00316B;   /* nav rail, page titles, heatmap high end */
+  --csf-gold: #FFC000;   /* highlighter only. Never carries text on white */
+  --csf-sky: #CFE2F3;    /* info panels, active nav on white, ribbon tints */
+  --amber: #B26B00;      /* numeracy series. Darkened gold, 5.1:1 on white */
+  --ink: #1B2433;        /* body text, Overall series */
+  --slate: #4A5568;      /* secondary text, axes, gridline labels */
+  --rule: #DDE3EC;       /* gridlines, hairlines */
+  --paper: #FFFFFF;      /* page background */
+  --mist: #F4F7FB;       /* plot background tint, table zebra */
+
+  /* --- Mastery bands ---------------------------------------------------- */
+  --band-1-zero: #7F1D1D;
+  --band-2-lt25: #D9573B;
+  --band-3-25-50: #FFD666;
+  --band-4-50-75: #8FB3E0;
+  --band-5-75plus: #003DA5;
+
+  /* --- Tiers ------------------------------------------------------------ */
+  --tier-critical: #B3261E;
+  --tier-developing: #FFC000;
+  --tier-achieving: #003DA5;
+
+  /* --- Change direction -------------------------------------------------- */
+  --change-down: #B3261E;
+  --change-up: #003DA5;
+  --change-flat: #8A94A6;
+
+  /* --- Heatmap sequential scale, % achieving 0 -> 100 -------------------- */
+  /* Interpolated through Lab in JS. Text flips to --paper above 55. */
+  --heat-0: #F4F7FB;
+  --heat-1: #CFE2F3;
+  --heat-2: #7FA8DC;
+  --heat-3: #2E63B8;
+  --heat-4: #003DA5;
+  --heat-5: #00224D;
+  --heat-text-flip: 55;
+
+  /* --- Instrument ribbon -------------------------------------------------
+     Two alternating tints so adjacent district segments separate without
+     colour carrying meaning. DiD notches step to navy so they read as a
+     different kind of thing, matching the diamond/square marker logic. */
+  --ribbon-tool-a: #E4EEF8;
+  --ribbon-tool-b: #CFE2F3;
+  --ribbon-did: #00316B;
+  --ribbon-did-ink: #FFFFFF;
+  --ribbon-boundary: #A9B7CB;
+  --ribbon-boundary-faint: rgba(169, 183, 203, 0.35);
+
+  /* --- Chart furniture --------------------------------------------------- */
+  --latest-wash: rgba(255, 192, 0, 0.14);  /* latest-period column */
+  --ci-band: rgba(0, 61, 165, 0.12);       /* Wilson 95% interval */
+  --hatch: #E7ECF3;                        /* "not assessed" diagonal hatch */
+  --focus: #FFC000;                        /* focus ring */
+  --did-neutral: #35507A;                  /* DiD % correct, deliberately off-scale */
+
+  /* --- Series weights ----------------------------------------------------- */
+  --line-overall: 3px;
+  --line-domain: 1.75px;
+  --line-within-tool: 2.5px;
+  --line-cross-tool: 2px;
+  --dash-matched-construct: 8 4;
+  --dash-caveat: 3 3;
+
+  /* --- Type ---------------------------------------------------------------
+     1.25 ratio from a 16px base. Presentation mode raises the base to 18px,
+     so the whole scale moves and nothing downstream is re-specified. */
+  --font-sans: "Public Sans", "Noto Sans Devanagari", system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+
+  --t-xs: 0.8rem;      /* 12.8px — axis labels, ribbon labels, chips */
+  --t-sm: 0.875rem;    /* 14px   — chart subtitles, secondary text */
+  --t-base: 1rem;      /* 16px   — body prose, chart titles at 600 */
+  --t-md: 1.25rem;     /* 20px   — section titles at 600 */
+  --t-lg: 1.5625rem;   /* 25px   — card titles */
+  --t-xl: 1.9375rem;   /* 31px   — page titles at 700, navy */
+  --t-2xl: 2.4375rem;  /* 39px   — the latest-round figures. Nowhere else. */
+
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-semibold: 600;
+  --w-bold: 700;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-prose: 1.6;
+  --measure: 65ch;     /* prose line length, comfortably under 75 characters */
+
+  /* --- Space, on a 4px grid ---------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --rail-width: 232px;
+  --rail-width-collapsed: 64px;
+  --content-max: 1280px;
+  --gutter: 2rem;
+  --ribbon-height: 14px;
+  --ribbon-height-compact: 10px;
+  --ribbon-height-display: 28px;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-draw: 900ms;   /* the one orchestrated moment, on the Overview hero */
+}
+
+/* Presentation mode: projector in a review meeting. Bigger base type, thicker
+   lines. Set on <html> and remembered in the URL hash. */
+:root[data-presentation="on"] {
+  font-size: 18px;
+  --line-overall: 4px;
+  --line-domain: 2.75px;
+  --line-within-tool: 3.5px;
+  --line-cross-tool: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-draw: 0ms;
+  }
+}

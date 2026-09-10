@@ -1,0 +1,100 @@
+raw_key,source_tool,raw_name,raw_scale,std_competency,competency_family,domain,unit,stacking_status,confidence,confirmation_status,reasoning
+J_OLD,july_tool,"OLD (/2) raw; ""OLD (/2)"" Yes/No",raw/2,oral_language_dev,oral_language,literacy,pct,stack_with_caveat,medium,provisional,"Same OLD construct as Aug tool, max /2 vs /4. Only exists Aug-Sep 2025."
+A_OLD,aug_tool,OLD ( /4) + OLD Achieved,raw/4,oral_language_dev,oral_language,literacy,pct,stack_with_caveat,medium,provisional,Ceiling: 81/81 achieved.
+B_Oral Vocabulary,did_baseline,Oral Vocabulary - %age correct,pct,oral_vocabulary,oral_language,literacy,pct,stack,high,provisional,"Q1 2026 Grade 1 battery excluded per Adi, so baseline is the only mean. March has bands only."
+B_Listening Comprehension,did_baseline,Listening Comprehension - %age correct,pct,listening_comprehension,oral_language,literacy,pct,stack,high,provisional,Baseline mean only; March bands only.
+B_Picture Comprehension,did_baseline,Picture Comprehension - %age correct,pct,picture_comprehension,oral_language,literacy,pct,stack,high,provisional,Baseline mean only; March bands only.
+A_LID,aug_tool,Letter identification ( /8),raw/8,letter_recognition,letter_recognition,literacy,pct,stack_with_caveat,medium,provisional,8 items; achieved flag Yes from 4-5/8.
+Q3_LMR,q3_2025_tool,Letter/Matra Recognition (/8),raw/8,letter_recognition,letter_recognition,literacy,pct,stack_with_caveat,low,provisional,Adds matras (harder). Provisional stack.
+N1_Letter Identification,q1_2026_tool,Letter Identification,"fraction, 20 items",letter_recognition,letter_recognition,literacy,pct,stack,high,confirmed,Absence of scores below 0.55 is genuine per Adi.
+N2_Letter Identification,q2_2026_tool,Letter Identification,"fraction, 20 items",letter_recognition,letter_recognition,literacy,pct,stack,high,confirmed,
+B_Letter Naming Timed,did_baseline,Letter Naming Timed - CPM,cpm,letter_naming_fluency,letter_recognition,literacy,cpm,stack,high,provisional,Timed CPM; separate series from untimed accuracy.
+Q3_WR,q3_2025_tool,Word Reading (/4),raw/4,word_reading,word_reading,literacy,pct,stack_with_caveat,medium,provisional,4 items vs 16 in 2026 tools.
+N1_Word Reading,q1_2026_tool,Word Reading,"fraction, 16 items",word_reading,word_reading,literacy,pct,stack,high,provisional,
+N2_Word Reading,q2_2026_tool,Word Reading,"fraction, 16 items",word_reading,word_reading,literacy,pct,stack,high,provisional,
+B_Word Reading Untimed,did_baseline,Word Reading Untimed - %age correct,pct,word_reading,word_reading,literacy,pct,stack_with_caveat,medium,provisional,Untimed accuracy = Excel construct.
+B_Word Reading Timed,did_baseline,Word Reading Timed - CPM,cpm,word_reading_fluency,word_reading,literacy,cpm,stack,high,provisional,
+N1_Sentence Reading,q1_2026_tool,Sentence Reading,"fraction, 2 items",sentence_reading,sentence_reading,literacy,pct,stack,high,provisional,3 possible scores (0/50/100).
+N2_Sentence Reading,q2_2026_tool,Sentence Reading,"fraction, 2 items",sentence_reading,sentence_reading,literacy,pct,stack,high,provisional,
+B_Sentence Reading,did_baseline,Sentence Reading - %age correct,pct,sentence_reading,sentence_reading,literacy,pct,stack_with_caveat,medium,provisional,
+J_ORF,july_tool,ORF (/45) raw CPM,cpm,oral_reading_fluency,oral_reading_fluency,literacy,cpm,stack_with_caveat,high,provisional,"""/45"" is the benchmark. Achieved recomputed as >=45 cpm (2 source flags contradicted CPM)."
+A_ORF,aug_tool,ORF (/45) / ORF,cpm,oral_reading_fluency,oral_reading_fluency,literacy,cpm,stack_with_caveat,high,provisional,-5 value set to null.
+Q3_ORF,q3_2025_tool,ORF.1 (CPM),cpm,oral_reading_fluency,oral_reading_fluency,literacy,cpm,stack_with_caveat,high,provisional,
+B_Oral Reading Fluency,did_baseline,Oral Reading Fluency - CPM,cpm,oral_reading_fluency,oral_reading_fluency,literacy,cpm,stack_with_caveat,high,provisional,
+M_Oral Reading Fluency,did_midline,Oral Reading Fluency (prose 35 cpm),cpm,oral_reading_fluency,oral_reading_fluency,literacy,cpm,stack_with_caveat,high,provisional,Passages differ by tool; CPM is still the most portable unit.
+Q3_RC,q3_2025_tool,RC (/4),raw/4,reading_comprehension,reading_comprehension,literacy,pct,stack_with_caveat,medium,provisional,Q1 2026 Grade 3 battery excluded per Adi.
+B_Reading Comprehension,did_baseline,Reading Comprehension - %age correct,pct,reading_comprehension,reading_comprehension,literacy,pct,stack_with_caveat,medium,provisional,March bands only.
+B_Letter Writing,did_baseline,Letter Writing - %age correct,pct,letter_writing,writing,literacy,pct,stack,high,provisional,
+M_Letter Writing,did_midline,Letter Writing (prose 84%),pct,letter_writing,writing,literacy,pct,stack,high,provisional,
+J_WW,july_tool,Word Writing (/2),raw/2,word_writing,writing,literacy,pct,stack_with_caveat,medium,provisional,
+A_WR,aug_tool,Writing ( /2),raw/2,word_writing,writing,literacy,pct,stack_with_caveat,low,provisional,"Label is just ""Writing""; July tool labels the same /2 slot ""Word Writing""."
+Q3_WW,q3_2025_tool,Word Writing  (/4),raw/4,word_writing,writing,literacy,pct,stack_with_caveat,medium,provisional,
+N1_Word Writing,q1_2026_tool,Word Writing,"fraction, 4 items",word_writing,writing,literacy,pct,stack,high,provisional,
+N2_Word Writing,q2_2026_tool,Word Writing,"fraction, 4 items",word_writing,writing,literacy,pct,stack,high,provisional,
+B_Word Writing,did_baseline,Word Writing - %age correct,pct,word_writing,writing,literacy,pct,stack,high,provisional,
+M_Word Writing,did_midline,Word Writing (prose 58%),pct,word_writing,writing,literacy,pct,stack,high,provisional,
+M_Sentence Writing,did_midline,Sentence Writing (prose 49%),pct,sentence_writing,writing,literacy,pct,single_source,high,provisional,"Q1 2026 Grade 3 battery excluded, so March only."
+M_Independent Writing,did_midline,Independent Writing (prose 34%),pct,independent_writing,writing,literacy,pct,single_source,high,provisional,
+Q3_NR,q3_2025_tool,Number Recogniton (/4),raw/4,number_recognition,number_sense,numeracy,pct,stack_with_caveat,medium,provisional,
+N1_Number ID,q1_2026_tool,Number ID,"fraction, 12 items",number_recognition,number_sense,numeracy,pct,stack,high,provisional,
+N2_Number ID,q2_2026_tool,Number ID,"fraction, 12 items",number_recognition,number_sense,numeracy,pct,stack,high,provisional,
+B_Number Identification Untimed,did_baseline,Number Identification Untimed - %age correct,pct,number_recognition,number_sense,numeracy,pct,stack,high,provisional,
+M_Number Identification Untimed,did_midline,Number Identification Untimed (prose 73%),pct,number_recognition,number_sense,numeracy,pct,stack,high,provisional,
+J_NC,july_tool,Number Comparison (/1),raw/1,number_comparison,number_sense,numeracy,pct,stack_with_caveat,medium,provisional,Single item: 0 or 100 only.
+A_NC,aug_tool,Number Comparison ( /4),raw/4,number_comparison,number_sense,numeracy,pct,stack_with_caveat,medium,provisional,Near ceiling.
+B_Number Comparison,did_baseline,Number Comparison - %age correct,pct,number_comparison,number_sense,numeracy,pct,stack,high,provisional,
+M_Number comparison,did_midline,Number comparison (prose 75%),pct,number_comparison,number_sense,numeracy,pct,stack,high,provisional,
+J_CIB,july_tool,Counting in Bundle (/1),raw/1,place_value_bundles,place_value,numeracy,pct,stack_with_caveat,medium,provisional,Single item.
+A_CIB,aug_tool,Counting in Bundles ( /2),raw/2,place_value_bundles,place_value,numeracy,pct,stack_with_caveat,medium,provisional,
+Q3_CIB,q3_2025_tool,Counting in Bundles (/3),raw/3,place_value_bundles,place_value,numeracy,pct,stack_with_caveat,medium,provisional,
+N1_Place Value,q1_2026_tool,Place Value,"fraction, 4 items",place_value_bundles,place_value,numeracy,pct,stack_with_caveat,low,provisional,Bundling tens = NIPUN route to place value. Different label.
+N2_Place Value,q2_2026_tool,Place Value,"fraction, 4 items",place_value_bundles,place_value,numeracy,pct,stack_with_caveat,low,provisional,
+B_Counting In Bundles,did_baseline,Counting In Bundles - %age correct,pct,place_value_bundles,place_value,numeracy,pct,stack_with_caveat,medium,provisional,March bands only.
+A_ADD1,aug_tool,One Digit Addition ( /4),raw/4,addition_1digit,addition,numeracy,pct,stack_with_caveat,high,provisional,1-digit: kept off the 2-digit line.
+J_ADD,july_tool,One Digit Addition Achieved (flag only),Yes/No,addition_1digit,addition,numeracy,pct,stack_with_caveat,medium,provisional,No separate raw score; contributes to pct_achieved only.
+J_ADDSUB,july_tool,Addition & Subtraction (/2) combined raw,raw/2,add_sub_1digit_combined,addition,numeracy,pct,single_source,medium,provisional,Combined score cannot be split.
+Q3_ADD,q3_2025_tool,Addition (/3),raw/3,addition,addition,numeracy,pct,stack_with_caveat,low,provisional,Digit level not stated. Not stacked with DiD Level 2 (see addition_2digit/subtraction_2digit). Stacks across district tools Q3 2025 -> 2026.
+N1_Addition,q1_2026_tool,Addition,"fraction, 4 items",addition,addition,numeracy,pct,stack_with_caveat,low,provisional,Digit level not stated. Not stacked with DiD Level 2 (see addition_2digit/subtraction_2digit). Stacks across district tools Q3 2025 -> 2026.
+N2_Addition,q2_2026_tool,Addition,"fraction, 4 items",addition,addition,numeracy,pct,stack_with_caveat,low,provisional,Digit level not stated. Not stacked with DiD Level 2 (see addition_2digit/subtraction_2digit). Stacks across district tools Q3 2025 -> 2026.
+B_Addition Level 2,did_baseline,Addition Level 2 - %age correct,pct,addition_2digit,addition,numeracy,pct,stack,high,provisional,"Nov 2025 same-month check: district tool scores +27.7 pp above DiD Level 2, and the gap persists Mar->Apr 2026. DiD item is explicitly 2-digit; district item is likely easier. Kept on separate lines."
+M_Addition 2,did_midline,Addition 2 (prose 53%),pct,addition_2digit,addition,numeracy,pct,stack,high,provisional,"Nov 2025 same-month check: district tool scores +27.7 pp above DiD Level 2, and the gap persists Mar->Apr 2026. DiD item is explicitly 2-digit; district item is likely easier. Kept on separate lines."
+A_SUB1,aug_tool,One Digit Subtraction ( /4),raw/4,subtraction_1digit,subtraction,numeracy,pct,stack_with_caveat,high,provisional,
+J_SUB,july_tool,One Digit Subtraction Achieved (flag only),Yes/No,subtraction_1digit,subtraction,numeracy,pct,stack_with_caveat,medium,provisional,Flag only.
+Q3_SUB,q3_2025_tool,Subtraction (/3),raw/3,subtraction,subtraction,numeracy,pct,stack_with_caveat,low,provisional,Digit level not stated. Not stacked with DiD Level 2 (see addition_2digit/subtraction_2digit). Stacks across district tools Q3 2025 -> 2026.
+N1_Subtraction,q1_2026_tool,Subtraction,"fraction, 4 items",subtraction,subtraction,numeracy,pct,stack_with_caveat,low,provisional,Digit level not stated. Not stacked with DiD Level 2 (see addition_2digit/subtraction_2digit). Stacks across district tools Q3 2025 -> 2026.
+N2_Subtraction,q2_2026_tool,Subtraction,"fraction, 4 items",subtraction,subtraction,numeracy,pct,stack_with_caveat,low,provisional,Digit level not stated. Not stacked with DiD Level 2 (see addition_2digit/subtraction_2digit). Stacks across district tools Q3 2025 -> 2026.
+B_Subtraction Level 2,did_baseline,Subtraction Level 2 - %age correct,pct,subtraction_2digit,subtraction,numeracy,pct,stack,high,provisional,"Nov 2025 same-month check: district tool scores +22.2 pp above DiD Level 2, and the gap persists Mar->Apr 2026. DiD item is explicitly 2-digit; district item is likely easier. Kept on separate lines."
+M_Subtraction 2,did_midline,Subtraction 2 (prose 46%),pct,subtraction_2digit,subtraction,numeracy,pct,stack,high,provisional,"Nov 2025 same-month check: district tool scores +22.2 pp above DiD Level 2, and the gap persists Mar->Apr 2026. DiD item is explicitly 2-digit; district item is likely easier. Kept on separate lines."
+J_PAT,july_tool,Identifiying Patterns (/2),raw/2,pattern,pattern,numeracy,pct,stack_with_caveat,low,provisional,Number vs shape pattern unstated. Kept off the DiD number-pattern line: Excel levels (55-70%) sit far above either DiD pattern item (27-37%).
+Q3_PAT,q3_2025_tool,Pattern (/3),raw/3,pattern,pattern,numeracy,pct,stack_with_caveat,low,provisional,
+N1_Pattern,q1_2026_tool,Pattern,fraction,pattern,pattern,numeracy,pct,stack_with_caveat,low,provisional,
+N2_Pattern,q2_2026_tool,Pattern,fraction,pattern,pattern,numeracy,pct,stack_with_caveat,low,provisional,
+B_Number Pattern,did_baseline,Number Pattern - %age correct,pct,number_pattern,pattern,numeracy,pct,stack,high,provisional,
+M_Number Pattern,did_midline,Number Pattern (prose 30%),pct,number_pattern,pattern,numeracy,pct,stack,high,provisional,
+B_Shape Pattern,did_baseline,Shape Pattern - %age correct,pct,shape_pattern,pattern,numeracy,pct,single_source,high,provisional,
+J_SHP,july_tool,2D Shapes (/2),raw/2,shapes_2d,shapes,numeracy,pct,single_source,medium,provisional,Near ceiling.
+B_Shapes 1,did_baseline,Shapes 1 - %age correct,pct,shapes_1,shapes,numeracy,pct,single_source,medium,provisional,
+B_Shapes 2,did_baseline,Shapes 2 - %age correct,pct,shapes_2,shapes,numeracy,pct,single_source,low,provisional,"March ""Shapes"" 16% is closest to this item; not stacked."
+M_Shapes,did_midline,Shapes (prose 16%),pct,shapes_midline_unspecified,shapes,numeracy,pct,single_source,low,provisional,"Cannot tell whether this is Shapes 1, Shapes 2, or a composite."
+B_Measurement,did_baseline,Measurement - %age correct,pct,measurement,measurement,numeracy,pct,stack,high,provisional,Q1 2026 G1 battery excluded.
+M_Measurement,did_midline,Measurement (prose 93%),pct,measurement,measurement,numeracy,pct,stack,high,provisional,
+B_Word Problem - Addition,did_baseline,Word Problem - Addition - %age correct,pct,word_problem_addition,word_problems,numeracy,pct,stack,high,provisional,
+M_Word Problems,did_midline,Word Problems (prose: 61% on addition),pct,word_problem_addition,word_problems,numeracy,pct,stack,medium,provisional,
+B_Word Problem - Subtraction,did_baseline,Word Problem - Subtraction - %age correct,pct,word_problem_subtraction,word_problems,numeracy,pct,stack,high,provisional,March bands only.
+B_Multiplication,did_baseline,Multiplication - %age correct,pct,multiplication,multiplication,numeracy,pct,stack,high,provisional,March bands only.
+B_Data Handling,did_baseline,Data Handling - %age correct,pct,data_handling,data_handling,numeracy,pct,stack,high,provisional,March bands only.
+B_Money,did_baseline,Money - %age correct,pct,money,money,numeracy,pct,single_source,high,provisional,Absent from March and Excel.
+B_Number Writing,did_baseline,Number Writing - %age correct,pct,number_writing,number_writing,numeracy,pct,stack,high,provisional,March bands only.
+M_Listening Comprehension,did_midline,Listening Comprehension (bands only),slide bands,listening_comprehension,oral_language,literacy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Oral Vocabulary,did_midline,Oral Vocabulary (bands only),slide bands,oral_vocabulary,oral_language,literacy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Picture Comprehension,did_midline,Picture Comprehension (bands only),slide bands,picture_comprehension,oral_language,literacy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Word Reading (Untimed),did_midline,Word Reading (Untimed) (bands only),slide bands,word_reading,word_reading,literacy,pct,stack_with_caveat,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Sentence Reading,did_midline,Sentence Reading (bands only),slide bands,sentence_reading,sentence_reading,literacy,pct,stack_with_caveat,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Reading Comprehension,did_midline,Reading Comprehension (bands only),slide bands,reading_comprehension,reading_comprehension,literacy,pct,stack_with_caveat,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Letter Naming (Timed),did_midline,Letter Naming (Timed) (CPM bands only),slide cpm bands,letter_naming_fluency,letter_recognition,literacy,cpm,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Word Reading (Timed),did_midline,Word Reading (Timed) (CPM bands only),slide cpm bands,word_reading_fluency,word_reading,literacy,cpm,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Counting in Bundles,did_midline,Counting in Bundles (bands only),slide bands,place_value_bundles,place_value,numeracy,pct,stack_with_caveat,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Word Problems - Subtraction,did_midline,Word Problems - Subtraction (bands only),slide bands,word_problem_subtraction,word_problems,numeracy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Multiplication,did_midline,Multiplication (bands only),slide bands,multiplication,multiplication,numeracy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Data Handling,did_midline,Data Handling (bands only),slide bands,data_handling,data_handling,numeracy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
+M_Number Writing,did_midline,Number Writing (bands only),slide bands,number_writing,number_writing,numeracy,pct,stack,high,provisional,Midline value = slide top band (>75% or >=45 cpm). No stated mean.
