@@ -1,16 +1,16 @@
 {
-  "built_at": "2026-09-10T08:42:58+00:00",
+  "built_at": "2026-09-10T08:48:33+00:00",
   "generator": "scripts/sync_site_data.py",
   "files": {
     "quarterly_trends.csv": {
       "rows": 186,
       "columns": 42,
-      "bytes": 74207
+      "bytes": 74377
     },
     "monthly_trends.csv": {
       "rows": 278,
       "columns": 38,
-      "bytes": 100256
+      "bytes": 100426
     },
     "domain_level_trend.csv": {
       "rows": 36,
@@ -20,12 +20,12 @@
     "nonstacking_competency_views.csv": {
       "rows": 3298,
       "columns": 16,
-      "bytes": 630589
+      "bytes": 630749
     },
     "did_baseline_midline_comparison.csv": {
       "rows": 32,
       "columns": 13,
-      "bytes": 7491
+      "bytes": 7569
     },
     "tool_calibration_nov2025.csv": {
       "rows": 6,

@@ -43,7 +43,7 @@ TOOL_LABEL = {
     "july_tool": "July tool (used 4-8 Aug 2025)", "aug_tool": "Aug tool / Q2 2025 tool",
     "q3_2025_tool": "Q3 2025 tool", "q1_2026_tool": "Q1 2026 tool (G2 battery)",
     "q2_2026_tool": "Q2 2026 tool", "did_baseline": "DiD baseline (Nov 2025)",
-    "did_midline": "DiD midline / EOY (Mar 2026)"}
+    "did_midline": "25-26 End of Year (Mar 2026)"}
 TOOL_FAMILY = {"july_tool": "july_tool", "aug_tool": "aug_tool", "q3_2025_tool": "q3_2025_tool",
                "q1_2026_tool": "2026_tool", "q2_2026_tool": "2026_tool",
                "did_baseline": "did", "did_midline": "did"}

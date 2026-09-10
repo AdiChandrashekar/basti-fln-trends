@@ -172,7 +172,7 @@ export const strings = {
     subtitle:
       'The shape behind the percentage: how children were spread on each task, not just ' +
       'how many reached the bar.',
-    midlineRounded: 'Midline report (rounded)',
+    midlineRounded: 'End of Year report (rounded)',
     fluencyTitle: 'Reading fluency',
     fluencySubtitle:
       'Correct words per minute. Only oral reading fluency has a benchmark (45 cpm); the ' +
@@ -194,25 +194,25 @@ export const strings = {
   did: {
     title: 'DiD snapshot',
     contextHeader:
-      'Nov 2025 baseline and Mar 2026 midline, from the DiD study: 40 schools and 177 ' +
-      'children. Treatment and control arms are averaged equally throughout. Whether the ' +
-      'same children were assessed in both rounds has not been confirmed.',
+      'Nov 2025 DiD baseline and the 25-26 End of Year assessment in Mar 2026: 40 schools ' +
+      'and 177 children. Treatment and control arms are averaged equally throughout. Whether ' +
+      'the same children were assessed in both rounds has not been confirmed.',
     metricNote:
       'These are average % correct, not % achieving. They are shown in a different colour ' +
       'so they are not read as the same measure as the rest of the dashboard.',
-    dumbbellTitle: 'Baseline to midline, like for like',
+    dumbbellTitle: 'Baseline to End of Year, like for like',
     dumbbellSubtitle:
       'Average % correct in both rounds, for the competencies where the report states a ' +
       'mean for each round.',
     domainTitle: 'By domain',
     orfTitle: 'Oral reading fluency',
     orfSubtitle: 'Average correct words per minute in each round. The benchmark is 45.',
-    midlineOnlyTitle: 'Midline only, or bands only',
+    midlineOnlyTitle: 'End of Year only, or bands only',
     midlineOnlySubtitle:
-      'The midline report gives a distribution for these tasks but no stated average, so ' +
-      'there is nothing to compare the baseline against.',
-    baseline: 'Baseline, Nov 2025',
-    midline: 'Midline, Mar 2026',
+      'The End of Year report gives a distribution for these tasks but no stated average, ' +
+      'so there is nothing to compare the baseline against.',
+    baseline: 'DiD baseline, Nov 2025',
+    midline: '25-26 End of Year, Mar 2026',
     change: 'Change',
   },
 
@@ -249,6 +249,24 @@ export const strings = {
     noData: 'No data to show for this selection.',
   },
 
+  /**
+   * Instrument display names, keyed by source_tool.
+   *
+   * These live here rather than being read from the CSV's source_tool_label so
+   * that renaming a round is a one-line change and a Hindi build can translate
+   * them. An instrument not listed here falls back to the label the pipeline
+   * wrote, so a new tool still renders.
+   */
+  tools: {
+    july_tool: 'July tool',
+    aug_tool: 'Aug tool',
+    q3_2025_tool: 'Q3 2025 tool',
+    q1_2026_tool: 'Q1 2026 tool',
+    q2_2026_tool: 'Q2 2026 tool',
+    did_baseline: 'DiD baseline',
+    did_midline: '25-26 End of Year',
+  },
+
   /** Reference points: a DiD round measured alongside a district tool. */
   reference: {
     label: 'DiD baseline (% correct)',
@@ -280,7 +298,7 @@ export const strings = {
     n_unknown_n: 'Sample size not reported',
     ceiling: 'Almost everyone achieved, so there is little room to show change',
     perfect_score_required: 'On this task, achieving needs full marks',
-    slide_band_gt75_not_ge75: "From the midline report's above-75% band",
+    slide_band_gt75_not_ge75: "From the End of Year report's above-75% band",
     baseline_pct_correct_not_clearance: 'Average % correct, not % achieving',
     cleared_at_2_of_3: 'Achieved at 2 of 3, the rule this tool used',
     crosswalk_caveat: 'Similar task across instruments, not identical',
@@ -294,8 +312,8 @@ export const strings = {
     pct_students_cleared: 'Share of children achieving the competency',
     did_pct_correct: 'Average % correct from the DiD baseline, not % achieving',
     slide_top_band_gt75:
-      "Share of children in the midline report's above-75% band. A child at exactly 75% " +
-      'is not counted.',
+      "Share of children in the End of Year report's above-75% band. A child at exactly " +
+      '75% is not counted.',
     pooled: 'Combines two assessments taken in the same period',
   },
 
@@ -343,4 +361,25 @@ export function t(template, values = {}) {
 /** Plain-language text for a semicolon-separated reliability_flags value. */
 export function flagText(flag) {
   return strings.flags[flag] || flag.replace(/_/g, ' ');
+}
+
+/**
+ * Display name for the instrument(s) behind a row.
+ *
+ * Prefers the names in `strings.tools` so a rename or a translation is a
+ * one-line change here, and falls back to the label the pipeline wrote for any
+ * instrument this file does not yet know about.
+ */
+export function instrumentLabel(row) {
+  const tools = row?.source_tools?.length ? row.source_tools : [];
+  if (!tools.length) return row?.source_tool_label || '—';
+  // `strings.tools` is written in the order the instruments were used, so two
+  // instruments sharing a period read chronologically ("July tool + Aug tool")
+  // rather than in whatever order the CSV happened to list them.
+  const order = Object.keys(strings.tools);
+  const rank = (tool) => (order.indexOf(tool) === -1 ? order.length : order.indexOf(tool));
+  const sorted = [...tools].sort((a, b) => rank(a) - rank(b));
+  const named = sorted.map((tool) => strings.tools[tool] || null);
+  if (named.some((name) => name === null)) return row.source_tool_label || sorted.join(' + ');
+  return named.join(' + ');
 }

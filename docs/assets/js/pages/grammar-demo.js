@@ -22,7 +22,7 @@ import {
 } from '../grammar.js';
 import { competencyName } from '../competencies.js';
 import { periodLabel, pct1, nLabel, int } from '../format.js';
-import { strings } from '../strings.js';
+import { strings, instrumentLabel } from '../strings.js';
 
 const DEMO_COMPETENCY = 'word_writing';
 
@@ -45,7 +45,7 @@ function legend(root) {
     { svg: '<circle cx="16" cy="8" r="8" fill="#fff" stroke="#DDE3EC"/><text x="16" y="12" text-anchor="middle" font-size="11" font-weight="600" fill="#4A5568">≠</text>', label: 'Not comparable, so no line is drawn' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'District assessment tool' },
     { svg: `<path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'DiD baseline (% correct)' },
-    { svg: `<path d="${markerPath('square', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'DiD midline' },
+    { svg: `<path d="${markerPath('square', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: '25-26 End of Year' },
     { svg: `<path d="${markerPath('circle', 9)}" transform="translate(16,8)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/><path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'Two instruments combined' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="#fff" stroke="currentColor" stroke-width="2"/>`, label: 'Thin or unreported sample, or a ceiling' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,10)" fill="currentColor"/><line x1="16" y1="1" x2="16" y2="4" stroke="#FFC000" stroke-width="2.5" stroke-linecap="round"/>`, label: 'Achieving needs full marks' },
@@ -141,7 +141,7 @@ export async function mount(root, ctx) {
     period: periodLabel(p.period, { granularity, quarterLabel: p.period_label }),
     value: pct1(p.pct_students_cleared),
     n: p.n === null ? strings.units.nNotReported : int(p.n),
-    instrument: p.source_tool_label,
+    instrument: instrumentLabel(p),
     basis: p.is_pooled ? strings.basis.pooled : strings.basis[p.metric_basis] || p.metric_basis,
     change: p.change_pp === null ? '—' : p.change_pp.toFixed(1),
     comparable: p.change_defensibility ? strings.defensibility[p.change_defensibility] : '—',

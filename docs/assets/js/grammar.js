@@ -16,7 +16,7 @@
  */
 
 import { d3 } from './vendor.js';
-import { strings, flagText } from './strings.js';
+import { strings, flagText, instrumentLabel } from './strings.js';
 import { competencyName } from './competencies.js';
 import { pct, pct1, cpm, nLabel, int, changePoints, changeGlyph, changeDirection, isMissing } from './format.js';
 
@@ -493,7 +493,7 @@ export function tooltipContent(row, { periodLabel, competency: name } = {}) {
   );
 
   parts.push('<hr class="tt__rule">');
-  parts.push(`<div class="tt__row">${row.source_tool_label || '—'}</div>`);
+  parts.push(`<div class="tt__row">${instrumentLabel(row)}</div>`);
   if (row.clearance_rule) {
     // The pipeline writes ">=" and "<="; on screen they should be real symbols.
     // Typography only — the rule itself is shown exactly as the pipeline states it.
