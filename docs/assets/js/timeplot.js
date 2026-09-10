@@ -10,8 +10,11 @@
 import { d3 } from './vendor.js';
 import { token, drawGrid, drawLatestHighlight, drawBoundaryRules } from './grammar.js';
 import { drawRibbon, ribbonModel, ribbonSummary } from './ribbon.js';
-import { quarterAxisLabel, monthLabel } from './format.js';
+import { quarterAxisLabel } from './format.js';
 import { latestPeriodWithData } from './data.js';
+
+const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * @param {object} options
@@ -30,15 +33,20 @@ export function timePlot({
   svg, width, height, slots, granularity = 'quarterly',
   ribbonHeight = 14, showCohort = true, yLabel = '% achieving', yMax = 100,
 } = {}) {
-  const axisLines = granularity === 'quarterly' ? 2 : 1;
-  const cohortRoom = showCohort ? 16 : 0;
+  const narrow = width < 620;
+  // Monthly labels are stacked as month over year, but the year only appears
+  // where it changes, so most slots need one line.
+  const axisLines = granularity === 'quarterly' ? 2 : 2;
+  const cohortRoom = showCohort ? 20 : 0;
   const margin = {
     // Room for the axis title and the "Latest" label, stacked rather than
     // overlapping: a rotated title beside the ticks collides with "100%".
     top: 40,
-    right: 74,                                 // room for the end-of-line value
+    // Room for the end-of-line value. On a narrow chart the series name is
+    // dropped from that label, so it needs far less.
+    right: narrow ? 46 : 74,
     bottom: 12 + axisLines * 15 + ribbonHeight + cohortRoom,
-    left: 46,
+    left: 52,   // "100%" plus its 10px gap does not fit in 46
   };
 
   const innerWidth = Math.max(10, width - margin.left - margin.right);
@@ -102,13 +110,32 @@ export function timePlot({
     .attr('x1', 0).attr('x2', innerWidth)
     .attr('stroke', token('--rule'));
 
-  for (const slot of slots) {
+  // How many slots we can label before they collide. A label every second or
+  // third slot is readable; fifteen overlapping ones are not, and shrinking the
+  // type until they fit just makes them unreadable in a different way.
+  const labelWidth = granularity === 'quarterly' ? (narrow ? 54 : 82) : 26;
+  const labelEvery = Math.max(1, Math.ceil(labelWidth / Math.max(1, bandWidth)));
+
+  slots.forEach((slot, index) => {
     const cx = x(slot.key);
     // An empty period keeps its slot and is drawn muted, so the gap in the
     // series reads as "not assessed" rather than as a shorter timeline.
     const muted = !slot.hasData;
     if (granularity === 'quarterly') {
       const label = quarterAxisLabel(slot.key, slot.label);
+      // On a narrow chart the date range does not fit, so the quarter code
+      // carries the axis and the range moves to the tooltip and the table.
+      if (narrow) {
+        if (index % labelEvery !== 0 && index !== slots.length - 1) return;
+        xAxis.append('text')
+          .attr('x', cx).attr('y', 16)
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 11.5)
+          .attr('fill', muted ? token('--change-flat') : token('--ink'))
+          .text(label.secondary)
+          .append('title').text(label.primary);
+        return;
+      }
       xAxis.append('text')
         .attr('x', cx).attr('y', 16)
         .attr('text-anchor', 'middle')
@@ -122,25 +149,41 @@ export function timePlot({
         .attr('fill', token('--slate'))
         .text(label.secondary);
     } else {
+      // Month over year, with the year printed only where it changes. Rotating
+      // fifteen "Aug 2025" labels to make them fit leaves an axis nobody can
+      // read at a glance; three letters fit upright in the same space.
+      const [year, monthNum] = slot.key.split('-');
+      const showYear = index === 0 || year !== slots[index - 1].key.split('-')[0];
+      // Thin the labels where they will not fit, but never drop the first slot,
+      // a January (which carries its year) or the last slot.
+      const keep = index % labelEvery === 0 || showYear || index === slots.length - 1;
+      if (!keep) return;
       xAxis.append('text')
         .attr('x', cx).attr('y', 16)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 11)
+        .attr('font-size', 12)
+        .attr('font-weight', showYear ? 600 : 400)
         .attr('fill', muted ? token('--change-flat') : token('--ink'))
-        .attr('transform', slots.length > 10 ? `rotate(-40,${cx},16)` : null)
-        .attr('text-anchor', slots.length > 10 ? 'end' : 'middle')
-        .text(monthLabel(slot.key));
+        .text(MONTHS_SHORT[Number(monthNum) - 1]);
+      if (showYear) {
+        xAxis.append('text')
+          .attr('x', cx).attr('y', 30)
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 11)
+          .attr('fill', token('--slate'))
+          .text(year);
+      }
     }
-  }
+  });
 
   // --- Ribbon -------------------------------------------------------------
   const ribbonTop = innerHeight + 12 + axisLines * 15;
   drawRibbon(plot.append('g').attr('transform', `translate(0,${ribbonTop})`), {
-    slots, x, bandWidth, height: ribbonHeight, showCohort,
+    slots, x, bandWidth, height: ribbonHeight, showCohort, narrow,
   });
 
   return {
-    plot, x, y, bandWidth, innerWidth, innerHeight, margin, latest,
+    plot, x, y, bandWidth, innerWidth, innerHeight, margin, latest, narrow,
     summary: ribbonSummary(slots),
   };
 }

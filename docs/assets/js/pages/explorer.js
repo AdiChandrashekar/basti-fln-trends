@@ -17,7 +17,8 @@ import { chart, sourceNoteFor } from '../chart.js';
 import { timePlot } from '../timeplot.js';
 import {
   drawSeries, drawSourceSatellites, drawEndLabels, drawReferencePoints, drawMarker,
-  token, domainColour, createTooltip, bindTooltip, tooltipContent, drawGrid, drawLatestHighlight,
+  token, domainColour, createTooltip, bindTooltip, tooltipContent, drawGrid,
+  drawGrammarLegend,
 } from '../grammar.js';
 import { controlBar, monthlyNotice, section, pickerItems } from '../controls.js';
 import { competency, competencyName, allCompetencies, familyName } from '../competencies.js';
@@ -177,7 +178,7 @@ function trendChart(root, ctx, { id, meta, rows, slots, granularity }) {
     rows: tableRows,
     height: (width) => (width < 560 ? 320 : 380),
     render({ svg, width, height, container }) {
-      const { plot, x, y } = timePlot({ svg, width, height, slots, granularity, yLabel: strings.site.metric });
+      const { plot, x, y, narrow } = timePlot({ svg, width, height, slots, granularity, yLabel: strings.site.metric });
       const tooltip = createTooltip(container);
 
       // Companions first, behind, so the subject reads as the subject.
@@ -199,7 +200,7 @@ function trendChart(root, ctx, { id, meta, rows, slots, granularity }) {
             competency: otherMeta.name,
           })
         );
-        drawEndLabels(plot, [{ point: otherPoints.at(-1), colour: token('--slate'), name: otherMeta.name }], { x, y });
+        drawEndLabels(plot, [{ point: otherPoints.at(-1), colour: token('--slate'), name: otherMeta.name }], { x, y, narrow });
       }
 
       if (references.length) {
@@ -226,6 +227,8 @@ function trendChart(root, ctx, { id, meta, rows, slots, granularity }) {
       bindTooltip(satellites.selectAll('g').data(satelliteRows), tooltip, label);
     },
   });
+
+  drawGrammarLegend(root, { points, segments, references, colour });
 
   if (family) {
     const toggle = el('label', 'control__checkbox');
@@ -310,7 +313,7 @@ function distributionStrip(root, ctx, { id, meta, views, slots, granularity, isC
     sourceNote: sourceNoteFor('nonstacking_competency_views.csv'),
     columns,
     rows: tableRows,
-    height: () => panels.length * ROW + 56,
+    height: () => panels.length * ROW + 16,
     render({ svg, width, container }) {
       const margin = { top: 6, right: 16, bottom: 30, left: Math.min(190, Math.max(120, width * 0.22)) };
       const innerWidth = Math.max(10, width - margin.left - margin.right);
@@ -354,17 +357,20 @@ function distributionStrip(root, ctx, { id, meta, views, slots, granularity, isC
         }
       });
 
-      // One legend for the strip, colour always paired with words.
-      const legend = plot.append('g').attr('transform', `translate(0,${panels.length * ROW + 14})`);
-      let lx = 0;
-      for (const value of panels[0].values) {
-        const item = legend.append('g').attr('transform', `translate(${lx},0)`);
-        item.append('rect').attr('width', 10).attr('height', 10).attr('y', -8).attr('fill', token(value.colour));
-        item.append('text').attr('x', 14).attr('font-size', 11).attr('fill', token('--slate')).text(value.label);
-        lx += value.label.length * 6.2 + 30;
-      }
+      // The legend is HTML rather than SVG, below, so it wraps on a narrow
+      // screen instead of running off the edge of the chart.
     },
   });
+
+  const legendWrap = el('div', 'legend');
+  for (const value of panels[0].values) {
+    const entry = el('span', 'legend__item');
+    entry.innerHTML =
+      `<span aria-hidden="true" style="display:inline-block;width:14px;height:10px;` +
+      `background:${token(value.colour)}"></span><span>${value.label}</span>`;
+    legendWrap.append(entry);
+  }
+  wrap.append(legendWrap);
 }
 
 // ---------------------------------------------------------------------------
@@ -419,7 +425,7 @@ function standingStrip(root, { id, meta, views, granularity }) {
     })),
     height: () => 150,
     render({ svg, width, container }) {
-      const margin = { top: 12, right: 24, bottom: 40, left: 44 };
+      const margin = { top: 12, right: 24, bottom: 40, left: 62 };
       const innerWidth = Math.max(10, width - margin.left - margin.right);
       const innerHeight = 150 - margin.top - margin.bottom;
       const plot = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -512,14 +518,16 @@ function fluencyChart(root, { id, meta, rows, slots, granularity, didRows }) {
       // The benchmark is the point of this chart, so it is drawn as a labelled
       // reference line rather than left to the reader to find on the axis.
       plot.append('line')
-        .attr('x1', 0).attr('x2', x.range()[1] + 20)
+        .attr('x1', 0).attr('x2', x.range()[1])
         .attr('y1', y(BENCHMARK)).attr('y2', y(BENCHMARK))
         .attr('stroke', token('--tier-critical')).attr('stroke-width', 1.5)
         .attr('stroke-dasharray', '6 3');
+      // The label sits just above the line inside the plot rather than out in
+      // the right margin, where it was wider than the margin and got clipped.
       plot.append('text')
-        .attr('x', x.range()[1] + 24).attr('y', y(BENCHMARK)).attr('dy', '0.32em')
+        .attr('x', 6).attr('y', y(BENCHMARK) - 6)
         .attr('font-size', 12).attr('font-weight', 600).attr('fill', token('--tier-critical'))
-        .text(`${BENCHMARK} ${strings.explorer.orfBenchmark.toLowerCase()}`);
+        .text(`${BENCHMARK} cpm ${strings.explorer.orfBenchmark.toLowerCase()}`);
 
       const points = all.map((r) => ({ ...r, pct_students_cleared: r.mean_cpm }));
       const segments = [];

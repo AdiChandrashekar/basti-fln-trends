@@ -51,7 +51,9 @@ export function chart(spec) {
   const heading = document.createElement('div');
   heading.className = 'chart__headings';
   if (title) {
-    const h = document.createElement('h3');
+    // h2, not h3: several charts sit directly under the page h1 with no section
+    // heading between them, and jumping h1 -> h3 is a heading-order failure.
+    const h = document.createElement('h2');
     h.className = 'chart__title';
     h.textContent = title;
     heading.append(h);

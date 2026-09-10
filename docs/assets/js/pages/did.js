@@ -17,7 +17,7 @@ import { bandSpec, sourceLabel } from '../bands.js';
 import { pageHeader, section } from '../controls.js';
 import { competency } from '../competencies.js';
 import { strings } from '../strings.js';
-import { pct, pct1, cpm, int, nLabel, isMissing, list } from '../format.js';
+import { pct, pct1, cpm, int, nLabel, isMissing, list, fitLabel } from '../format.js';
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -82,7 +82,7 @@ function dumbbells(root, { items, title, subtitle, unit, domainMax }) {
         group.append('text')
           .attr('x', -10).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end')
           .attr('font-size', 12.8).attr('fill', token('--ink'))
-          .text(item.meta.name.length > 28 ? `${item.meta.name.slice(0, 27)}…` : item.meta.name)
+          .text(fitLabel(item.meta.name, margin.left - 14))
           .append('title').text(item.meta.name);
 
         const xa = x(item.baseline_mean);
@@ -128,17 +128,26 @@ function dumbbells(root, { items, title, subtitle, unit, domainMax }) {
           .attr('font-size', 12).attr('fill', token('--slate')).text(tick);
       }
 
-      const legend = plot.append('g').attr('transform', 'translate(0,-14)');
-      legend.append('path').attr('d', markerPath('circle', 5)).attr('transform', 'translate(6,0)')
-        .attr('fill', token('--paper')).attr('stroke', token(BASELINE_COLOUR)).attr('stroke-width', 2);
-      legend.append('text').attr('x', 16).attr('dy', '0.32em').attr('font-size', 11)
-        .attr('fill', token('--slate')).text(strings.did.baseline);
-      legend.append('path').attr('d', markerPath('square', 5)).attr('transform', 'translate(160,0)')
-        .attr('fill', token(EOY_COLOUR));
-      legend.append('text').attr('x', 170).attr('dy', '0.32em').attr('font-size', 11)
-        .attr('fill', token('--slate')).text(strings.did.midline);
+      // The legend is HTML, below, so it wraps on a narrow screen rather than
+      // running off the edge of the chart.
     },
   });
+
+  const legend = el('div', 'legend');
+  for (const [shape, colour, label] of [
+    ['circle', BASELINE_COLOUR, strings.did.baseline],
+    ['square', EOY_COLOUR, strings.did.midline],
+  ]) {
+    const entry = el('span', 'legend__item');
+    const hollow = shape === 'circle';
+    entry.innerHTML =
+      `<svg class="legend__swatch" width="20" height="16" viewBox="0 0 20 16" aria-hidden="true">` +
+      `<path d="${markerPath(shape, 5)}" transform="translate(10,8)" ` +
+      `fill="${hollow ? token('--paper') : token(colour)}" stroke="${token(colour)}" ` +
+      `stroke-width="${hollow ? 2 : 1}"/></svg><span>${label}</span>`;
+    legend.append(entry);
+  }
+  root.append(legend);
 }
 
 // ---------------------------------------------------------------------------
@@ -255,7 +264,7 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
             link.append('text')
               .attr('x', -10).attr('y', cy + ROW / 2).attr('dy', '0.32em').attr('text-anchor', 'end')
               .attr('font-size', 12).attr('fill', token('--ink'))
-              .text(item.meta.name.length > 28 ? `${item.meta.name.slice(0, 27)}…` : item.meta.name)
+              .text(fitLabel(item.meta.name, margin.left - 14))
               .append('title').text(item.meta.name);
 
             let offset = 0;

@@ -16,7 +16,7 @@ import { chart, sourceNoteFor } from '../chart.js';
 import { timePlot } from '../timeplot.js';
 import {
   drawSeries, drawEndLabels, drawReferencePoints, token, domainColour,
-  createTooltip, bindTooltip, tooltipContent, drawMarker,
+  createTooltip, bindTooltip, tooltipContent, drawMarker, drawGrammarLegend,
 } from '../grammar.js';
 import { controlBar, monthlyNotice, pageHeader, section } from '../controls.js';
 import { competency, competencyName } from '../competencies.js';
@@ -112,6 +112,7 @@ function heroChart(root, ctx, { domainRows, slots, granularity, quarterlyRows })
     comparable: r.change_defensibility ? strings.defensibility[r.change_defensibility] : '—',
   }));
 
+  let legendSpec = null;
   chart({
     root,
     title: strings.overview.heroTitle,
@@ -124,7 +125,7 @@ function heroChart(root, ctx, { domainRows, slots, granularity, quarterlyRows })
     rows,
     height: (width) => (width < 560 ? 340 : 400),
     render({ svg, width, height, container }) {
-      const { plot, x, y, bandWidth } = timePlot({
+      const { plot, x, y, narrow } = timePlot({
         svg, width, height, slots, granularity, yLabel: strings.site.metric,
       });
       const tooltip = createTooltip(container);
@@ -160,11 +161,26 @@ function heroChart(root, ctx, { domainRows, slots, granularity, quarterlyRows })
         bindTooltip(group.selectAll('.markers > g').data(points), tooltip, label);
       }
 
-      // Direct labels instead of a legend: three series, solved together so the
-      // rounds where all three land on the same value stay readable.
-      drawEndLabels(plot, ends, { x, y });
+
+      // Direct labels rather than a series legend: three lines, solved together
+      // so the rounds where all three land on the same value stay readable. On a
+      // narrow chart the names are dropped and the legend below carries them.
+      drawEndLabels(plot, ends, { x, y, narrow });
+      legendSpec = {
+        points: series.map((r) => asPoint(r, visible[0])),
+        segments: segmentsOf(series.map((r) => asPoint(r, visible[0]))),
+        references: refs,
+        colour: token('--ink'),
+        extra: visible.map((spec) => ({
+          svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token(spec.colour)}" ` +
+            `stroke-width="${spec.key.startsWith('overall') ? 3 : 1.75}"/>`,
+          label: spec.name,
+        })),
+      };
     },
   });
+
+  if (legendSpec) drawGrammarLegend(root, legendSpec);
 }
 
 /**
@@ -335,6 +351,7 @@ function standingPlot(root, ctx, { rows, granularity }) {
         change: withinToolChange === null ? '—' : withinToolChange.toFixed(1),
       }))));
 
+  let rankingPoints = [];
   const ROW = 22;
   const ROUND_GAP = 34;
   const DOMAIN_GAP = 22;
@@ -360,6 +377,9 @@ function standingPlot(root, ctx, { rows, granularity }) {
       const x = d3.scaleLinear().domain([0, 100]).range([0, innerWidth]);
       const plot = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
       const tooltip = createTooltip(container);
+      // Characters that fit in the label gutter at 12.8px, so a long name is
+      // shortened deliberately rather than clipped by the chart frame.
+      const room = Math.max(10, Math.floor((margin.left - 14) / 6.6));
 
       let y = 0;
       for (const round of rounds) {
@@ -410,7 +430,7 @@ function standingPlot(root, ctx, { rows, granularity }) {
               .attr('x', -10).attr('y', cy).attr('dy', '0.32em')
               .attr('text-anchor', 'end').attr('font-size', 12.8)
               .attr('fill', token('--ink'))
-              .text(item.meta.name.length > 34 ? `${item.meta.name.slice(0, 33)}\u2026` : item.meta.name)
+              .text(item.meta.name.length > room ? `${item.meta.name.slice(0, room - 1)}\u2026` : item.meta.name)
               .append('title').text(item.meta.name);
 
             drawMarker(link, item.point, { x: x(item.point.pct_students_cleared), y: cy, colour });
@@ -440,6 +460,8 @@ function standingPlot(root, ctx, { rows, granularity }) {
         }
       }
 
+      rankingPoints = items.map((i) => i.point);
+
       // Axis under the dots, so the reader can place a value without a gridline
       // running through every row.
       const axis = plot.append('g').attr('transform', `translate(0,${y + 6})`);
@@ -451,6 +473,12 @@ function standingPlot(root, ctx, { rows, granularity }) {
           .text(`${tick}%`);
       }
     },
+  });
+
+  // Marker shape is the only encoding here, so the legend keys just those.
+  drawGrammarLegend(root, {
+    points: rankingPoints, segments: [], references: [], showLatest: false,
+    colour: token('--csf-blue'),
   });
 }
 

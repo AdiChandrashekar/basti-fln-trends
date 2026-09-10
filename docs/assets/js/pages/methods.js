@@ -18,7 +18,7 @@ import { token, clearTokenCache, createTooltip, bindTooltip, markerPath } from '
 import { pageHeader, section } from '../controls.js';
 import { competency, familyName } from '../competencies.js';
 import { strings, t, instrumentLabel, sortInstruments } from '../strings.js';
-import { int, pct, buildDate, periodLabel, quarterAxisLabel, isMissing } from '../format.js';
+import { int, pct, buildDate, periodLabel, quarterAxisLabel, isMissing, fitLabel } from '../format.js';
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -206,7 +206,7 @@ function calibrationChart(root, { calibration }) {
         group.append('text')
           .attr('x', -10).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end')
           .attr('font-size', 12.8).attr('fill', token('--ink'))
-          .text(item.meta.name.length > 28 ? `${item.meta.name.slice(0, 27)}\u2026` : item.meta.name)
+          .text(fitLabel(item.meta.name, margin.left - 14))
           .append('title').text(item.meta.name);
 
         const xa = x(item.did_baseline_nov_mean);
@@ -245,15 +245,24 @@ function calibrationChart(root, { calibration }) {
           .attr('font-size', 12).attr('fill', token('--slate')).text(tick);
       }
 
-      const legend = plot.append('g').attr('transform', 'translate(0,-14)');
-      legend.append('path').attr('d', markerPath('circle', 5)).attr('transform', 'translate(6,0)').attr('fill', districtColour);
-      legend.append('text').attr('x', 16).attr('dy', '0.32em').attr('font-size', 11)
-        .attr('fill', token('--slate')).text(strings.calibration.districtTool);
-      legend.append('path').attr('d', markerPath('diamond', 5)).attr('transform', 'translate(140,0)').attr('fill', didColour);
-      legend.append('text').attr('x', 150).attr('dy', '0.32em').attr('font-size', 11)
-        .attr('fill', token('--slate')).text(strings.calibration.didBaseline);
+      // The legend is HTML, below, so it wraps on a narrow screen rather than
+      // running off the edge of the chart.
     },
   });
+
+  const legend = el('div', 'legend');
+  for (const [shape, colour, label] of [
+    ['circle', token('--csf-blue'), strings.calibration.districtTool],
+    ['diamond', token('--did-neutral'), strings.calibration.didBaseline],
+  ]) {
+    const entry = el('span', 'legend__item');
+    entry.innerHTML =
+      `<svg class="legend__swatch" width="20" height="16" viewBox="0 0 20 16" aria-hidden="true">` +
+      `<path d="${markerPath(shape, 5)}" transform="translate(10,8)" fill="${colour}"/></svg>` +
+      `<span>${label}</span>`;
+    legend.append(entry);
+  }
+  root.append(legend);
 }
 
 // ---------------------------------------------------------------------------

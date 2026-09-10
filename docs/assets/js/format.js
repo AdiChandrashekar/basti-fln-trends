@@ -134,6 +134,21 @@ export function buildDate(iso) {
   return `${date.getUTCDate()} ${MONTH_NAMES[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
 }
 
+/**
+ * Trim a label to the room it actually has, rather than to a fixed number of
+ * characters. A gutter is a different width on a phone than on a laptop, so a
+ * constant that looks fine at 1440px clips at 390px.
+ *
+ * @param {string} text
+ * @param {number} availablePx  width the label may occupy
+ * @param {number} [fontPx]     rendered size, used to estimate character width
+ */
+export function fitLabel(text, availablePx, fontPx = 12.8) {
+  const value = String(text ?? '');
+  const room = Math.max(6, Math.floor(availablePx / (fontPx * 0.53)));
+  return value.length > room ? `${value.slice(0, room - 1)}\u2026` : value;
+}
+
 /** A filename-safe slug for exports: `Word writing` -> `word-writing`. */
 export function slug(text) {
   return String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

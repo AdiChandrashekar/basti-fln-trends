@@ -19,7 +19,7 @@ import { heatScale, heatTextColour, token, createTooltip, bindTooltip, tooltipCo
 import { controlBar, controlsBody, monthlyNotice, pageHeader } from '../controls.js';
 import { competency, familyName } from '../competencies.js';
 import { strings, instrumentLabel } from '../strings.js';
-import { pct, pct1, int, periodLabel, changeGlyph, changeDirection, isMissing } from '../format.js';
+import { pct, pct1, int, periodLabel, changeGlyph, changeDirection, isMissing, fitLabel } from '../format.js';
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -252,8 +252,9 @@ export async function mount(root, ctx) {
           const value = cell.pct_students_cleared;
           const cellLink = el('a', 'heatmap__value');
           cellLink.href = ctx.hrefFor({ page: 'competency', competency: row.id });
-          cellLink.style.background = scale(value);
-          cellLink.style.color = heatTextColour(value);
+          const fill = scale(value);
+          cellLink.style.background = fill;
+          cellLink.style.color = heatTextColour(value, fill);
           cellLink.textContent = pct(value, { suffix: '' });
           cellLink.setAttribute(
             'aria-label',
@@ -362,7 +363,7 @@ export async function mount(root, ctx) {
       model.forEach((row, r) => {
         const y = HEAD_H + r * CELL_H;
         add('text', { x: 0, y: y + CELL_H / 2 + 4, 'font-size': 11, fill: token('--ink') },
-          row.meta.name.length > 32 ? `${row.meta.name.slice(0, 31)}…` : row.meta.name);
+          fitLabel(row.meta.name, LABEL_W - 8, 11));
         slots.forEach((slot, i) => {
           const cell = row.byPeriod.get(slot.key);
           const x = LABEL_W + i * CELL_W;
@@ -374,7 +375,7 @@ export async function mount(root, ctx) {
           add('rect', { x: x + 1, y: y + 1, width: CELL_W - 2, height: CELL_H - 2, fill: scale(value) });
           add('text', {
             x: x + CELL_W / 2, y: y + CELL_H / 2 + 4, 'text-anchor': 'middle',
-            'font-size': 11, 'font-weight': 600, fill: heatTextColour(value),
+            'font-size': 11, 'font-weight': 600, fill: heatTextColour(value, scale(value)),
           }, pct(value, { suffix: '' }) + glyphsFor(cell).map((g) => g.mark).join(''));
         });
       });

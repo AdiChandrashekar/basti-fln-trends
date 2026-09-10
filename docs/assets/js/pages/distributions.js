@@ -18,7 +18,7 @@ import { bandSpec, isSlideSourced, sourceLabel, BANDS, CPM_BANDS } from '../band
 import { controlBar, controlsBody, monthlyNotice, pageHeader, section } from '../controls.js';
 import { competency, familyName } from '../competencies.js';
 import { strings, instrumentLabel } from '../strings.js';
-import { pct, pct1, int, nLabel, periodLabel } from '../format.js';
+import { pct, pct1, int, nLabel, periodLabel, fitLabel } from '../format.js';
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -80,7 +80,7 @@ function panelChart(root, ctx, { panel, spec, granularity }) {
         link.append('text')
           .attr('x', -8).attr('y', cy + ROW / 2).attr('dy', '0.32em').attr('text-anchor', 'end')
           .attr('font-size', 12).attr('fill', token('--ink'))
-          .text(item.meta.name.length > 26 ? `${item.meta.name.slice(0, 25)}…` : item.meta.name)
+          .text(fitLabel(item.meta.name, margin.left - 12, 12))
           .append('title').text(item.meta.name);
 
         let offset = 0;
@@ -292,7 +292,7 @@ function zeroSection(root, ctx, { views, granularity, slots }) {
         link.append('text')
           .attr('x', -10).attr('y', cy + 11).attr('dy', '0.32em').attr('text-anchor', 'end')
           .attr('font-size', 12.8).attr('fill', token('--ink'))
-          .text(item.meta.name.length > 30 ? `${item.meta.name.slice(0, 29)}…` : item.meta.name)
+          .text(fitLabel(item.meta.name, margin.left - 14))
           .append('title').text(item.meta.name);
 
         link.append('rect')

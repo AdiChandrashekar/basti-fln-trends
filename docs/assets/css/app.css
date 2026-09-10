@@ -1389,9 +1389,11 @@ table.data tbody tr:nth-child(even) {
   position: absolute;
   top: 1px;
   right: 3px;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1;
-  opacity: 0.9;
+  /* No opacity: these inherit the cell's measured text colour, and dimming them
+     pushed 10px glyphs under the contrast floor. */
+  font-weight: var(--w-semibold);
 }
 
 /* Not assessed: a faint hatch, never an empty white gap that reads as zero. */
@@ -1577,7 +1579,7 @@ table.data tbody tr:nth-child(even) {
 }
 
 .did-summary__arrow {
-  color: var(--change-flat);
+  color: var(--slate);
 }
 
 .did-summary__change {
@@ -1615,8 +1617,10 @@ table.data tbody tr:nth-child(even) {
   border-radius: 3px;
 }
 
-table.data td[data-confidence='low'] { color: var(--change-down); }
-table.data td[data-confidence='medium'] { color: var(--amber); }
+/* The word already states the confidence, so colour is redundant here. It also
+   failed the contrast floor on the zebra rows, so weight carries it instead. */
+table.data td[data-confidence='low'] { color: var(--change-down); font-weight: var(--w-semibold); }
+table.data td[data-confidence='medium'] { color: var(--ink); }
 table.data td[data-confidence='high'] { color: var(--slate); }
 
 .downloads {

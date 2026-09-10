@@ -156,7 +156,7 @@ export function cohortBoundary(slots) {
  *   showCohort  draw the "New Grade 2 cohort" marker beneath
  *   detail      extra text per segment, e.g. dates and n on the Methods page
  */
-export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort = true, detail = null } = {}) {
+export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort = true, detail = null, narrow = false } = {}) {
   const { segments, notches } = ribbonModel(slots);
   const ribbon = group.append('g').attr('class', 'ribbon');
   const compact = height <= 10;
@@ -254,14 +254,20 @@ export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort
       const bx = x(boundary.key) - bandWidth / 2;
       const marker = ribbon.append('g').attr('class', 'ribbon__cohort');
       marker.append('path')
-        .attr('d', `M${bx},${height + 3} l4,5 l-8,0 Z`)
+        .attr('d', `M${bx},${height + 4} l4,5 l-8,0 Z`)
         .attr('fill', token('--slate'));
+      const label = narrow ? 'New cohort' : strings.chart.newCohort;
+      // Anchor the label away from the right edge when the boundary sits close
+      // to it, so it is never clipped by the chart frame.
+      const right = x.range()[1];
+      const flip = bx > right - label.length * 5.6;
       marker.append('text')
-        .attr('x', bx + 7)
-        .attr('y', height + 12)
+        .attr('x', flip ? bx - 7 : bx + 7)
+        .attr('y', height + 14)
+        .attr('text-anchor', flip ? 'end' : 'start')
         .attr('font-size', 11)
         .attr('fill', token('--slate'))
-        .text(strings.chart.newCohort);
+        .text(label);
     }
   }
 

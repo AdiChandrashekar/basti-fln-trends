@@ -52,20 +52,67 @@ export function changeColour(value) {
   return token('--change-flat');
 }
 
-/** Sequential scale for % achieving, interpolated through Lab. */
+/**
+ * Sequential scale for % achieving.
+ *
+ * Quantised to the six palette stops rather than interpolated continuously. A
+ * continuous ramp necessarily passes through a band of mid luminances where
+ * NEITHER the ink nor the paper text colour reaches 4.5:1 against the fill, so
+ * some cells were unreadable whichever colour the text took. Each of the six
+ * stops clears the floor on its own, and banding the fills also makes the map
+ * easier to read as classes rather than as a wash.
+ */
 export function heatScale() {
   const stops = ['--heat-0', '--heat-1', '--heat-2', '--heat-3', '--heat-4', '--heat-5'].map(token);
-  return d3.scaleLinear()
-    .domain(stops.map((_, i) => (i / (stops.length - 1)) * 100))
-    .range(stops)
-    .interpolate(d3.interpolateLab)
-    .clamp(true);
+  return d3.scaleQuantize().domain([0, 100]).range(stops);
 }
 
-/** Cell text flips to paper above this value, per tokens.css. */
-export function heatTextColour(value) {
-  const flip = Number(token('--heat-text-flip')) || 55;
-  return isMissing(value) || value < flip ? token('--ink') : token('--paper');
+/**
+ * Relative luminance of a CSS colour, for contrast maths.
+ *
+ * Handles both notations on purpose: the design tokens are hex, while colours
+ * that come back out of a d3 scale are rgb(). Parsing only one of them makes
+ * every comparison against a token silently wrong.
+ */
+function toRgb(colour) {
+  const value = String(colour).trim();
+  const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(value);
+  if (hex) {
+    const h = hex[1].length === 3 ? hex[1].split('').map((c) => c + c).join('') : hex[1];
+    return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+  }
+  const parts = value.match(/[\d.]+/g);
+  return parts && parts.length >= 3 ? parts.slice(0, 3).map(Number) : null;
+}
+
+function luminance(colour) {
+  const rgb = toRgb(colour);
+  if (!rgb) return 1;
+  const channel = (v) => {
+    const c = v / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * channel(rgb[0]) + 0.7152 * channel(rgb[1]) + 0.0722 * channel(rgb[2]);
+}
+
+export function contrastRatio(a, b) {
+  const la = luminance(a);
+  const lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+/**
+ * Text colour for a heatmap cell, chosen by measuring contrast against the
+ * actual fill rather than flipping at a fixed value. A hardcoded threshold left
+ * cells in the middle of the ramp at 3.8:1, under the 4.5:1 AA floor; measuring
+ * also means the ramp can be re-tuned without silently breaking contrast.
+ */
+export function heatTextColour(value, fill = null) {
+  if (isMissing(value)) return token('--ink');
+  const background = fill || heatScale()(value);
+  const ink = token('--ink');
+  const paper = token('--paper');
+  return contrastRatio(ink, background) >= contrastRatio(paper, background) ? ink : paper;
 }
 
 // ---------------------------------------------------------------------------
@@ -393,7 +440,7 @@ export function drawSourceSatellites(group, details, { x, y, colour, offset = 13
  * and three labels stacked on one baseline is unreadable. Positions are solved
  * once for the group rather than per series.
  */
-export function drawEndLabels(group, entries, { x, y, minGap = 15 } = {}) {
+export function drawEndLabels(group, entries, { x, y, minGap = 18, narrow = false } = {}) {
   const placed = entries
     .filter((e) => e.point)
     .map((e) => ({ ...e, ideal: y(e.point.pct_students_cleared) }))
@@ -430,7 +477,9 @@ export function drawEndLabels(group, entries, { x, y, minGap = 15 } = {}) {
       .attr('font-weight', 600)
       .attr('fill', entry.colour)
       .text(pct(entry.point.pct_students_cleared));
-    if (entry.name) {
+    // On a narrow chart the series name would run off the edge, so the value
+    // stands alone and the name is carried by the legend instead.
+    if (entry.name && !narrow) {
       text.append('tspan')
         .attr('font-weight', 400)
         .attr('fill', token('--slate'))
@@ -518,6 +567,121 @@ export function drawGrid(group, y, width) {
       .attr('stroke-width', 1);
   }
   return grid;
+}
+
+// ---------------------------------------------------------------------------
+// Legend
+// ---------------------------------------------------------------------------
+
+/**
+ * A legend built from what is actually on the chart.
+ *
+ * Every encoding in this grammar means something — a dash pattern says how far
+ * a change can be trusted, a hollow marker says the sample is thin — and none
+ * of that is guessable. But a fixed legend listing all eleven keys on a chart
+ * that uses three is its own kind of noise, so this inspects the rows being
+ * drawn and emits only the keys the reader can actually see.
+ *
+ * @param {object} spec
+ *   points      the trend points drawn
+ *   segments    from data.segmentsFor()
+ *   references  reference points drawn beside the line
+ *   showLatest  whether the gold latest-round column is drawn
+ *   colour      the series colour to draw line swatches in
+ *   extra       [{svg, label}] entries a page wants to add
+ */
+export function drawGrammarLegend(root, {
+  points = [], segments = [], references = [], showLatest = true,
+  colour = null, extra = [],
+} = {}) {
+  const ink = colour || token('--csf-blue');
+  const items = [];
+  const has = (fn) => points.some(fn);
+
+  const line = (dash, wConst) =>
+    `<line x1="2" y1="8" x2="30" y2="8" stroke="${ink}" stroke-width="${wConst}"` +
+    (dash ? ` stroke-dasharray="${dash}"` : '') + ' />';
+  const mark = (shape, opts = {}) => {
+    const r = opts.r || 5;
+    const fill = opts.hollow ? token('--paper') : (opts.fill || ink);
+    const ring = opts.ring
+      ? `<path d="${markerPath(shape, r * 1.8)}" transform="translate(16,8)" fill="none" ` +
+        `stroke="${ink}" stroke-width="1.5" opacity="0.55"/>` : '';
+    const tick = opts.tick
+      ? `<line x1="16" y1="0" x2="16" y2="3.5" stroke="${token('--csf-gold')}" ` +
+        'stroke-width="2.5" stroke-linecap="round"/>' : '';
+    return ring +
+      `<path d="${markerPath(shape, r)}" transform="translate(16,${opts.tick ? 10 : 8})" ` +
+      `fill="${fill}" stroke="${opts.fill || ink}" stroke-width="${opts.hollow ? 2 : 1}"/>` + tick;
+  };
+
+  // --- how a step is drawn --------------------------------------------------
+  if (segments.some((sg) => sg.connected && sg.defensibility === 'within_tool')) {
+    items.push({ svg: line(null, 2.5), label: strings.defensibility.within_tool });
+  }
+  if (segments.some((sg) => sg.connected && sg.defensibility === 'cross_tool_matched_construct')) {
+    items.push({ svg: line('8 4', 2), label: strings.defensibility.cross_tool_matched_construct });
+  }
+  if (segments.some((sg) => sg.connected && sg.defensibility === 'cross_tool_caveat')) {
+    items.push({ svg: line('3 3', 2), label: strings.defensibility.cross_tool_caveat });
+  }
+  if (segments.some((sg) => !sg.connected)) {
+    items.push({
+      svg: `<circle cx="16" cy="8" r="8" fill="${token('--paper')}" stroke="${token('--change-flat')}" stroke-width="1.5"/>` +
+        `<text x="16" y="12" text-anchor="middle" font-size="11" font-weight="700" fill="${token('--ink')}">\u2260</text>`,
+      label: 'Not comparable, so no line is drawn',
+    });
+  }
+
+  // --- what a marker means --------------------------------------------------
+  if (has((pt) => !pt.is_pooled && !pt.is_did_point)) {
+    items.push({ svg: mark('circle'), label: 'District assessment tool' });
+  }
+  if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_baseline'))) {
+    items.push({ svg: mark('diamond'), label: `${strings.tools.did_baseline} (% correct)` });
+  }
+  if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_midline'))) {
+    items.push({ svg: mark('square'), label: strings.tools.did_midline });
+  }
+  if (has((pt) => pt.is_pooled)) {
+    items.push({ svg: mark('circle', { ring: true }), label: 'Two instruments combined' });
+  }
+  if (has((pt) => markerFor(pt).hollow)) {
+    items.push({ svg: mark('circle', { hollow: true }), label: 'Thin or unreported sample, or a ceiling' });
+  }
+  if (has((pt) => pt.perfect_score_required)) {
+    items.push({ svg: mark('circle', { tick: true }), label: strings.chart.perfectScoreTick });
+  }
+
+  // --- context --------------------------------------------------------------
+  if (references.length) {
+    items.push({
+      svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token('--did-neutral')}" stroke-width="1.25" stroke-dasharray="1.5 4"/>` +
+        `<path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="${token('--did-neutral')}"/>`,
+      label: strings.reference.legend,
+    });
+  }
+  if (showLatest) {
+    items.push({
+      svg: `<rect x="2" y="0" width="28" height="16" fill="${token('--latest-wash')}"/>`,
+      label: strings.chart.latest === 'Latest' ? 'The latest round' : strings.chart.latest,
+    });
+  }
+  items.push(...extra);
+  if (!items.length) return null;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'legend';
+  for (const item of items) {
+    const entry = document.createElement('span');
+    entry.className = 'legend__item';
+    entry.innerHTML =
+      `<svg class="legend__swatch" width="32" height="16" viewBox="0 0 32 16" aria-hidden="true">${item.svg}</svg>` +
+      `<span>${item.label}</span>`;
+    wrap.append(entry);
+  }
+  root.append(wrap);
+  return wrap;
 }
 
 // ---------------------------------------------------------------------------
