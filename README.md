@@ -6,7 +6,7 @@ foundational literacy and numeracy competencies, August 2025 to August 2026.
 The unit of analysis is the **competency**. The tracked metric is the **share of children achieving**
 each competency — not the average score. Everything on screen answers one of five questions: where
 Grade 2 stands now, what is moving and whether the movement can be trusted, what is persistently weak,
-how children are distributed on a task, and what the DiD baseline and midline showed.
+how children are distributed on a task, and what the DiD baseline and the 25-26 End of Year round showed.
 
 There are no views by school, block, assessor or student, by design.
 
@@ -141,7 +141,7 @@ directly.
 ## Editing the key findings
 
 `docs/content/notes.json` holds the notes on the Overview. Each is
-`{ id, title, body, link_hash, as_of }`. `link_hash` is an in-app link such as `#/changes` or
+`{ id, title, body, link_hash, as_of }`. `link_hash` is an in-app link such as `#/map?sort=change` or
 `#/competency/sentence_reading`.
 
 **Re-check every number in a note against the CSVs whenever the pipeline is re-run.** The notes are
@@ -157,7 +157,7 @@ number can go stale.
 | 1 | Scaffold, sync script, data layer, tokens, strings | done |
 | 2 | Shared chart grammar and the instrument ribbon | done |
 | 3 | Overview and Competency explorer | done |
-| 4 | Competency map and Changes | done |
+| 4 | Competency map | done |
 | 5 | Distributions and DiD snapshot | done |
 | 6 | Methods, exports, presentation mode, mobile | done |
-| 7 | QA and deployment | next |
+| 7 | QA and deployment | done |
