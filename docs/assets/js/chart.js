@@ -142,6 +142,10 @@ export function chart(spec) {
   });
   observer.observe(container);
   draw();
+  // A container that was not in the document yet has no width, so the first
+  // draw does nothing. Try again once layout has run rather than depending on
+  // a resize that may never come.
+  if (!currentWidth) requestAnimationFrame(() => draw());
 
   // --- Table ---------------------------------------------------------------
   function buildTable() {

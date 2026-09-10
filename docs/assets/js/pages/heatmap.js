@@ -16,7 +16,7 @@ import { load, loadTrends, periodSlots, trendPoints, competenciesInData } from '
 import { chart, sourceNoteFor } from '../chart.js';
 import { ribbonModel } from '../ribbon.js';
 import { heatScale, heatTextColour, token, createTooltip, bindTooltip, tooltipContent } from '../grammar.js';
-import { controlBar, monthlyNotice, pageHeader } from '../controls.js';
+import { controlBar, controlsBody, monthlyNotice, pageHeader } from '../controls.js';
 import { competency, familyName } from '../competencies.js';
 import { strings, instrumentLabel } from '../strings.js';
 import { pct, pct1, int, periodLabel, changeGlyph, changeDirection, isMissing } from '../format.js';
@@ -137,7 +137,7 @@ export async function mount(root, ctx) {
     wrap.append(item);
     extra.append(wrap);
   }
-  root.append(extra);
+  controlsBody(root, ctx).append(extra);
   monthlyNotice(root, ctx);
 
   const points = trendPoints(rows, { showDid: ctx.state.showDid });

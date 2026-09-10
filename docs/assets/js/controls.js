@@ -165,6 +165,59 @@ function competencyPicker({ items, value, onChange }) {
 }
 
 /**
+ * The region every control lives in.
+ *
+ * On a phone the control bars are taller than the charts they filter — on
+ * Distributions they pushed the first panel 1,372px down an 844px screen. So
+ * below 768px the whole region collapses behind a "Filters" button that
+ * summarises what is currently applied. Above that width the button is hidden
+ * and the region is always open, which is why this is one component rather than
+ * two layouts.
+ */
+export function controlsBody(root, ctx) {
+  const existing = root.querySelector('.controls-region__body');
+  if (existing) return existing;
+
+  const region = el('div', 'controls-region');
+  region.dataset.open = 'false';
+
+  const toggle = el('button', 'controls-toggle');
+  toggle.type = 'button';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.append(el('span', 'controls-toggle__label', strings.controls.filters));
+  const summary = el('span', 'controls-toggle__summary');
+  toggle.append(summary);
+
+  const body = el('div', 'controls-region__body');
+  body.id = 'controls-body';
+  toggle.setAttribute('aria-controls', body.id);
+
+  toggle.addEventListener('click', () => {
+    const open = region.dataset.open !== 'true';
+    region.dataset.open = String(open);
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  // A one-line description of what is applied, so the collapsed state still
+  // tells the reader what they are looking at.
+  const parts = [];
+  const state = ctx.state;
+  parts.push(state.granularity === 'monthly' ? strings.controls.monthly : strings.controls.quarterly);
+  if (state.domain !== 'all') {
+    parts.push(state.domain === 'literacy' ? strings.controls.literacy : strings.controls.numeracy);
+  }
+  if (!state.showDid) parts.push('DiD points hidden');
+  if (state.minThreePeriods) parts.push('3+ rounds');
+  if (state.hideDidOnly) parts.push('DiD-only hidden');
+  if (state.competencyFilter?.length) parts.push(`${state.competencyFilter.length} selected`);
+  summary.textContent = parts.join(' · ');
+
+  region.append(toggle, body);
+  root.append(region);
+  return body;
+}
+
+/**
  * Build the control bar.
  *
  * @param {object} options
@@ -220,7 +273,7 @@ export function controlBar(root, ctx, { show = [], competencies = [] } = {}) {
     }));
   }
 
-  root.append(bar);
+  controlsBody(root, ctx).append(bar);
   return bar;
 }
 

@@ -218,6 +218,20 @@ export const strings = {
 
   methods: {
     title: 'Methods and caveats',
+    intro:
+      'What the numbers on this dashboard mean, where they come from, and what they cannot ' +
+      'tell you. Nothing here is new analysis: every definition is the one the pipeline uses.',
+    metricTitle: 'What "% achieving" means',
+    timelineTitle: 'Which instrument measured what, and when',
+    timelineSubtitle:
+      'Seven assessment rounds over thirteen months. Every step in a trend line either sits ' +
+      'inside one of these blocks or crosses between two, and that is the single most useful ' +
+      'thing to know before reading any change on this site.',
+    didTitle: 'How the DiD study enters',
+    crossToolTitle: 'Why changes across instruments are only indicative',
+    cohortTitle: 'The children change',
+    compositionTitle: 'Months cover different schools',
+    buildTitle: 'This build',
     crosswalkTitle: 'How raw items map to competencies',
     crosswalkSearch: 'Search items or competencies',
     crosswalkColumns: {
@@ -265,6 +279,23 @@ export const strings = {
     q2_2026_tool: 'Q2 2026 tool',
     did_baseline: 'DiD baseline',
     did_midline: '25-26 End of Year',
+  },
+
+  /**
+   * When each instrument was actually in the field.
+   *
+   * These dates are editorial: the published aggregates carry periods, not
+   * fieldwork dates, so they live here rather than being invented from the data.
+   * Sample sizes on the Methods timeline ARE read from the data.
+   */
+  instrumentDates: {
+    july_tool: '4–8 Aug 2025',
+    aug_tool: '11–13 Aug and 10–26 Sep 2025',
+    q3_2025_tool: '10 Oct – 18 Dec 2025',
+    did_baseline: 'Nov 2025',
+    did_midline: 'Mar 2026',
+    q1_2026_tool: 'Apr–May 2026',
+    q2_2026_tool: 'Jul–Aug 2026',
   },
 
   /** Reference points: a DiD round measured alongside a district tool. */

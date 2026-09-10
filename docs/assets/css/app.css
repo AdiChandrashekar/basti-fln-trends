@@ -1598,3 +1598,165 @@ table.data tbody tr:nth-child(even) {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Methods --------------------------------------------------------------- */
+.timeline {
+  margin-top: var(--s-4);
+  margin-bottom: var(--s-5);
+}
+
+.crosswalk__search {
+  width: min(420px, 100%);
+  margin-top: var(--s-4);
+  padding: var(--s-2) var(--s-3);
+  font: inherit;
+  font-size: var(--t-sm);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+table.data td[data-confidence='low'] { color: var(--change-down); }
+table.data td[data-confidence='medium'] { color: var(--amber); }
+table.data td[data-confidence='high'] { color: var(--slate); }
+
+.downloads {
+  margin-top: var(--s-4);
+  max-width: var(--measure);
+}
+
+.downloads__item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  align-items: baseline;
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.downloads__meta {
+  margin-left: auto;
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+/* --- Presentation mode ------------------------------------------------------ */
+.presentation-toggle {
+  position: fixed;
+  top: var(--s-3);
+  right: var(--s-3);
+  z-index: 60;
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--t-xs);
+  font-weight: var(--w-medium);
+  color: var(--slate);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  opacity: 0.55;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.presentation-toggle:hover,
+.presentation-toggle:focus-visible {
+  opacity: 1;
+  color: var(--ink);
+}
+
+.presentation-toggle[aria-pressed='true'] {
+  opacity: 1;
+  background: var(--csf-sky);
+  border-color: var(--csf-blue);
+  color: var(--csf-navy);
+}
+
+:root[data-presentation='on'] .content {
+  padding-top: var(--s-7);
+}
+
+/* Charts get more room when the rail and controls are gone. */
+:root[data-presentation='on'] .content__inner {
+  max-width: none;
+}
+
+:root[data-presentation='on'] .chart__tools,
+:root[data-presentation='on'] .controls--secondary,
+:root[data-presentation='on'] .filter-chips,
+:root[data-presentation='on'] .explorer-nav {
+  display: none;
+}
+
+@media print {
+  .rail, .controls, .chart__tools, .presentation-toggle, .skip-link { display: none !important; }
+  .app { grid-template-columns: 1fr; }
+  .chart { break-inside: avoid; }
+}
+
+/* --- Collapsible controls region -------------------------------------------
+   Above 768px the toggle is hidden and the region is simply always open, so
+   this is one component rather than two layouts to keep in step. */
+.controls-toggle {
+  display: none;
+}
+
+.controls-region__body {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .controls-toggle {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-2);
+    width: 100%;
+    margin-top: var(--s-4);
+    padding: var(--s-3) 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    font-size: var(--t-sm);
+  }
+
+  .controls-toggle__label {
+    font-weight: var(--w-semibold);
+    color: var(--ink);
+  }
+
+  .controls-toggle__label::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: var(--s-2);
+    border: 5px solid transparent;
+    border-left-color: var(--slate);
+    vertical-align: 1px;
+    transition: transform var(--dur-fast) var(--ease);
+  }
+
+  .controls-region[data-open='true'] .controls-toggle__label::before {
+    transform: rotate(90deg);
+  }
+
+  .controls-toggle__summary {
+    font-size: var(--t-xs);
+    color: var(--slate);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .controls-region[data-open='false'] .controls-region__body {
+    display: none;
+  }
+
+  .controls-region__body .controls {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* The chip list is the tallest control there is; cap it and let it scroll. */
+  .filter-chips__list {
+    max-height: 168px;
+    overflow-y: auto;
+  }
+}

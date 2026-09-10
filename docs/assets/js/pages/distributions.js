@@ -15,7 +15,7 @@ import { load, loadTrends, periodSlots, bandsFor, competenciesInData } from '../
 import { chart, sourceNoteFor } from '../chart.js';
 import { token, createTooltip, bindTooltip } from '../grammar.js';
 import { bandSpec, isSlideSourced, sourceLabel, BANDS, CPM_BANDS } from '../bands.js';
-import { controlBar, monthlyNotice, pageHeader, section } from '../controls.js';
+import { controlBar, controlsBody, monthlyNotice, pageHeader, section } from '../controls.js';
 import { competency, familyName } from '../competencies.js';
 import { strings, instrumentLabel } from '../strings.js';
 import { pct, pct1, int, nLabel, periodLabel } from '../format.js';
@@ -201,12 +201,13 @@ function fluencySection(root, ctx, { views, granularity, slots }) {
     .sort((a, b) => a.sortKey - b.sortKey);
 
   const grid = el('div', 'panel-grid');
-  for (const panel of panels) {
-    const cell = el('div', 'panel-grid__item');
-    panelChart(cell, ctx, { panel, spec: CPM_BANDS, granularity });
-    grid.append(cell);
-  }
   wrap.append(grid);
+  const cells = panels.map(() => {
+    const cell = el('div', 'panel-grid__item');
+    grid.append(cell);
+    return cell;
+  });
+  panels.forEach((panel, index) => panelChart(cells[index], ctx, { panel, spec: CPM_BANDS, granularity }));
   legend(wrap, CPM_BANDS);
 
   const note = el('p', 'section__subtitle');
@@ -348,7 +349,7 @@ export async function mount(root, ctx) {
   }
   detailWrap.append(toggle);
   extra.append(detailWrap);
-  root.append(extra);
+  controlsBody(root, ctx).append(extra);
   monthlyNotice(root, ctx);
 
   const views = await load.views();
@@ -387,7 +388,7 @@ export async function mount(root, ctx) {
     clear.addEventListener('click', () => ctx.update({ competencyFilter: [] }));
     filterWrap.append(clear);
   }
-  root.append(filterWrap);
+  controlsBody(root, ctx).append(filterWrap);
 
   const spec = bandSpec({ detail: ctx.state.bands });
   const panels = buildPanels(views, { granularity, slots, filterIds })
@@ -401,13 +402,18 @@ export async function mount(root, ctx) {
   if (!panels.length) {
     panelSection.append(el('p', 'empty-state', strings.empty.noResults));
   } else {
+    // The grid and its cells are put in the document BEFORE the charts are
+    // built into them. A chart measures its container on construction, and a
+    // detached container has no width, so building first would leave every
+    // panel blank until something else happened to trigger a resize.
     const grid = el('div', 'panel-grid');
-    for (const panel of panels) {
-      const cell = el('div', 'panel-grid__item');
-      panelChart(cell, ctx, { panel, spec, granularity });
-      grid.append(cell);
-    }
     panelSection.append(grid);
+    const cells = panels.map(() => {
+      const cell = el('div', 'panel-grid__item');
+      grid.append(cell);
+      return cell;
+    });
+    panels.forEach((panel, index) => panelChart(cells[index], ctx, { panel, spec, granularity }));
     legend(panelSection, spec);
   }
 

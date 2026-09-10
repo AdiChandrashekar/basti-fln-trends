@@ -135,6 +135,31 @@ function renderRail(current, manifest) {
   railEl.append(footer);
 }
 
+/**
+ * Presentation mode, for a projector in a review meeting: no rail, no controls,
+ * larger type, thicker lines. The toggle sits outside the rail because
+ * presentation mode hides the rail, and a switch you cannot reach to turn off
+ * is not a switch.
+ */
+function renderPresentationToggle(current) {
+  let button = document.getElementById('presentation-toggle');
+  if (!button) {
+    button = document.createElement('button');
+    button.id = 'presentation-toggle';
+    button.className = 'presentation-toggle';
+    button.type = 'button';
+    document.body.append(button);
+    button.addEventListener('click', () => {
+      state.update({ presentation: !state.get().presentation });
+    });
+  }
+  const on = Boolean(current.presentation);
+  button.setAttribute('aria-pressed', String(on));
+  button.title = on ? 'Leave presentation mode' : strings.controls.presentationMode;
+  button.setAttribute('aria-label', button.title);
+  button.textContent = on ? 'Exit presentation' : 'Presentation';
+}
+
 // ---------------------------------------------------------------------------
 // Page lifecycle
 // ---------------------------------------------------------------------------
@@ -163,6 +188,7 @@ async function render(current) {
   const page = ALL_PAGES.find((p) => p.id === current.page) || ALL_PAGES[0];
 
   document.documentElement.dataset.presentation = current.presentation ? 'on' : 'off';
+  renderPresentationToggle(current);
 
   const manifest = await load.manifest();
   if (token !== renderToken) return;

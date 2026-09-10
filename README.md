@@ -136,5 +136,5 @@ number can go stale.
 | 3 | Overview and Competency explorer | done |
 | 4 | Competency map and Changes | done |
 | 5 | Distributions and DiD snapshot | done |
-| 6 | Methods, exports, presentation mode, mobile | next |
-| 7 | QA and deployment | |
+| 6 | Methods, exports, presentation mode, mobile | done |
+| 7 | QA and deployment | next |
