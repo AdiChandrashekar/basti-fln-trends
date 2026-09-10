@@ -21,7 +21,7 @@ import {
 import { controlBar, monthlyNotice, pageHeader, section } from '../controls.js';
 import { competency, competencyName } from '../competencies.js';
 import { strings, instrumentLabel } from '../strings.js';
-import { pct, pct1, int, nLabel, changePoints, changeGlyph, changeDirection, periodLabel, isMissing } from '../format.js';
+import { pct, pct1, int, nLabel, changePoints, changeGlyph, changeDirection, periodLabel, quarterAxisLabel, isMissing } from '../format.js';
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -256,6 +256,22 @@ function latestStrip(root, { domainRows, granularity, quarterlyRows }) {
 // Where competencies stand now
 // ---------------------------------------------------------------------------
 
+/**
+ * What to call the round a competency was last assessed in.
+ *
+ * District rounds get their quarter code, which is what everyone says out loud.
+ * The two DiD rounds get their own names instead: calling the End of Year round
+ * "Q4 2025" would be technically right and completely unhelpful, since it ran in
+ * March 2026.
+ */
+function roundLabelFor(point, granularity) {
+  const tools = point.source_tools || [];
+  if (tools.includes('did_midline')) return 'EoY';
+  if (tools.includes('did_baseline')) return 'DiD baseline';
+  if (granularity === 'monthly') return periodLabel(point.period, { granularity });
+  return quarterAxisLabel(point.period, point.period_label).secondary;
+}
+
 function standingPlot(root, ctx, { rows, granularity }) {
   const points = trendPoints(rows, { domain: ctx.state.domain, showDid: ctx.state.showDid });
 
@@ -267,57 +283,77 @@ function standingPlot(root, ctx, { rows, granularity }) {
     if (!held || point.period_sort > held.period_sort) latestByCompetency.set(point.std_competency, point);
   }
 
-  const items = [...latestByCompetency.values()]
-    .map((point) => ({
-      point,
-      meta: competency(point.std_competency, { domain: point.domain }),
-      // The most recent same-test change, where the pipeline recorded one.
-      withinToolChange: point.change_defensibility === 'within_tool' ? point.change_pp : null,
-    }))
-    .sort((a, b) =>
-      (a.meta.domain === 'literacy' ? 0 : 1) - (b.meta.domain === 'literacy' ? 0 : 1) ||
-      b.point.pct_students_cleared - a.point.pct_students_cleared
-    );
+  const items = [...latestByCompetency.values()].map((point) => ({
+    point,
+    meta: competency(point.std_competency, { domain: point.domain }),
+    roundLabel: roundLabelFor(point, granularity),
+    roundSort: point.period_sort,
+    // The most recent same-test change, where the pipeline recorded one.
+    withinToolChange: point.change_defensibility === 'within_tool' ? point.change_pp : null,
+  }));
 
   if (!items.length) {
     root.append(el('p', 'empty-state', strings.chart.noData));
     return;
   }
 
+  // Grouped by the round each competency was last assessed in, most recent
+  // first, so a reader sees what is current before what is months old. Domain
+  // becomes a sub-heading inside a round that holds both.
+  const rounds = [...d3.group(items, (d) => d.roundLabel)]
+    .map(([label, groupItems]) => ({
+      label,
+      sort: d3.max(groupItems, (d) => d.roundSort),
+      domains: [...d3.group(groupItems, (d) => d.meta.domain)]
+        .sort((a, b) => (a[0] === 'literacy' ? 0 : 1) - (b[0] === 'literacy' ? 0 : 1))
+        .map(([domainKey, domainItems]) => ({
+          domain: domainKey,
+          items: domainItems.sort((a, b) => b.point.pct_students_cleared - a.point.pct_students_cleared),
+        })),
+      count: groupItems.length,
+    }))
+    .sort((a, b) => d3.descending(a.sort, b.sort));
+
   const columns = [
+    { key: 'round', label: 'Last assessed' },
     { key: 'competency', label: 'Competency' },
     { key: 'domain', label: 'Domain' },
     { key: 'value', label: '% achieving', num: true },
-    { key: 'round', label: 'Latest round' },
     { key: 'instrument', label: 'Instrument' },
     { key: 'n', label: 'Children', num: true },
     { key: 'change', label: 'Latest same-test change', num: true },
   ];
-  const tableRows = items.map(({ point, meta, withinToolChange }) => ({
-    competency: meta.name,
-    domain: meta.domain === 'literacy' ? strings.controls.literacy : strings.controls.numeracy,
-    value: pct1(point.pct_students_cleared),
-    round: periodLabel(point.period, { granularity, quarterLabel: point.period_label }),
-    instrument: instrumentLabel(point),
-    n: point.n === null ? strings.units.nNotReported : int(point.n),
-    change: withinToolChange === null ? '—' : withinToolChange.toFixed(1),
-  }));
+  const tableRows = rounds.flatMap((round) =>
+    round.domains.flatMap((group) =>
+      group.items.map(({ point, meta, withinToolChange }) => ({
+        round: round.label,
+        competency: meta.name,
+        domain: meta.domain === 'literacy' ? strings.controls.literacy : strings.controls.numeracy,
+        value: pct1(point.pct_students_cleared),
+        instrument: instrumentLabel(point),
+        n: point.n === null ? strings.units.nNotReported : int(point.n),
+        change: withinToolChange === null ? '—' : withinToolChange.toFixed(1),
+      }))));
 
   const ROW = 22;
-  const GROUP_GAP = 30;
-  const groups = d3.group(items, (d) => d.meta.domain);
+  const ROUND_GAP = 34;
+  const DOMAIN_GAP = 22;
+  const totalHeight = rounds.reduce(
+    (sum, round) => sum + ROUND_GAP + round.domains.reduce(
+      (inner, group) => inner + (round.domains.length > 1 ? DOMAIN_GAP : 0) + group.items.length * ROW, 0), 0);
 
   chart({
     root,
     title: strings.overview.standingTitle,
     subtitle: strings.overview.standingSubtitle,
     ariaLabel:
-      `Ranked dot plot of ${items.length} competencies by % achieving in their latest round. ` +
-      items.slice(0, 5).map((i) => `${i.meta.name} ${pct(i.point.pct_students_cleared)}`).join(', ') + '.',
+      `Dot plot of ${items.length} competencies grouped by the round each was last assessed in, ` +
+      `most recent first. ` +
+      rounds.map((r) => `${r.label}: ${r.count} competencies`).join('; ') + '.',
     sourceNote: sourceNoteFor(granularity === 'monthly' ? 'monthly_trends.csv' : 'quarterly_trends.csv'),
     columns,
     rows: tableRows,
-    height: () => items.length * ROW + groups.size * GROUP_GAP + 40,
+    height: () => totalHeight + 40,
     render({ svg, width, container }) {
       const margin = { top: 8, right: 130, bottom: 26, left: Math.min(240, Math.max(150, width * 0.28)) };
       const innerWidth = Math.max(10, width - margin.left - margin.right);
@@ -326,59 +362,81 @@ function standingPlot(root, ctx, { rows, granularity }) {
       const tooltip = createTooltip(container);
 
       let y = 0;
-      for (const [domainKey, groupItems] of groups) {
-        plot.append('text')
-          .attr('x', -margin.left + 2).attr('y', y + 12)
-          .attr('font-size', 12.8).attr('font-weight', 600)
-          .attr('fill', token('--slate'))
-          .text(domainKey === 'literacy' ? strings.controls.literacy : strings.controls.numeracy);
-        y += GROUP_GAP;
+      for (const round of rounds) {
+        // The round heading is the label the brief asked for: it names the
+        // period, and it is also what orders the list.
+        const heading = plot.append('g');
+        heading.append('text')
+          .attr('x', -margin.left + 2).attr('y', y + 14)
+          .attr('font-size', 12.8).attr('font-weight', 700)
+          .attr('fill', token('--csf-navy'))
+          .text(round.label);
+        heading.append('text')
+          .attr('x', -margin.left + 2).attr('y', y + 27)
+          .attr('font-size', 11).attr('fill', token('--slate'))
+          .text(`${round.count} ${round.count === 1 ? 'competency' : 'competencies'}`);
+        heading.append('line')
+          .attr('x1', 0).attr('x2', innerWidth).attr('y1', y + 20).attr('y2', y + 20)
+          .attr('stroke', token('--rule'));
+        y += ROUND_GAP;
 
-        for (const item of groupItems) {
-          const cy = y + ROW / 2;
-          const colour = domainColour(item.meta.domain);
-
-          plot.append('line')
-            .attr('x1', 0).attr('x2', innerWidth).attr('y1', cy).attr('y2', cy)
-            .attr('stroke', token('--rule')).attr('stroke-width', 1);
-          plot.append('line')
-            .attr('x1', 0).attr('x2', x(item.point.pct_students_cleared)).attr('y1', cy).attr('y2', cy)
-            .attr('stroke', colour).attr('stroke-width', 1.5).attr('opacity', 0.35);
-
-          const link = plot.append('a')
-            .attr('href', ctx.hrefFor({ page: 'competency', competency: item.point.std_competency }))
-            .attr('aria-label', `${item.meta.name}, ${pct(item.point.pct_students_cleared)} achieving. Open in the competency explorer.`);
-
-          link.append('text')
-            .attr('x', -10).attr('y', cy).attr('dy', '0.32em')
-            .attr('text-anchor', 'end').attr('font-size', 12.8)
-            .attr('fill', token('--ink'))
-            .text(item.meta.name.length > 34 ? `${item.meta.name.slice(0, 33)}…` : item.meta.name)
-            .append('title').text(item.meta.name);
-
-          drawMarker(link, item.point, { x: x(item.point.pct_students_cleared), y: cy, colour });
-
-          link.append('text')
-            .attr('x', innerWidth + 12).attr('y', cy).attr('dy', '0.32em')
-            .attr('font-size', 12.8).attr('font-weight', 600)
-            .attr('fill', token('--ink'))
-            .text(pct(item.point.pct_students_cleared));
-
-          if (item.withinToolChange !== null) {
-            link.append('text')
-              .attr('x', innerWidth + 52).attr('y', cy).attr('dy', '0.32em')
-              .attr('font-size', 12).attr('fill', token(`--change-${changeDirection(item.withinToolChange)}`))
-              .text(`${changeGlyph(item.withinToolChange)} ${Math.abs(item.withinToolChange).toFixed(1)}`)
-              .append('title').text(`${changePoints(item.withinToolChange)} than the previous round, same test`);
+        for (const group of round.domains) {
+          if (round.domains.length > 1) {
+            plot.append('text')
+              .attr('x', -margin.left + 2).attr('y', y + 12)
+              .attr('font-size', 11).attr('font-weight', 600).attr('fill', token('--slate'))
+              .text(group.domain === 'literacy' ? strings.controls.literacy : strings.controls.numeracy);
+            y += DOMAIN_GAP;
           }
 
-          bindTooltip(link, tooltip, () =>
-            tooltipContent(item.point, {
-              periodLabel: periodLabel(item.point.period, { granularity, quarterLabel: item.point.period_label }),
-              competency: item.meta.name,
-            })
-          );
-          y += ROW;
+          for (const item of group.items) {
+            const cy = y + ROW / 2;
+            const colour = domainColour(item.meta.domain);
+
+            plot.append('line')
+              .attr('x1', 0).attr('x2', innerWidth).attr('y1', cy).attr('y2', cy)
+              .attr('stroke', token('--rule')).attr('stroke-width', 1);
+            plot.append('line')
+              .attr('x1', 0).attr('x2', x(item.point.pct_students_cleared)).attr('y1', cy).attr('y2', cy)
+              .attr('stroke', colour).attr('stroke-width', 1.5).attr('opacity', 0.35);
+
+            const link = plot.append('a')
+              .attr('href', ctx.hrefFor({ page: 'competency', competency: item.point.std_competency }))
+              .attr('aria-label',
+                `${item.meta.name}, ${item.meta.domain}, last assessed ${item.roundLabel}, ` +
+                `${pct(item.point.pct_students_cleared)} achieving. Open in the competency explorer.`);
+
+            link.append('text')
+              .attr('x', -10).attr('y', cy).attr('dy', '0.32em')
+              .attr('text-anchor', 'end').attr('font-size', 12.8)
+              .attr('fill', token('--ink'))
+              .text(item.meta.name.length > 34 ? `${item.meta.name.slice(0, 33)}\u2026` : item.meta.name)
+              .append('title').text(item.meta.name);
+
+            drawMarker(link, item.point, { x: x(item.point.pct_students_cleared), y: cy, colour });
+
+            link.append('text')
+              .attr('x', innerWidth + 12).attr('y', cy).attr('dy', '0.32em')
+              .attr('font-size', 12.8).attr('font-weight', 600)
+              .attr('fill', token('--ink'))
+              .text(pct(item.point.pct_students_cleared));
+
+            if (item.withinToolChange !== null) {
+              link.append('text')
+                .attr('x', innerWidth + 52).attr('y', cy).attr('dy', '0.32em')
+                .attr('font-size', 12).attr('fill', token(`--change-${changeDirection(item.withinToolChange)}`))
+                .text(`${changeGlyph(item.withinToolChange)} ${Math.abs(item.withinToolChange).toFixed(1)}`)
+                .append('title').text(`${changePoints(item.withinToolChange)} than the previous round, same test`);
+            }
+
+            bindTooltip(link, tooltip, () =>
+              tooltipContent(item.point, {
+                periodLabel: periodLabel(item.point.period, { granularity, quarterLabel: item.point.period_label }),
+                competency: item.meta.name,
+              })
+            );
+            y += ROW;
+          }
         }
       }
 

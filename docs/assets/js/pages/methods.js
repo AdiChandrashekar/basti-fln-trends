@@ -11,13 +11,14 @@
  */
 
 import { d3 } from '../vendor.js';
-import { load, periodSlots, trendPoints, sourceDetails } from '../data.js';
+import { load, periodSlots, sourceDetails } from '../data.js';
+import { chart, sourceNoteFor } from '../chart.js';
 import { drawRibbon, ribbonModel } from '../ribbon.js';
-import { token, clearTokenCache } from '../grammar.js';
+import { token, clearTokenCache, createTooltip, bindTooltip, markerPath } from '../grammar.js';
 import { pageHeader, section } from '../controls.js';
 import { competency, familyName } from '../competencies.js';
-import { strings, instrumentLabel, sortInstruments } from '../strings.js';
-import { int, pct, buildDate, periodLabel, quarterAxisLabel } from '../format.js';
+import { strings, t, instrumentLabel, sortInstruments } from '../strings.js';
+import { int, pct, buildDate, periodLabel, quarterAxisLabel, isMissing } from '../format.js';
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -140,6 +141,119 @@ function timeline(root, { rows, quarterlyRows }) {
   wrap.append(el('p', 'section__subtitle',
     'Children is the largest number assessed by that instrument in any single round. ' +
     'The 2026 sheets carry no school field, so those rounds show no school count.'));
+}
+
+/**
+ * The November 2025 calibration.
+ *
+ * One month, two instruments, the same children. It is the only direct measure
+ * of how much of a cross-instrument step is the test rather than the children,
+ * which is why it belongs with the methods rather than with the findings.
+ */
+function calibrationChart(root, { calibration }) {
+  if (!calibration) {
+    root.append(el('p', 'empty-state',
+      strings.empty.missingFile.replace('{file}', 'data/tool_calibration_nov2025.csv')));
+    return;
+  }
+
+  const items = calibration
+    .filter((r) => !isMissing(r.did_baseline_nov_mean) && !isMissing(r.q3_2025_tool_nov_mean))
+    .map((r) => ({ ...r, meta: competency(r.std_competency), gap: r.district_minus_did_mean }))
+    .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
+  if (!items.length) return;
+
+  const maxGap = Math.round(Math.max(...items.map((i) => Math.abs(i.gap))));
+
+  chart({
+    root,
+    title: strings.calibration.title,
+    subtitle: t(strings.calibration.subtitle, { maxGap }),
+    ariaLabel:
+      `Dot plot comparing the district tool and the DiD baseline on ${items.length} tasks ` +
+      `measured in the same month: ` +
+      items.map((i) => `${i.meta.name}, district ${i.q3_2025_tool_nov_mean.toFixed(1)}, ` +
+        `DiD ${i.did_baseline_nov_mean.toFixed(1)}`).join('; ') + '.',
+    sourceNote: sourceNoteFor('tool_calibration_nov2025.csv'),
+    columns: [
+      { key: 'competency', label: 'Competency' },
+      { key: 'district', label: 'District tool (mean)', num: true },
+      { key: 'did', label: 'DiD baseline (mean)', num: true },
+      { key: 'gap', label: 'Gap', num: true },
+      { key: 'unit', label: 'Unit' },
+    ],
+    rows: items.map((i) => ({
+      competency: i.meta.name,
+      district: i.q3_2025_tool_nov_mean.toFixed(1),
+      did: i.did_baseline_nov_mean.toFixed(1),
+      gap: i.gap.toFixed(1),
+      unit: i.measure_unit === 'cpm' ? 'correct words per minute' : '% correct',
+    })),
+    height: () => items.length * 38 + 60,
+    render({ svg, width, container }) {
+      const margin = { top: 20, right: 92, bottom: 30, left: Math.min(220, Math.max(140, width * 0.26)) };
+      const innerWidth = Math.max(40, width - margin.left - margin.right);
+      const plot = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+      const tooltip = createTooltip(container);
+      const x = d3.scaleLinear().domain([0, 100]).range([0, innerWidth]);
+      const districtColour = token('--csf-blue');
+      const didColour = token('--did-neutral');
+
+      items.forEach((item, index) => {
+        const cy = index * 38 + 12;
+        const group = plot.append('g').attr('tabindex', 0).attr('role', 'button');
+
+        group.append('text')
+          .attr('x', -10).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end')
+          .attr('font-size', 12.8).attr('fill', token('--ink'))
+          .text(item.meta.name.length > 28 ? `${item.meta.name.slice(0, 27)}\u2026` : item.meta.name)
+          .append('title').text(item.meta.name);
+
+        const xa = x(item.did_baseline_nov_mean);
+        const xb = x(item.q3_2025_tool_nov_mean);
+
+        group.append('line')
+          .attr('x1', xa).attr('x2', xb).attr('y1', cy).attr('y2', cy)
+          .attr('stroke', token('--change-flat')).attr('stroke-width', 2);
+        group.append('path')
+          .attr('d', markerPath('diamond', 5)).attr('transform', `translate(${xa},${cy})`)
+          .attr('fill', didColour);
+        group.append('path')
+          .attr('d', markerPath('circle', 5)).attr('transform', `translate(${xb},${cy})`)
+          .attr('fill', districtColour);
+        group.append('text')
+          .attr('x', Math.max(xa, xb) + 12).attr('y', cy).attr('dy', '0.32em')
+          .attr('font-size', 12).attr('font-weight', 600)
+          .attr('fill', Math.abs(item.gap) >= 15 ? token('--change-down') : token('--slate'))
+          .text(`${item.gap > 0 ? '+' : '\u2212'}${Math.abs(item.gap).toFixed(1)}`);
+
+        const unit = item.measure_unit === 'cpm' ? 'cpm' : '% correct';
+        bindTooltip(group, tooltip, () =>
+          `<div class="tt__head">${item.meta.name}<span class="tt__period">Nov 2025, both instruments</span></div>` +
+          `<div class="tt__value"><strong>${Math.abs(item.gap).toFixed(1)}</strong>` +
+          `<span class="tt__unit">${unit} apart</span></div><hr class="tt__rule">` +
+          `<div class="tt__row">Q3 2025 tool: ${item.q3_2025_tool_nov_mean.toFixed(1)} ${unit}</div>` +
+          `<div class="tt__row">DiD baseline: ${item.did_baseline_nov_mean.toFixed(1)} ${unit}</div>`
+        );
+      });
+
+      const axis = plot.append('g').attr('transform', `translate(0,${items.length * 38 + 4})`);
+      axis.append('line').attr('x1', 0).attr('x2', innerWidth).attr('stroke', token('--rule'));
+      for (const tick of [0, 25, 50, 75, 100]) {
+        axis.append('text')
+          .attr('x', x(tick)).attr('y', 16).attr('text-anchor', 'middle')
+          .attr('font-size', 12).attr('fill', token('--slate')).text(tick);
+      }
+
+      const legend = plot.append('g').attr('transform', 'translate(0,-14)');
+      legend.append('path').attr('d', markerPath('circle', 5)).attr('transform', 'translate(6,0)').attr('fill', districtColour);
+      legend.append('text').attr('x', 16).attr('dy', '0.32em').attr('font-size', 11)
+        .attr('fill', token('--slate')).text(strings.calibration.districtTool);
+      legend.append('path').attr('d', markerPath('diamond', 5)).attr('transform', 'translate(140,0)').attr('fill', didColour);
+      legend.append('text').attr('x', 150).attr('dy', '0.32em').attr('font-size', 11)
+        .attr('fill', token('--slate')).text(strings.calibration.didBaseline);
+    },
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -344,9 +458,7 @@ export async function mount(root, ctx) {
     'test in both rounds, a long dash means a different test measuring the same skill, and a ' +
     'short dash means a different test whose task is not quite the same.',
   ]);
-  const calibrationLink = el('a', 'section__link', 'See the November 2025 comparison');
-  calibrationLink.href = '#/changes';
-  cross.append(calibrationLink);
+  calibrationChart(cross, { calibration });
 
   // --- Cohort and composition ----------------------------------------------
   const cohort = section(root, { title: strings.methods.cohortTitle });

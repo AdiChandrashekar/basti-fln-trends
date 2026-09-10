@@ -17,7 +17,6 @@ const PAGES = new Set([
   'overview',
   'competency',
   'map',
-  'changes',
   'distributions',
   'did',
   'methods',

@@ -31,7 +31,6 @@ export const strings = {
     overview: 'Overview',
     explorer: 'Competency explorer',
     map: 'Competency map',
-    changes: 'Changes',
     distributions: 'Distributions',
     did: 'DiD snapshot',
     methods: 'Methods and caveats',
@@ -44,7 +43,6 @@ export const strings = {
       overview: 'Overview',
       explorer: 'Explorer',
       map: 'Map',
-      changes: 'Changes',
       distributions: 'Spread',
       did: 'DiD',
       methods: 'Methods',
@@ -86,7 +84,8 @@ export const strings = {
     latestNotComparable: 'Instrument changed, not comparable',
     standingTitle: 'Where competencies stand now',
     standingSubtitle:
-      'The latest round for each competency. Each dot is marked with the instrument that ' +
+      'Grouped by the round each competency was last assessed in, most recent first, so what ' +
+      'is current sits above what is months old. Each dot is marked with the instrument that ' +
       'measured it, and with its most recent same-test change where there is one.',
     findingsTitle: 'Key findings',
     openInExplorer: 'Open in the competency explorer',
@@ -139,32 +138,18 @@ export const strings = {
     legendPerfect: 'Needs full marks',
   },
 
-  changes: {
-    title: 'Changes',
-    sectionA: 'Same test in both rounds — the changes you can trust',
-    sectionASubtitle:
-      'Same test in both rounds. The children differ (Grade 2 is a new group each year), ' +
-      'the sample grew from {nFrom} to {nTo}, and the gap spans the summer break.',
-    sectionB: 'Different tests — indicative only',
-    sectionBSubtitle:
-      'These changes cross an instrument change. Some of the movement is the children and ' +
-      'some is the test. Read them as indicative.',
-    sectionBLink: 'See how big the instrument effect is',
-    notComparableTitle: 'Not comparable',
-    notComparableSubtitle:
-      'On one side of these steps the number is an average % correct from the DiD study, ' +
-      'and on the other it is the share of children achieving. They are different measures, ' +
-      'so they are listed rather than plotted.',
-    sectionC: 'How big is the instrument effect?',
-    sectionCSubtitle:
+  /**
+   * The November 2025 calibration. It lived on a Changes page that has since
+   * been removed; the chart moved to Methods, where the prose already argues
+   * from it.
+   */
+  calibration: {
+    title: 'How big is the instrument effect?',
+    subtitle:
       'Same month, same-named task, two different instruments. Gaps of up to ' +
       '~{maxGap} points come from the instrument, not the children.',
     districtTool: 'District tool',
     didBaseline: 'DiD baseline',
-    gap: 'Gap',
-    up: 'up',
-    down: 'down',
-    flat: 'little change',
   },
 
   distributions: {

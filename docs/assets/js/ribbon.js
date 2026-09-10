@@ -10,7 +10,7 @@
  * present in each period, so a new instrument in a future round draws itself.
  *
  *      ┌────────────┬───────────────┬─────────┬──────────────────────┐
- *      │ July + Aug │ Q3 2025 tool ◆│ ■       │ 2026 battery         │
+ *      │ July + Aug │ Q3 2025 tool ◆│ ■       │ 2026 SSP             │
  *      └────────────┴───────────────┴─────────┴──────────────────────┘
  *                                              ▲ New Grade 2 cohort
  */
@@ -31,7 +31,7 @@ const FAMILY_LABELS = {
   july_tool: 'July tool',
   aug_tool: 'Aug tool',
   q3_2025_tool: 'Q3 2025 tool',
-  '2026_tool': '2026 battery',
+  '2026_tool': '2026 SSP',
   did: 'DiD study',
 };
 
@@ -137,7 +137,7 @@ export function ribbonModel(slots) {
 }
 
 /**
- * The period where the 2026 battery first appears — a new cohort of Grade 2
+ * The period where the 2026 SSP first appears — a new cohort of Grade 2
  * children. Derived from the data so it moves if the instrument timeline does.
  */
 export function cohortBoundary(slots) {

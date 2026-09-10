@@ -51,7 +51,7 @@ const LADDER = [
   { id: 'shapes_2d', name: '2D shapes', domain: 'numeracy' },
   { id: 'shapes_1', name: 'Shapes, item 1 (DiD)', domain: 'numeracy' },
   { id: 'shapes_2', name: 'Shapes, item 2 (DiD)', domain: 'numeracy' },
-  { id: 'shapes_midline_unspecified', name: 'Shapes (midline)', domain: 'numeracy' },
+  { id: 'shapes_midline_unspecified', name: 'Shapes (EoY)', domain: 'numeracy' },
   { id: 'measurement', name: 'Measurement', domain: 'numeracy' },
   { id: 'data_handling', name: 'Data handling', domain: 'numeracy' },
   { id: 'money', name: 'Money', domain: 'numeracy' },
