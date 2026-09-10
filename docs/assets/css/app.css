@@ -1283,3 +1283,193 @@ table.data tbody tr:nth-child(even) {
     border-top: 1px solid var(--rule);
   }
 }
+
+/* --- Competency map -------------------------------------------------------
+   A real table: row and column headers are announced without ARIA scaffolding,
+   and the first column sticks on a narrow screen with one property. */
+.heatmap {
+  overflow-x: auto;
+  margin-top: var(--s-2);
+}
+
+.heatmap__table {
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: var(--t-xs);
+}
+
+.heatmap__corner,
+.heatmap__label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--paper);
+  text-align: left;
+  font-weight: var(--w-regular);
+  min-width: 190px;
+  max-width: 230px;
+  padding: var(--s-1) var(--s-2) var(--s-1) 0;
+}
+
+.heatmap__corner {
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  color: var(--slate);
+  vertical-align: bottom;
+}
+
+.heatmap__label a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.heatmap__label a:hover {
+  color: var(--csf-blue);
+  text-decoration: underline;
+}
+
+.heatmap__head {
+  padding: 0 var(--s-1) var(--s-2);
+  min-width: 82px;
+  vertical-align: bottom;
+  font-weight: var(--w-regular);
+}
+
+.heatmap__period {
+  display: block;
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.heatmap__instrument {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.6875rem;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.heatmap__grouprow th {
+  position: sticky;
+  left: 0;
+  padding: var(--s-4) 0 var(--s-1);
+  text-align: left;
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  color: var(--slate);
+  background: var(--paper);
+}
+
+.heatmap__cell {
+  padding: 0;
+}
+
+.heatmap__value {
+  position: relative;
+  display: block;
+  min-width: 82px;
+  padding: var(--s-2) var(--s-1);
+  text-align: center;
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.heatmap__value:hover {
+  outline: 2px solid var(--csf-navy);
+  outline-offset: -2px;
+  text-decoration: none;
+}
+
+.heatmap__flags {
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  font-size: 9px;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+/* Not assessed: a faint hatch, never an empty white gap that reads as zero. */
+.heatmap__cell.is-empty {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--hatch), var(--hatch) 3px,
+    var(--paper) 3px, var(--paper) 6px
+  );
+}
+
+/* Hovering a row highlights the whole row, so the eye can track across. */
+.heatmap__table tbody tr:hover .heatmap__label {
+  background: var(--mist);
+}
+
+.heatmap__table tbody tr:hover .heatmap__value {
+  outline: 1px solid var(--rule);
+  outline-offset: -1px;
+}
+
+.legend__ramp {
+  display: inline-block;
+  width: 96px;
+  height: 10px;
+  border: 1px solid var(--rule);
+}
+
+.legend__glyph {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+  color: var(--ink);
+  font-weight: var(--w-semibold);
+}
+
+.legend__hatch {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  border: 1px solid var(--rule);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--hatch), var(--hatch) 3px,
+    var(--paper) 3px, var(--paper) 6px
+  );
+}
+
+.controls--secondary {
+  border-bottom: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* --- Changes --------------------------------------------------------------- */
+.section__link {
+  display: inline-block;
+  margin-top: var(--s-2);
+  font-size: var(--t-sm);
+}
+
+/* The steps that cannot be compared: present, readable, and deliberately quiet. */
+.not-comparable-block {
+  margin-top: var(--s-6);
+  padding: var(--s-4);
+  background: var(--mist);
+  border-left: 3px solid var(--change-flat);
+}
+
+.not-comparable-block .section__title {
+  font-size: var(--t-base);
+  color: var(--slate);
+}
+
+.not-comparable-block table.data {
+  color: var(--slate);
+}
+
+.not-comparable-block table.data tbody tr:nth-child(even) {
+  background: transparent;
+}

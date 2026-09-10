@@ -134,7 +134,7 @@ number can go stale.
 | 1 | Scaffold, sync script, data layer, tokens, strings | done |
 | 2 | Shared chart grammar and the instrument ribbon | done |
 | 3 | Overview and Competency explorer | done |
-| 4 | Competency map and Changes | next |
-| 5 | Distributions and DiD snapshot | |
+| 4 | Competency map and Changes | done |
+| 5 | Distributions and DiD snapshot | next |
 | 6 | Methods, exports, presentation mode, mobile | |
 | 7 | QA and deployment | |

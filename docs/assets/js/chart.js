@@ -33,6 +33,12 @@ export function chart(spec) {
   const {
     root, title, subtitle, ariaLabel, sourceNote = '',
     columns = [], rows = [], height = 340, render,
+    // Some views are better as real HTML than as SVG -- the competency map is a
+    // grid with row and column headers, and a table gives screen readers and
+    // keyboards that structure for free. `renderHtml` draws one; `svgFor` is an
+    // optional second pass that builds an SVG only when someone exports an image,
+    // so the accessible view and the deck-ready picture can both be right.
+    renderHtml = null, svgFor = null,
   } = spec;
 
   const figure = document.createElement('figure');
@@ -108,6 +114,13 @@ export function chart(spec) {
     if (!width) return;
     currentWidth = width;
     clearTokenCache();
+
+    if (renderHtml) {
+      container.innerHTML = '';
+      renderHtml({ container, width });
+      return;
+    }
+
     container.querySelectorAll('svg, .tooltip').forEach((node) => node.remove());
 
     const plotHeight = typeof height === 'function' ? height(width) : height;
@@ -210,7 +223,9 @@ export function chart(spec) {
    * from. Styles are inlined because the exported file leaves this document.
    */
   function serialiseSvg() {
-    const source = container.querySelector('svg');
+    // An HTML view builds its export SVG on demand rather than keeping one in
+    // the page purely so it can be downloaded.
+    const source = renderHtml ? (svgFor ? svgFor() : null) : container.querySelector('svg');
     if (!source) return null;
     const clone = source.cloneNode(true);
     const width = Number(source.getAttribute('width'));
@@ -285,11 +300,11 @@ export function chart(spec) {
     image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(result.markup)}`;
   }
 
-  for (const [label, action] of [
-    [strings.chart.downloadPng, exportPng],
-    [strings.chart.downloadSvg, exportSvg],
-    [strings.chart.downloadCsv, exportCsv],
-  ]) {
+  const menuItems = [[strings.chart.downloadCsv, exportCsv]];
+  if (!renderHtml || svgFor) {
+    menuItems.unshift([strings.chart.downloadPng, exportPng], [strings.chart.downloadSvg, exportSvg]);
+  }
+  for (const [label, action] of menuItems) {
     const item = document.createElement('button');
     item.type = 'button';
     item.setAttribute('role', 'menuitem');
