@@ -59,6 +59,7 @@ REQUIRED_COLUMNS: dict[str, set[str]] = {
         "change_literacy_pp_vs_prev", "change_numeracy_pp_vs_prev", "change_overall_pp_vs_prev",
         "literacy_n_competencies", "numeracy_n_competencies",
         "literacy_competencies", "numeracy_competencies", "pooling_method", "coverage_note",
+        "tool_family", "change_defensibility",
     },
     "nonstacking_competency_views.csv": {
         "view", "period_type", "period", "source_tool", "panel_id", "index_scope",

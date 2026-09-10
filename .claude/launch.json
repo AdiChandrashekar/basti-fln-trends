@@ -4,8 +4,11 @@
     {
       "name": "dashboard",
       "runtimeExecutable": "py",
-      "runtimeArgs": ["-m", "http.server", "8099", "--directory", "docs"],
-      "port": 8099
+      "runtimeArgs": [
+        "scripts/dev_server.py",
+        "8110"
+      ],
+      "port": 8110
     }
   ]
 }

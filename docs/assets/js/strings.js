@@ -363,6 +363,13 @@ export function flagText(flag) {
   return strings.flags[flag] || flag.replace(/_/g, ' ');
 }
 
+/** Order a set of source_tool codes the way the instruments were actually used. */
+export function sortInstruments(tools) {
+  const order = Object.keys(strings.tools);
+  const rank = (tool) => (order.indexOf(tool) === -1 ? order.length : order.indexOf(tool));
+  return [...tools].sort((a, b) => rank(a) - rank(b));
+}
+
 /**
  * Display name for the instrument(s) behind a row.
  *

@@ -93,10 +93,12 @@ to change when the data changes — new competencies, new rounds and new periods
 ## Previewing locally
 
 ```bash
-python -m http.server 8099 --directory docs
+python scripts/dev_server.py
 ```
 
-Then open <http://localhost:8099>. `#/debug` is an unlinked page that lists every competency, every
+Then open <http://localhost:8110>. This is `http.server` with `Cache-Control: no-store`
+added — without it the browser holds on to ES modules between edits and you spend your time
+debugging a stale copy of the site. `#/debug` is an unlinked page that lists every competency, every
 period in order, and the parsed row counts against the manifest — the quickest way to confirm a new
 pipeline run landed correctly.
 
@@ -130,9 +132,9 @@ number can go stale.
 | Phase | Scope | State |
 |---|---|---|
 | 1 | Scaffold, sync script, data layer, tokens, strings | done |
-| 2 | Shared chart grammar and the instrument ribbon | next |
-| 3 | Overview and Competency explorer | |
-| 4 | Competency map and Changes | |
+| 2 | Shared chart grammar and the instrument ribbon | done |
+| 3 | Overview and Competency explorer | done |
+| 4 | Competency map and Changes | next |
 | 5 | Distributions and DiD snapshot | |
 | 6 | Methods, exports, presentation mode, mobile | |
 | 7 | QA and deployment | |

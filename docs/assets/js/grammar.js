@@ -386,6 +386,60 @@ export function drawSourceSatellites(group, details, { x, y, colour, offset = 13
 // Direct labelling
 // ---------------------------------------------------------------------------
 
+/**
+ * Draw several series' end labels together, nudged apart where they collide.
+ *
+ * On the Overview all three domain lines can land within a point of each other,
+ * and three labels stacked on one baseline is unreadable. Positions are solved
+ * once for the group rather than per series.
+ */
+export function drawEndLabels(group, entries, { x, y, minGap = 15 } = {}) {
+  const placed = entries
+    .filter((e) => e.point)
+    .map((e) => ({ ...e, ideal: y(e.point.pct_students_cleared) }))
+    .sort((a, b) => a.ideal - b.ideal);
+
+  // One upward pass, then one downward pass: enough to separate a small group
+  // without dragging any label far from the point it belongs to.
+  for (let i = 1; i < placed.length; i += 1) {
+    placed[i].at = Math.max(placed[i].ideal, (placed[i - 1].at ?? placed[i - 1].ideal) + minGap);
+  }
+  if (placed.length) placed[0].at = placed[0].at ?? placed[0].ideal;
+  for (let i = placed.length - 2; i >= 0; i -= 1) {
+    placed[i].at = Math.min(placed[i].at, placed[i + 1].at - minGap);
+  }
+
+  const layer = group.append('g').attr('class', 'latest-label');
+  for (const entry of placed) {
+    const px = x(entry.point.period) + 12;
+    // A leader line where the label had to move, so it still reads as belonging
+    // to its own line rather than floating.
+    if (Math.abs(entry.at - entry.ideal) > 1.5) {
+      layer.append('path')
+        .attr('d', `M${px - 6},${entry.ideal} L${px - 2},${entry.at}`)
+        .attr('fill', 'none')
+        .attr('stroke', entry.colour)
+        .attr('stroke-width', 1)
+        .attr('opacity', 0.5);
+    }
+    const text = layer.append('text')
+      .attr('x', px)
+      .attr('y', entry.at)
+      .attr('dy', '0.35em')
+      .attr('font-size', 14)
+      .attr('font-weight', 600)
+      .attr('fill', entry.colour)
+      .text(pct(entry.point.pct_students_cleared));
+    if (entry.name) {
+      text.append('tspan')
+        .attr('font-weight', 400)
+        .attr('fill', token('--slate'))
+        .text(`  ${entry.name}`);
+    }
+  }
+  return layer;
+}
+
 /** The latest value, always printed next to the last point. */
 export function drawLatestLabel(group, points, { x, y, colour, name = null } = {}) {
   const last = points.at(-1);

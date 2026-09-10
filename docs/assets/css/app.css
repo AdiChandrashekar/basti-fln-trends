@@ -934,3 +934,352 @@ table.data tbody tr:nth-child(even) {
 .debug-check[data-ok='false'] {
   color: var(--tier-critical);
 }
+
+/* --- Competency picker (combobox) ----------------------------------------- */
+.control--picker {
+  position: relative;
+  min-width: 220px;
+}
+
+.picker__button {
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  text-align: left;
+  font-size: var(--t-sm);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+.picker__button::after {
+  content: '';
+  float: right;
+  margin: 0.45em 0 0 var(--s-2);
+  border: 4px solid transparent;
+  border-top-color: var(--slate);
+}
+
+.picker__button:hover {
+  background: var(--mist);
+}
+
+.picker__panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 40;
+  width: min(340px, 90vw);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 6px 18px rgba(27, 36, 51, 0.14);
+}
+
+.picker__search {
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  font: inherit;
+  font-size: var(--t-sm);
+  border: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.picker__list {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.picker__group {
+  padding: var(--s-2) var(--s-3) var(--s-1);
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  color: var(--slate);
+  background: var(--mist);
+  position: sticky;
+  top: 0;
+}
+
+.picker__option {
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--t-sm);
+  cursor: pointer;
+}
+
+.picker__option:hover,
+.picker__option[data-active='true'] {
+  background: var(--csf-sky);
+}
+
+.picker__option[aria-selected='true'] {
+  font-weight: var(--w-semibold);
+  color: var(--csf-navy);
+}
+
+.picker__empty {
+  padding: var(--s-3);
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+/* --- Latest-round strip ----------------------------------------------------
+   One band, not a row of cards. The three figures are the single typographic
+   statement in the whole dashboard. */
+.latest-strip {
+  margin-top: var(--s-5);
+  padding: var(--s-4) 0 var(--s-5);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--mist);
+}
+
+.latest-strip__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-4);
+  padding: 0 var(--s-4);
+}
+
+.latest-strip__label {
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+  text-transform: none;
+  color: var(--slate);
+}
+
+.latest-strip__period {
+  font-size: var(--t-base);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.latest-strip__meta {
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+.latest-strip__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+  padding: 0 var(--s-4);
+}
+
+.figure__value {
+  font-size: var(--t-2xl);
+  font-weight: var(--w-bold);
+  line-height: 1;
+  color: var(--csf-navy);
+}
+
+.figure__label {
+  margin-top: var(--s-2);
+  font-size: var(--t-sm);
+  font-weight: var(--w-medium);
+  color: var(--ink);
+}
+
+.figure__change {
+  margin-top: var(--s-1);
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+}
+
+.figure__change[data-direction='down'] { color: var(--change-down); }
+.figure__change[data-direction='up'] { color: var(--change-up); }
+.figure__change[data-direction='flat'] { color: var(--change-flat); }
+
+.figure__change--muted {
+  color: var(--slate);
+  font-weight: var(--w-regular);
+}
+
+/* --- Key findings ---------------------------------------------------------
+   Cards are used here and nowhere else: a note is a genuinely discrete object. */
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.note {
+  padding: var(--s-4);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--csf-blue);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.note__title {
+  font-size: var(--t-base);
+  font-weight: var(--w-semibold);
+  line-height: var(--leading-tight);
+  color: var(--csf-navy);
+}
+
+.note__body {
+  font-size: var(--t-sm);
+  line-height: var(--leading-prose);
+  color: var(--ink);
+}
+
+.note__link {
+  margin-top: auto;
+  font-size: var(--t-sm);
+  font-weight: var(--w-medium);
+}
+
+/* Chart links (the ranked dot plot rows) get the same focus treatment. */
+.chart__svg a {
+  cursor: pointer;
+}
+
+.chart__svg a:hover text {
+  fill: var(--csf-blue);
+}
+
+@media (max-width: 768px) {
+  .latest-strip__figures {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+
+  .control--picker {
+    min-width: 100%;
+  }
+}
+
+/* --- Competency explorer --------------------------------------------------- */
+.explorer-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.explorer-head__meta {
+  margin-top: var(--s-2);
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+.explorer-nav {
+  display: flex;
+  gap: var(--s-2);
+}
+
+.explorer-nav__link {
+  padding: var(--s-2) var(--s-3);
+  font-size: var(--t-sm);
+  color: var(--csf-blue);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.explorer-nav__link:hover {
+  background: var(--mist);
+  text-decoration: none;
+}
+
+.explorer-nav__link.is-disabled {
+  color: var(--change-flat);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Chart and facts side by side; the facts column is prose, not a card. */
+.explorer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: var(--s-6);
+  align-items: start;
+  margin-top: var(--s-5);
+}
+
+.explorer-main__chart {
+  min-width: 0;
+}
+
+.facts {
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--rule);
+}
+
+.facts__title {
+  font-size: var(--t-base);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.facts__subtitle {
+  margin-top: var(--s-4);
+  font-size: var(--t-sm);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.facts__list {
+  margin-top: var(--s-3);
+  font-size: var(--t-sm);
+}
+
+.facts__list dt {
+  font-size: var(--t-xs);
+  font-weight: var(--w-medium);
+  color: var(--slate);
+  margin-top: var(--s-3);
+}
+
+.facts__list dt:first-child {
+  margin-top: 0;
+}
+
+.facts__list dd {
+  margin: var(--s-1) 0 0;
+  color: var(--ink);
+  line-height: var(--leading-normal);
+}
+
+.facts__flags {
+  margin-top: var(--s-2);
+  font-size: var(--t-sm);
+  color: var(--slate);
+}
+
+.facts__flags li {
+  position: relative;
+  padding-left: var(--s-4);
+  margin-top: var(--s-2);
+  line-height: var(--leading-normal);
+}
+
+.facts__flags li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--csf-gold);
+}
+
+@media (max-width: 900px) {
+  .explorer-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .facts {
+    padding-left: 0;
+    padding-top: var(--s-4);
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+}

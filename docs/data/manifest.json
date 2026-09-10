@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-09-10T08:48:33+00:00",
+  "built_at": "2026-09-10T08:57:11+00:00",
   "generator": "scripts/sync_site_data.py",
   "files": {
     "quarterly_trends.csv": {
@@ -14,8 +14,8 @@
     },
     "domain_level_trend.csv": {
       "rows": 36,
-      "columns": 23,
-      "bytes": 16484
+      "columns": 26,
+      "bytes": 17208
     },
     "nonstacking_competency_views.csv": {
       "rows": 3298,

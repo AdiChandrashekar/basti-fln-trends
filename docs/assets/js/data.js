@@ -207,9 +207,14 @@ function parseMonthlyRow(row) {
 }
 
 function parseDomainRow(row) {
+  const periodType = str(row.period_type);
+  const period = str(row.period);
   return {
-    period_type: str(row.period_type),
-    period: str(row.period),
+    period_type: periodType,
+    period,
+    // Same sortable key shape as the trend files, so the shared selectors
+    // (reference links, latest period) work on domain rows too.
+    period_sort: periodType === 'quarter' ? quarterStartMonth(period) || period : period,
     row_type: str(row.row_type),
     source_tool: str(row.source_tool),
     source_tool_label: str(row.source_tool_label),
@@ -238,6 +243,12 @@ function parseDomainRow(row) {
 
     pooling_method: str(row.pooling_method),
     coverage_note: str(row.coverage_note),
+
+    // Comparability of this step, written by the pipeline using the same rule
+    // the competency lines use.
+    tool_family: str(row.tool_family),
+    same_tool_family_as_prev: bool(row.same_tool_family_as_prev),
+    change_defensibility: str(row.change_defensibility),
   };
 }
 

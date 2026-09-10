@@ -32,19 +32,19 @@ const GLYPHS = {
 };
 
 const PAGES = [
-  { id: 'overview', label: strings.nav.overview, short: strings.nav.short.overview, load: () => import('./pages/overview.js') },
-  { id: 'competency', label: strings.nav.explorer, short: strings.nav.short.explorer, load: () => import('./pages/explorer.js') },
-  { id: 'map', label: strings.nav.map, short: strings.nav.short.map, load: () => import('./pages/heatmap.js') },
-  { id: 'changes', label: strings.nav.changes, short: strings.nav.short.changes, load: () => import('./pages/changes.js') },
-  { id: 'distributions', label: strings.nav.distributions, short: strings.nav.short.distributions, load: () => import('./pages/distributions.js') },
-  { id: 'did', label: strings.nav.did, short: strings.nav.short.did, load: () => import('./pages/did.js') },
-  { id: 'methods', label: strings.nav.methods, short: strings.nav.short.methods, load: () => import('./pages/methods.js') },
+  { id: 'overview', label: strings.nav.overview, short: strings.nav.short.overview, load: (v) => import(`./pages/overview.js${v}`) },
+  { id: 'competency', label: strings.nav.explorer, short: strings.nav.short.explorer, load: (v) => import(`./pages/explorer.js${v}`) },
+  { id: 'map', label: strings.nav.map, short: strings.nav.short.map, load: (v) => import(`./pages/heatmap.js${v}`) },
+  { id: 'changes', label: strings.nav.changes, short: strings.nav.short.changes, load: (v) => import(`./pages/changes.js${v}`) },
+  { id: 'distributions', label: strings.nav.distributions, short: strings.nav.short.distributions, load: (v) => import(`./pages/distributions.js${v}`) },
+  { id: 'did', label: strings.nav.did, short: strings.nav.short.did, load: (v) => import(`./pages/did.js${v}`) },
+  { id: 'methods', label: strings.nav.methods, short: strings.nav.short.methods, load: (v) => import(`./pages/methods.js${v}`) },
 ];
 
 /** Not in the rail: the build-phase acceptance pages. */
 const HIDDEN_PAGES = [
-  { id: 'debug', label: 'Debug', load: () => import('./pages/debug.js') },
-  { id: 'grammar', label: 'Chart grammar', load: () => import('./pages/grammar-demo.js') },
+  { id: 'debug', label: 'Debug', load: (v) => import(`./pages/debug.js${v}`) },
+  { id: 'grammar', label: 'Chart grammar', load: (v) => import(`./pages/grammar-demo.js${v}`) },
 ];
 
 const ALL_PAGES = [...PAGES, ...HIDDEN_PAGES];
@@ -55,6 +55,7 @@ const rootEl = document.getElementById('page-root');
 let activeModule = null;
 let activePageId = null;
 let renderToken = 0;
+let activeMount = null;   // AbortController for the in-flight mount
 
 // ---------------------------------------------------------------------------
 // Navigation rail
@@ -179,7 +180,14 @@ async function render(current) {
     }
     rootEl.innerHTML = '<p class="loading">Loading…</p>';
     try {
-      activeModule = await page.load();
+      // Page modules are versioned with the data build timestamp, so a redeploy
+      // brings code and data forward together instead of leaving a browser
+      // holding a cached page module against freshly published numbers.
+      const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      const version = isLocal
+        ? `?v=dev-${Date.now()}`
+        : (manifest?.built_at ? `?v=${encodeURIComponent(manifest.built_at)}` : '');
+      activeModule = await page.load(version);
     } catch (error) {
       showError(new Error(`Could not load the ${page.label} page: ${error.message}`));
       return;
@@ -188,18 +196,26 @@ async function render(current) {
     activePageId = page.id;
   }
 
+  // Any mount still waiting on data is now obsolete: tell it to stop before its
+  // continuation appends into a page that has already been replaced.
+  activeMount?.abort();
+  const mount = new AbortController();
+  activeMount = mount;
+
   try {
     rootEl.innerHTML = '';
     await activeModule.mount(rootEl, {
       state: current,
       manifest,
+      /** True once a newer render has started; pages check this after awaiting. */
+      signal: mount.signal,
       /** Pages call this to change a control without knowing about the URL. */
       update: (patch, options) => state.update(patch, options),
       go: (pageId, options) => state.go(pageId, options),
       hrefFor: (patch) => state.hrefFor(patch),
     });
   } catch (error) {
-    if (token === renderToken) showError(error);
+    if (token === renderToken && !mount.signal.aborted) showError(error);
   }
 }
 

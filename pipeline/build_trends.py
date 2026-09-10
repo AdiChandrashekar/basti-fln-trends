@@ -413,6 +413,22 @@ for pt, g in dom[dom.row_type == "trend_point"].groupby("period_type"):
         if prev is not None:
             for c in ["overall", "literacy", "numeracy"]: dom.at[idx, f"change_{c}_pp_vs_prev"] = r[f"{c}_pct"] - prev[f"{c}_pct"]
         prev = r
+# Comparability of each domain step, by the same rule the competency lines use.
+# The rollup's competency set changes whenever the instrument changes, so a step
+# across tool families is always caveated; only a step inside one family is clean.
+dom["tool_family"] = dom.source_tool.map(
+    lambda x: "+".join(sorted({TOOL_FAMILY.get(t, t) for t in str(x).replace("pooled:", "").split("+")})))
+dom["change_defensibility"] = None
+dom["same_tool_family_as_prev"] = None
+for pt, g in dom[dom.row_type == "trend_point"].groupby("period_type"):
+    g = g.assign(_o=g.period.map(QORDER if pt == "quarter" else MORDER)).sort_values("_o"); prev = None
+    for idx, r in g.iterrows():
+        if prev is not None:
+            same = r.tool_family == prev.tool_family and "+" not in r.tool_family
+            dom.at[idx, "same_tool_family_as_prev"] = same
+            dom.at[idx, "change_defensibility"] = "within_tool" if same else "cross_tool_caveat"
+        prev = r
+
 dom["_o"] = np.where(dom.period_type == "quarter", dom.period.map(QORDER), dom.period.map(MORDER))
 dom = dom.sort_values(["period_type", "_o", "row_type"], ascending=[True, True, False]).drop(columns="_o")
 dom = dom.rename(columns={"literacy_pct": "literacy_pct_cleared", "numeracy_pct": "numeracy_pct_cleared", "overall_pct": "overall_pct_cleared"})
@@ -420,7 +436,8 @@ dom = dom[["period_type", "period", "row_type", "source_tool", "source_tool_labe
            "literacy_pct_cleared", "numeracy_pct_cleared", "overall_pct_cleared",
            "change_literacy_pp_vs_prev", "change_numeracy_pp_vs_prev", "change_overall_pp_vs_prev",
            "literacy_mean_pct_score", "numeracy_mean_pct_score", "overall_mean_pct_score",
-           "literacy_n_competencies", "numeracy_n_competencies", "literacy_competencies", "numeracy_competencies", "pooling_method", "coverage_note"]]
+           "literacy_n_competencies", "numeracy_n_competencies", "literacy_competencies", "numeracy_competencies", "pooling_method", "coverage_note",
+           "tool_family", "same_tool_family_as_prev", "change_defensibility"]]
 
 # ---------------- NON-STACKING VIEWS ----------------
 nv = []
