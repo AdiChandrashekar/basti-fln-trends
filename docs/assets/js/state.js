@@ -22,6 +22,7 @@ const PAGES = new Set([
   'did',
   'methods',
   'debug',
+  'grammar',
 ]);
 
 export const DEFAULTS = {

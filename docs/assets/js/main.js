@@ -41,8 +41,11 @@ const PAGES = [
   { id: 'methods', label: strings.nav.methods, short: strings.nav.short.methods, load: () => import('./pages/methods.js') },
 ];
 
-/** Not in the rail: the phase-1 acceptance page, reachable at #/debug. */
-const HIDDEN_PAGES = [{ id: 'debug', label: 'Debug', load: () => import('./pages/debug.js') }];
+/** Not in the rail: the build-phase acceptance pages. */
+const HIDDEN_PAGES = [
+  { id: 'debug', label: 'Debug', load: () => import('./pages/debug.js') },
+  { id: 'grammar', label: 'Chart grammar', load: () => import('./pages/grammar-demo.js') },
+];
 
 const ALL_PAGES = [...PAGES, ...HIDDEN_PAGES];
 

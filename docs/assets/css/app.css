@@ -427,6 +427,274 @@ table.data tbody tr:nth-child(even) {
   background: var(--mist);
 }
 
+/* --- Charts ---------------------------------------------------------------
+   Charts are not boxed. A hairline under the header separates the title block
+   from the plot, and whitespace does the rest. */
+.chart {
+  margin: var(--s-5) 0 0;
+}
+
+.chart__header {
+  display: flex;
+  gap: var(--s-5);
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: var(--s-3);
+}
+
+.chart__headings {
+  min-width: 0;
+}
+
+.chart__title {
+  font-size: var(--t-base);
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.chart__subtitle {
+  margin-top: var(--s-1);
+  max-width: var(--measure);
+  font-size: var(--t-sm);
+  font-weight: var(--w-regular);
+  color: var(--slate);
+  line-height: var(--leading-normal);
+}
+
+.chart__tools {
+  display: flex;
+  gap: var(--s-2);
+  flex-shrink: 0;
+}
+
+.chart__tool {
+  padding: var(--s-1) var(--s-2);
+  font-size: var(--t-xs);
+  color: var(--slate);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper);
+  white-space: nowrap;
+}
+
+.chart__tool:hover {
+  background: var(--mist);
+  color: var(--ink);
+}
+
+.chart__export {
+  position: relative;
+}
+
+.chart__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 20;
+  min-width: 168px;
+  padding: var(--s-1);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 12px rgba(27, 36, 51, 0.1);
+}
+
+.chart__menu button {
+  display: block;
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  text-align: left;
+  font-size: var(--t-sm);
+  color: var(--ink);
+}
+
+.chart__menu button:hover {
+  background: var(--mist);
+}
+
+.chart__plot {
+  position: relative;
+}
+
+.chart__svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Every mark that carries a tooltip is keyboard reachable. */
+.chart__svg [tabindex] {
+  cursor: pointer;
+}
+
+.chart__svg [tabindex]:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* --- Tooltip -------------------------------------------------------------- */
+.tooltip {
+  position: absolute;
+  z-index: 30;
+  max-width: 320px;
+  padding: var(--s-3);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--csf-blue);
+  box-shadow: 0 4px 16px rgba(27, 36, 51, 0.14);
+  font-size: var(--t-sm);
+  line-height: var(--leading-normal);
+  pointer-events: none;
+}
+
+.tooltip--pinned {
+  pointer-events: auto;
+  border-left-color: var(--csf-gold);
+}
+
+.tooltip__close {
+  float: right;
+  margin: -4px -4px 0 var(--s-2);
+  padding: 0 var(--s-2);
+  font-size: var(--t-md);
+  line-height: 1;
+  color: var(--slate);
+}
+
+.tt__head {
+  font-weight: var(--w-semibold);
+  color: var(--ink);
+}
+
+.tt__period {
+  display: block;
+  font-weight: var(--w-regular);
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+.tt__value {
+  margin-top: var(--s-2);
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.tt__value strong {
+  font-size: var(--t-md);
+  font-weight: var(--w-bold);
+}
+
+.tt__unit {
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+.tt__n {
+  margin-left: auto;
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+.tt__rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: var(--s-2) 0;
+}
+
+.tt__row {
+  font-size: var(--t-sm);
+}
+
+.tt__muted {
+  color: var(--slate);
+  font-size: var(--t-xs);
+}
+
+.tt__secondary {
+  line-height: 1.7;
+}
+
+.tt__flags {
+  margin: 0;
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+.tt__flags li {
+  position: relative;
+  padding-left: var(--s-4);
+  margin-top: var(--s-1);
+}
+
+.tt__flags li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--csf-gold);
+}
+
+.tt__change[data-direction='down'] { color: var(--change-down); font-weight: var(--w-semibold); }
+.tt__change[data-direction='up'] { color: var(--change-up); font-weight: var(--w-semibold); }
+.tt__change[data-direction='flat'] { color: var(--change-flat); font-weight: var(--w-semibold); }
+
+/* --- Legend --------------------------------------------------------------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-xs);
+  color: var(--slate);
+}
+
+.legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.legend__swatch {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .chart__header {
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  /* Tooltips become bottom sheets: a floating box is unusable on a phone. */
+  .tooltip {
+    position: fixed;
+    left: 0 !important;
+    right: 0;
+    top: auto !important;
+    bottom: 0;
+    max-width: none;
+    border-left: none;
+    border-top: 3px solid var(--csf-blue);
+    box-shadow: 0 -4px 20px rgba(27, 36, 51, 0.18);
+    pointer-events: auto;
+    padding: var(--s-4) var(--s-4) var(--s-5);
+  }
+
+  .tooltip::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    margin: 0 auto var(--s-3);
+    border-radius: 2px;
+    background: var(--rule);
+  }
+}
+
 /* --- Loading and error ---------------------------------------------------- */
 .loading {
   padding: var(--s-7) 0;
