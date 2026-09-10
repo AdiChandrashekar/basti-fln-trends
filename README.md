@@ -115,6 +115,29 @@ Or in the browser: Settings → Pages → Source: Deploy from a branch → `main
 The site is served from `https://<user>.github.io/<repo>/`, not the domain root, so **every fetch
 path in the code is relative**. Keep it that way.
 
+## The tab icon and the link preview
+
+```bash
+python scripts/make_icons.py
+```
+
+Writes `docs/favicon.svg`, `docs/favicon-32.png`, `docs/apple-touch-icon.png` and
+`docs/og-image.png` (the 1200×630 card that WhatsApp, Slack and others show when the link is
+pasted). The card's sparkline plots the real Overall series from `domain_level_trend.csv`, so
+re-run this after a pipeline run and the shape follows the data rather than drifting away
+from it.
+
+Two things to know:
+
+- **`og:image` in `index.html` is an absolute URL.** If the repository is ever renamed, update
+  it, or link previews will show a broken image.
+- **Preview services cache aggressively.** WhatsApp in particular will keep showing an old card
+  for a while after you replace it. Sharing the URL with a `?v=2` on the end forces a refetch.
+
+`index.html` also carries `<meta name="robots" content="noindex">`. Remove that line if the
+dashboard should be findable in search; it does not affect link previews, which fetch the page
+directly.
+
 ## Editing the key findings
 
 `docs/content/notes.json` holds the notes on the Overview. Each is
