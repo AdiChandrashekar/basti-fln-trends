@@ -428,8 +428,8 @@ export async function mount(root, ctx) {
   const did = section(root, { title: strings.methods.didTitle });
   prose(did, [
     'The DiD study measured Grade 2 twice: a baseline in Nov 2025 and the 25-26 End of Year ' +
-    'assessment in Mar 2026, across 40 schools and 177 children. Its treatment and control ' +
-    'arms are averaged equally throughout this dashboard; the arm split is not used anywhere.',
+    'assessment in Mar 2026, across 40 schools and 177 children. Only its Intervention arm is ' +
+    'used in this dashboard; the Control arm is excluded.',
     'The two rounds report different kinds of number. The baseline gives an average % correct. ' +
     'The End of Year round gives a distribution, and what this site plots from it is the share ' +
     'of children in the report’s top band — strictly above 75%, so a child at exactly 75% is ' +

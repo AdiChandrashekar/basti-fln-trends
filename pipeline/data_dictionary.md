@@ -48,7 +48,7 @@ In each of these cases, full marks is also the rule the tool itself used. The 20
 | `q3_2025_tool` | 10 Oct - 18 Dec 2025 | 123 | Raw scores. |
 | `q1_2026_tool` | Apr-May 2026 | 175 | Grade 2 battery only. Grade 1 and Grade 3 students are excluded. |
 | `q2_2026_tool` | Jul-Aug 2026 | 1,361 | Same 9-item battery as Q1 2026. |
-| `did_baseline` | Nov 2025 | unknown | **DiD % correct used directly** (per Adi), with arms averaged equally. This is a mean score, not a 75% clearance rate, and rows carry `metric_basis = did_pct_correct`. The three CPM items (Letter Naming, Word Reading Timed, ORF) have no % value. |
+| `did_baseline` | Nov 2025 | unknown | **DiD % correct used directly** (per Adi), taking the **Intervention arm only** (Control excluded). This is a mean score, not a 75% clearance rate, and rows carry `metric_basis = did_pct_correct`. The three CPM items (Letter Naming, Word Reading Timed, ORF) have no % value. |
 | `did_midline` | Mar 2026 | 177 (40 schools) | **25-26 End of Year assessment.** Slide chart top band: the "76-100%" or "More than 75%" band. For ORF it is the 45-59 plus 60+ bands. |
 
 **End of Year caveat.** The slide's top band is strictly above 75%. A student at exactly 75% (for example 3 of 4 items) is counted as cleared in the Excel data but not in the End of Year round. That round therefore understates clearance somewhat relative to the Excel tools. It is flagged `slide_band_gt75_not_ge75`.
@@ -157,7 +157,8 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
 
 ## 12. DiD handling
 
-- Arms are collapsed with equal weights and the arm split is not used, per Adi. Raw arm values are kept only in `inputs/baseline_nov2025_extraction.csv`.
+- **Intervention arm only**, per Adi: the baseline value is the Intervention figure and the Control arm is dropped entirely (it is not averaged in). Both arms' raw values are kept in `inputs/baseline_nov2025_extraction.csv`.
+- The March 2026 End of Year round has no arm split in the source deck (a single pooled sample, 177 students across 40 schools), so it is unaffected by that choice.
 - **`did_baseline_midline_comparison.csv`** holds, per competency:
   - `baseline_mean`, `midline_mean`, `mean_change`: the like-for-like comparison, % correct against % correct, available for 11 competencies.
   - `baseline_value_in_series`, `midline_value_in_series`: what each round contributes to the trend series (% correct and top band, respectively).

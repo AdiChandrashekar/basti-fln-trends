@@ -180,7 +180,7 @@ export const strings = {
     title: 'DiD snapshot',
     contextHeader:
       'Nov 2025 DiD baseline and the 25-26 End of Year assessment in Mar 2026: 40 schools ' +
-      'and 177 children. Treatment and control arms are averaged equally throughout. Whether ' +
+      'and 177 children. Intervention arm only; Control arm excluded. Whether ' +
       'the same children were assessed in both rounds has not been confirmed.',
     metricNote:
       'These are average % correct, not % achieving. They are shown in a different colour ' +

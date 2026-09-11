@@ -177,7 +177,7 @@ stu.loc[(stu.cleared == 0) & (stu.tier == "cleared"), "tier"] = "developing"
 
 # ---------------- DiD aggregates ----------------
 bl = pd.read_csv(IN / "baseline_nov2025_extraction.csv")
-bl["value"] = bl[["intervention", "control"]].mean(axis=1)   # equal-weight: arm n unknown, arms collapsed per Adi
+bl["value"] = bl["intervention"]   # Intervention arm only; Control arm dropped entirely, per Adi
 bl["raw_key"] = "B_" + bl["raw_competency"]
 ml = pd.read_csv(IN / "march2026_extraction.csv")
 ml["raw_key"] = "M_" + ml["raw_competency"]
