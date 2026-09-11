@@ -189,7 +189,7 @@ export function markerFor(row) {
  * Draw one marker into `group`, with its ring and gold tick where the data
  * calls for them. Returns the marker element so the caller can bind events.
  */
-export function drawMarker(group, row, { x, y, colour, r = R, opacity = 1 } = {}) {
+export function drawMarker(group, row, { x, y, colour, r = R, opacity = 1, strokeWidth = null } = {}) {
   const spec = markerFor(row);
   const node = group.append('g')
     .attr('transform', `translate(${x},${y})`)
@@ -209,7 +209,7 @@ export function drawMarker(group, row, { x, y, colour, r = R, opacity = 1 } = {}
     .attr('d', markerPath(spec.shape, r))
     .attr('fill', spec.hollow ? token('--paper') : colour)
     .attr('stroke', colour)
-    .attr('stroke-width', spec.hollow ? 2 : 1);
+    .attr('stroke-width', strokeWidth ?? (spec.hollow ? 2 : 1));
 
   if (spec.tick) {
     node.append('line')
@@ -400,7 +400,11 @@ export function drawReferencePoints(group, links, { x, y } = {}) {
       x: x(reference.period),
       y: y(reference.pct_students_cleared),
       colour,
-      r: R,
+      // Larger and heavier than a marker on the line: this is the only mark
+      // the DiD baseline gets, and it is hollow (its n is unknown), so at the
+      // default weight it reads as a white diamond on a white plot.
+      r: R * 1.4,
+      strokeWidth: 2.6,
     });
   }
 
@@ -656,8 +660,12 @@ export function drawGrammarLegend(root, {
   // --- context --------------------------------------------------------------
   if (references.length) {
     items.push({
+      // Match the marker the chart actually draws, hollow and all. A solid
+      // swatch sends the reader looking for a filled diamond that is not there.
       svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token('--did-neutral')}" stroke-width="1.25" stroke-dasharray="1.5 4"/>` +
-        `<path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="${token('--did-neutral')}"/>`,
+        `<path d="${markerPath('diamond', 6)}" transform="translate(16,8)" ` +
+        `fill="${markerFor(references[0]).hollow ? token('--paper') : token('--did-neutral')}" ` +
+        `stroke="${token('--did-neutral')}" stroke-width="${markerFor(references[0]).hollow ? 2.4 : 1}"/>`,
       label: strings.reference.legend,
     });
   }
