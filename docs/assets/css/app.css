@@ -918,7 +918,7 @@ table.data tbody tr:nth-child(even) {
 /* --- Debug page (phase 1 acceptance) -------------------------------------- */
 .debug-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: var(--s-5);
   margin-top: var(--s-4);
 }
@@ -938,7 +938,7 @@ table.data tbody tr:nth-child(even) {
 /* --- Competency picker (combobox) ----------------------------------------- */
 .control--picker {
   position: relative;
-  min-width: 220px;
+  min-width: min(220px, 100%);
 }
 
 .picker__button {
@@ -1060,7 +1060,7 @@ table.data tbody tr:nth-child(even) {
 
 .latest-strip__figures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   gap: var(--s-4);
   margin-top: var(--s-4);
   padding: 0 var(--s-4);
@@ -1099,7 +1099,7 @@ table.data tbody tr:nth-child(even) {
    Cards are used here and nowhere else: a note is a genuinely discrete object. */
 .notes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: var(--s-4);
   margin-top: var(--s-4);
 }
@@ -1479,7 +1479,7 @@ table.data tbody tr:nth-child(even) {
 /* --- Distribution panels --------------------------------------------------- */
 .panel-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
   gap: var(--s-6) var(--s-6);
   margin-top: var(--s-2);
 }
@@ -1539,7 +1539,7 @@ table.data tbody tr:nth-child(even) {
    Two discrete objects, so cards are appropriate here. */
 .did-summary {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: var(--s-4);
   margin-top: var(--s-4);
 }

@@ -92,7 +92,7 @@
   --leading-tight: 1.2;
   --leading-normal: 1.5;
   --leading-prose: 1.6;
-  --measure: 65ch;     /* prose line length, comfortably under 75 characters */
+  --measure: none;     /* text spans the full width of its page or section */
 
   /* --- Space, on a 4px grid ---------------------------------------------- */
   --s-1: 0.25rem;
