@@ -893,6 +893,14 @@ table.data tbody tr:nth-child(even) {
   .controls {
     gap: var(--s-3);
   }
+
+  /* The toggle is pinned top-right, exactly where the top bar puts its Menu
+     button and subtitle. Presentation mode is for a projector, not a phone.
+     Hidden only while presentation is off: when it is on the rail is gone, so
+     nothing collides, and this button is the only way back out. */
+  :root:not([data-presentation='on']) .presentation-toggle {
+    display: none;
+  }
 }
 
 @media (min-width: 769px) {
