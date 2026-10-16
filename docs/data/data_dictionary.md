@@ -1,6 +1,6 @@
 # Basti Grade 2 FLN competency trends: data dictionary
 
-Scope: Grade 2 competency performance in Basti district, Aug 2025 to Oct 2026, from six district assessment tools plus three DiD rounds: the baseline (Nov 2025), the 25-26 End of Year assessment (Mar 2026) and the QLR (Sep 2026). The round recorded as `did_midline` is called **25-26 End of Year** everywhere it is shown to a reader. Built by `build_trends.py`. Every definition below is implemented there. Do not re-derive any of it in the dashboard layer.
+Scope: Grade 2 competency performance in Basti district, Aug 2025 to Oct 2026, from six district assessment tools plus three DiD rounds: the baseline (Nov 2025), the 25-26 End of Year assessment (Mar 2026) and the QLR (Sep 2026). Every round has one display name, used everywhere it is shown to a reader: July '25, Aug-Sep '25, Q3 '25, Baseline, March EoY, Q1 '26, Q2 '26, QLR Q2 '26 and Tangerine Q3 '26 (`TOOL_LABEL` in the script, `strings.tools` on the site). The round recorded as `did_midline` is the **March EoY** (the 25-26 End of Year assessment). Built by `build_trends.py`. Every definition below is implemented there. Do not re-derive any of it in the dashboard layer.
 
 ## 1. Primary metric: % of students who cleared a competency
 

@@ -559,7 +559,7 @@ function fluencyChart(root, { id, meta, rows, slots, granularity, didRows }) {
     const note = el('div', 'notice');
     note.append(el('p', null,
       `The DiD study measured the same children at ${cpm(orf.baseline_mean)} in Nov 2025 and ` +
-      `${cpm(orf.midline_mean)} at the 25-26 End of Year round` +
+      `${cpm(orf.midline_mean)} at the ${strings.tools.did_midline}` +
       (isMissing(orf.mean_change) ? '.' : `, a change of ${orf.mean_change.toFixed(1)} cpm.`) +
       ` Both sit below the ${BENCHMARK} cpm benchmark.`));
     wrap.append(note);

@@ -22,7 +22,7 @@ export const strings = {
     metricDefinition:
       'A child achieves a competency by scoring 75% or more of its items. For oral ' +
       'reading fluency the bar is 45 correct words per minute. On the four three-item ' +
-      'tasks in the Q3 2025 tool it is 2 of 3, the rule that tool used at the time.',
+      'tasks in the Q3 \'25 round it is 2 of 3, the rule that tool used at the time.',
     buildDate: 'Data built',
     skipToContent: 'Skip to content',
   },
@@ -149,7 +149,7 @@ export const strings = {
       'Same month, same-named task, two different instruments. Gaps of up to ' +
       '~{maxGap} points come from the instrument, not the children.',
     districtTool: 'District tool',
-    didBaseline: 'DiD baseline',
+    didBaseline: 'Baseline',
   },
 
   distributions: {
@@ -157,7 +157,7 @@ export const strings = {
     subtitle:
       'The shape behind the percentage: how children were spread on each task, not just ' +
       'how many reached the bar.',
-    midlineRounded: 'End of Year report (rounded)',
+    midlineRounded: 'March EoY report (rounded)',
     fluencyTitle: 'Reading fluency',
     fluencySubtitle:
       'Correct words per minute. Only oral reading fluency has a benchmark (45 cpm); the ' +
@@ -179,14 +179,14 @@ export const strings = {
   did: {
     title: 'DiD snapshot',
     contextHeader:
-      'Three DiD rounds: the Nov 2025 baseline (Intervention arm only; Control arm excluded), ' +
-      'the 25-26 End of Year assessment in Mar 2026 (40 schools, 177 children) and the QLR in ' +
-      'Sep 2026 (37 schools, 179 children; Basti is the Intervention district). Whether the same children were assessed ' +
-      'in more than one round has not been confirmed.',
+      'Three DiD rounds: the Baseline (Nov 2025; Intervention arm only, Control arm excluded), ' +
+      'the March EoY (Mar 2026; 40 schools, 177 children) and the QLR Q2 \'26 (Sep 2026; ' +
+      '37 schools, 179 children; Basti is the Intervention district). Whether the same children ' +
+      'were assessed in more than one round has not been confirmed.',
     metricNote:
       'These are average % correct, not % achieving. They are shown in a different colour ' +
       'so they are not read as the same measure as the rest of the dashboard.',
-    dumbbellTitle: 'Baseline to End of Year to QLR, like for like',
+    dumbbellTitle: 'Baseline to March EoY to QLR Q2 \'26, like for like',
     dumbbellSubtitle:
       'Average % correct in each round that states one. The QLR figure is the mean of its ' +
       'children’s own scores. Where a QLR task is shorter than the baseline’s, its row is marked *.',
@@ -196,14 +196,14 @@ export const strings = {
     orfSubtitle:
       'Average correct per minute in each round: letters for letter naming, words for the ' +
       'passage. The 45 cpm benchmark is for passage reading.',
-    midlineOnlyTitle: 'End of Year only, or bands only',
+    midlineOnlyTitle: 'March EoY only, or bands only',
     midlineOnlySubtitle:
-      'The End of Year report gives a distribution for these tasks but no stated average, ' +
-      'so the baseline cannot be compared with it here. Where the QLR measured the task, the ' +
-      'chart above compares the baseline with the QLR instead.',
-    baseline: 'DiD baseline, Nov 2025',
-    midline: '25-26 End of Year, Mar 2026',
-    qlr: 'DiD QLR, Sep 2026',
+      'The March EoY report gives a distribution for these tasks but no stated average, ' +
+      'so the Baseline cannot be compared with it here. Where the QLR Q2 \'26 measured the ' +
+      'task, the chart above compares the Baseline with it instead.',
+    baseline: 'Baseline',
+    midline: 'March EoY',
+    qlr: 'QLR Q2 \'26',
     change: 'Change',
     changeToLatest: 'Change, baseline to latest',
   },
@@ -264,15 +264,15 @@ export const strings = {
    * wrote, so a new tool still renders.
    */
   tools: {
-    july_tool: 'July tool',
-    aug_tool: 'Aug tool',
-    q3_2025_tool: 'Q3 2025 tool',
-    q1_2026_tool: 'Q1 2026 tool',
-    q2_2026_tool: 'Q2 2026 tool',
-    q3_2026_tangerine: 'Q3 2026 Tangerine tool',
-    did_baseline: 'DiD baseline',
-    did_midline: '25-26 End of Year',
-    did_qlr_sep2026: 'DiD QLR (Sep 2026)',
+    july_tool: 'July \'25',
+    aug_tool: 'Aug–Sep \'25',
+    q3_2025_tool: 'Q3 \'25',
+    did_baseline: 'Baseline',
+    did_midline: 'March EoY',
+    q1_2026_tool: 'Q1 \'26',
+    q2_2026_tool: 'Q2 \'26',
+    did_qlr_sep2026: 'QLR Q2 \'26',
+    q3_2026_tangerine: 'Tangerine Q3 \'26',
   },
 
   /**
@@ -296,16 +296,16 @@ export const strings = {
 
   /** Reference points: a DiD round measured alongside a district tool. */
   reference: {
-    label: 'DiD baseline (% correct)',
-    legend: 'DiD baseline — a second reading, shown for reference',
+    label: 'Baseline (% correct)',
+    legend: 'Baseline — a second reading, shown for reference',
     note:
       'The DiD study measured this competency in the same period as the district tool. ' +
       'Its number is an average % correct, not the share of children achieving, so it sits ' +
       'beside the line rather than on it. The dotted link shows where it sat; it is not a change.',
     /** The QLR is % achieving, but a different study's sample, so it still sits beside the line. */
     qlr: {
-      label: 'DiD QLR (% achieving)',
-      legend: 'DiD QLR — a second reading in the same quarter, shown for reference',
+      label: 'QLR Q2 \'26 (% achieving)',
+      legend: 'QLR Q2 \'26 — a second reading in the same quarter, shown for reference',
     },
   },
 
@@ -330,7 +330,7 @@ export const strings = {
     n_unknown_n: 'Sample size not reported',
     ceiling: 'Almost everyone achieved, so there is little room to show change',
     perfect_score_required: 'On this task, achieving needs full marks',
-    slide_band_gt75_not_ge75: "From the End of Year report's above-75% band",
+    slide_band_gt75_not_ge75: "From the March EoY report's above-75% band",
     baseline_pct_correct_not_clearance: 'Average % correct, not % achieving',
     cleared_at_2_of_3: 'Achieved at 2 of 3, the rule this tool used',
     crosswalk_caveat: 'Similar task across instruments, not identical',
@@ -342,9 +342,9 @@ export const strings = {
   /** What kind of number sits in the value, in plain words. Keyed by metric_basis. */
   basis: {
     pct_students_cleared: 'Share of children achieving the competency',
-    did_pct_correct: 'Average % correct from the DiD baseline, not % achieving',
+    did_pct_correct: 'Average % correct from the Baseline, not % achieving',
     slide_top_band_gt75:
-      "Share of children in the End of Year report's above-75% band. A child at exactly " +
+      "Share of children in the March EoY report's above-75% band. A child at exactly " +
       '75% is not counted.',
     pooled: 'Combines two assessments taken in the same period',
   },
@@ -413,7 +413,7 @@ export function instrumentLabel(row) {
   const tools = row?.source_tools?.length ? row.source_tools : [];
   if (!tools.length) return row?.source_tool_label || '—';
   // `strings.tools` is written in the order the instruments were used, so two
-  // instruments sharing a period read chronologically ("July tool + Aug tool")
+  // instruments sharing a period read chronologically ("July '25 + Aug–Sep '25")
   // rather than in whatever order the CSV happened to list them.
   const order = Object.keys(strings.tools);
   const rank = (tool) => (order.indexOf(tool) === -1 ? order.length : order.indexOf(tool));

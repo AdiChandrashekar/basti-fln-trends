@@ -170,7 +170,7 @@ function calibrationChart(root, { calibration }) {
     title: strings.calibration.title,
     subtitle: t(strings.calibration.subtitle, { maxGap }),
     ariaLabel:
-      `Dot plot comparing the district tool and the DiD baseline on ${items.length} tasks ` +
+      `Dot plot comparing the district tool and the Baseline on ${items.length} tasks ` +
       `measured in the same month: ` +
       items.map((i) => `${i.meta.name}, district ${i.q3_2025_tool_nov_mean.toFixed(1)}, ` +
         `DiD ${i.did_baseline_nov_mean.toFixed(1)}`).join('; ') + '.',
@@ -178,7 +178,7 @@ function calibrationChart(root, { calibration }) {
     columns: [
       { key: 'competency', label: 'Competency' },
       { key: 'district', label: 'District tool (mean)', num: true },
-      { key: 'did', label: 'DiD baseline (mean)', num: true },
+      { key: 'did', label: 'Baseline (mean)', num: true },
       { key: 'gap', label: 'Gap', num: true },
       { key: 'unit', label: 'Unit' },
     ],
@@ -232,8 +232,8 @@ function calibrationChart(root, { calibration }) {
           `<div class="tt__head">${item.meta.name}<span class="tt__period">Nov 2025, both instruments</span></div>` +
           `<div class="tt__value"><strong>${Math.abs(item.gap).toFixed(1)}</strong>` +
           `<span class="tt__unit">${unit} apart</span></div><hr class="tt__rule">` +
-          `<div class="tt__row">Q3 2025 tool: ${item.q3_2025_tool_nov_mean.toFixed(1)} ${unit}</div>` +
-          `<div class="tt__row">DiD baseline: ${item.did_baseline_nov_mean.toFixed(1)} ${unit}</div>`
+          `<div class="tt__row">Q3 '25: ${item.q3_2025_tool_nov_mean.toFixed(1)} ${unit}</div>` +
+          `<div class="tt__row">Baseline: ${item.did_baseline_nov_mean.toFixed(1)} ${unit}</div>`
         );
       });
 
@@ -410,7 +410,7 @@ export async function mount(root, ctx) {
     'August 2026 mean the same thing even when the test does not.',
     'There are two deliberate exceptions. Oral reading fluency is achieved at 45 correct words ' +
     'per minute or more, the Grade 2 benchmark. And on the four three-item tasks in the ' +
-    'Q3 2025 tool — addition, subtraction, counting in bundles and pattern — 2 of 3 counts as ' +
+    'Q3 \'25 round — addition, subtraction, counting in bundles and pattern — 2 of 3 counts as ' +
     'achieved, because that is the rule the tool itself used at the time.',
     'One consequence is worth carrying into any discussion of the weakest tasks. On a task with ' +
     'only one, two or three items, 75% can only be reached with full marks. Sentence reading ' +
@@ -427,28 +427,28 @@ export async function mount(root, ctx) {
   // --- How the DiD study enters --------------------------------------------
   const did = section(root, { title: strings.methods.didTitle });
   prose(did, [
-    'The DiD study first measured Grade 2 twice: a baseline in Nov 2025 and the 25-26 End of Year ' +
-    'assessment in Mar 2026, across 40 schools and 177 children. Only its Intervention arm is ' +
-    'used in this dashboard; the Control arm is excluded.',
-    'The two rounds report different kinds of number. The baseline gives an average % correct. ' +
-    'The End of Year round gives a distribution, and what this site plots from it is the share ' +
+    'The DiD study first measured Grade 2 twice: the Baseline in Nov 2025 and the March EoY ' +
+    '(the 25-26 End of Year assessment) in Mar 2026, across 40 schools and 177 children. Only ' +
+    'its Intervention arm is used in this dashboard; the Control arm is excluded.',
+    'The two rounds report different kinds of number. The Baseline gives an average % correct, ' +
+    'so its marker is hollow. The March EoY gives a distribution, and what this site plots from it is the share ' +
     'of children in the report’s top band — strictly above 75%, so a child at exactly 75% is ' +
     'counted as achieving in the district data but not here.',
     'Neither of those is the same measure as a share of children achieving, which is why no line ' +
-    'on this site is ever drawn between a DiD baseline point and anything else. Where a step ' +
+    'on this site is ever drawn between a Baseline point and anything else. Where a step ' +
     'crosses that change of measure, the dashboard leaves a gap and marks it with ≠, and the ' +
     'Changes page lists those steps rather than plotting them.',
-    'Where the district tool and the DiD baseline both measured a competency in the same period, ' +
+    'Where the district tool and the Baseline both measured a competency in the same period, ' +
     'the district value carries the trend line and the baseline sits beside it as a separate ' +
     'point, joined to its neighbours by a fine dotted link. That link shows where the other ' +
     'study sat. It is not a change, and no change is calculated from it.',
-    'The third DiD round, the QLR in Sep 2026, is different: it comes with every child’s own task ' +
+    'The third DiD round, the QLR Q2 \'26 (Sep 2026), is different: it comes with every child’s own task ' +
     'scores, so it is scored exactly like a district tool (75% of a task’s items) and sits on the ' +
     'same % achieving scale. It covers 179 children in 37 Basti schools. Its form is a shortened ' +
-    'version of the baseline’s on a few tasks, and in Jul–Sep 2026, where the Q2 2026 tool also ' +
+    'version of the Baseline’s on a few tasks, and in Jul–Sep 2026, where the Q2 \'26 tool also ' +
     'measured a competency, the district value carries the line and the QLR sits beside it.',
     'The one genuinely like-for-like comparison across the DiD rounds is average % correct: the ' +
-    'baseline against the End of Year round where the report states a mean, and against the QLR, ' +
+    'Baseline against the March EoY where the report states a mean, and against the QLR Q2 \'26, ' +
     'which has one for every task. That is what the DiD snapshot page shows, in its own colour so ' +
     'the figures are not carried back onto the % achieving scale.',
   ]);
@@ -489,9 +489,9 @@ export async function mount(root, ctx) {
 
   const composition = section(root, { title: strings.methods.compositionTitle });
   prose(composition, [
-    'Consecutive months in 2025 share almost no schools. In 2026 the spot tool covers both the ' +
-    'SSP and the RMEAL schools, counted once where a school is on both lists, and the Q3 2026 ' +
-    'Tangerine round covers RMEAL schools only. A month-to-month move within one tool therefore reflects which schools were ' +
+    'Consecutive months in 2025 share almost no schools. The Q1 \'26 and Q2 \'26 rounds cover both the ' +
+    'SSP and the RMEAL schools, counted once where a school is on both lists, and the ' +
+    'Tangerine Q3 \'26 round covers RMEAL schools only. A month-to-month move within one tool therefore reflects which schools were ' +
     'visited at least as much as anything that changed in classrooms. Quarterly is the steadier ' +
     'view, and the dashboard says so whenever monthly is selected.',
     'The domain rollups have the same problem in a different form: each instrument tested a ' +

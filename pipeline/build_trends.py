@@ -51,11 +51,9 @@ BAND_LABELS = ["b1_0", "b2_lt25", "b3_25_50", "b4_50_75", "b5_75plus"]
 TIERS = {"b1_0": "critical", "b2_lt25": "critical", "b3_25_50": "developing", "b4_50_75": "developing", "b5_75plus": "cleared"}
 
 TOOL_LABEL = {
-    "july_tool": "July tool (used 4-8 Aug 2025)", "aug_tool": "Aug tool / Q2 2025 tool",
-    "q3_2025_tool": "Q3 2025 tool", "q1_2026_tool": "Q1 2026 tool (G2 battery)",
-    "q2_2026_tool": "Q2 2026 tool", "q3_2026_tangerine": "Q3 2026 Tangerine tool",
-    "did_baseline": "DiD baseline (Nov 2025)", "did_midline": "25-26 End of Year (Mar 2026)",
-    "did_qlr_sep2026": "DiD QLR (Sep 2026)"}
+    "july_tool": "July '25", "aug_tool": "Aug-Sep '25", "q3_2025_tool": "Q3 '25",
+    "q1_2026_tool": "Q1 '26", "q2_2026_tool": "Q2 '26", "q3_2026_tangerine": "Tangerine Q3 '26",
+    "did_baseline": "Baseline", "did_midline": "March EoY", "did_qlr_sep2026": "QLR Q2 '26"}
 TOOL_FAMILY = {"july_tool": "july_tool", "aug_tool": "aug_tool", "q3_2025_tool": "q3_2025_tool",
                "q1_2026_tool": "2026_tool", "q2_2026_tool": "2026_tool", "q3_2026_tangerine": "tangerine",
                "did_baseline": "did", "did_midline": "did", "did_qlr_sep2026": "did"}

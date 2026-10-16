@@ -1,7 +1,7 @@
 /**
- * DiD snapshot: the baseline to End of Year to QLR story, told like for like.
+ * DiD snapshot: the Baseline to March EoY to QLR Q2 '26 story, told like for like.
  *
- * The trend pages deliberately never join the DiD baseline to anything, because
+ * The trend pages deliberately never join the Baseline to anything, because
  * it reports an average % correct while the rest of the dashboard reports the
  * share of children achieving. This page is where the two DiD rounds are
  * compared with each other on average % correct, the one comparison that IS like for like —
@@ -26,9 +26,11 @@ function el(tag, className, text) {
   return node;
 }
 
+// Every round is a DiD diamond, as on the trend charts. Shade darkens with time,
+// so the order reads off the marks: hollow grey, then mid, then dark.
 const BASELINE_COLOUR = '--change-flat';
-const EOY_COLOUR = '--did-neutral';
-const QLR_COLOUR = '--ribbon-did';
+const EOY_COLOUR = '--change-flat';
+const QLR_COLOUR = '--did-neutral';
 
 /** Change colour, but only ever within this page's own neutral palette. */
 function changeInk(value) {
@@ -42,9 +44,9 @@ function changeInk(value) {
 
 /** The rounds a competency can carry, in order, with how each is marked. */
 const ROUNDS = [
-  { key: 'baseline_mean', label: () => strings.did.baseline, shape: 'circle', colour: BASELINE_COLOUR, hollow: true },
-  { key: 'midline_mean', label: () => strings.did.midline, shape: 'square', colour: EOY_COLOUR },
-  { key: 'qlr_mean', label: () => strings.did.qlr, shape: 'triangle', colour: QLR_COLOUR },
+  { key: 'baseline_mean', label: () => strings.did.baseline, shape: 'diamond', colour: BASELINE_COLOUR, hollow: true },
+  { key: 'midline_mean', label: () => strings.did.midline, shape: 'diamond', colour: EOY_COLOUR },
+  { key: 'qlr_mean', label: () => strings.did.qlr, shape: 'diamond', colour: QLR_COLOUR },
 ];
 
 const signed = (v) => `${v > 0 ? '+' : '−'}${Math.abs(v).toFixed(1)}`;
@@ -126,14 +128,14 @@ function dumbbells(root, { items, title, subtitle, unit, domainMax }) {
 
         const latest = item.rounds.at(-1);
         bindTooltip(group, tooltip, () =>
-          `<div class="tt__head">${item.meta.name}<span class="tt__period">DiD baseline to ${latest.label()}</span></div>` +
+          `<div class="tt__head">${item.meta.name}<span class="tt__period">${strings.did.baseline} to ${latest.label()}</span></div>` +
           `<div class="tt__value"><strong>${signed(item.toLatest)}</strong>` +
           `<span class="tt__unit">${unitLabel}</span></div>` +
           `<hr class="tt__rule">` +
           item.rounds.map((r) => `<div class="tt__row">${r.label()}: ${item[r.key].toFixed(1)} ${unitLabel}</div>`).join('') +
           (isMissing(item.midline_pct_zero_band) ? '' :
             `<hr class="tt__rule"><div class="tt__row tt__muted">` +
-            `${pct(item.midline_pct_zero_band)} scored zero at the End of Year round</div>`) +
+            `${pct(item.midline_pct_zero_band)} scored zero at the March EoY</div>`) +
           (item.qlr_form_note ? `<hr class="tt__rule"><div class="tt__row tt__muted">${item.qlr_form_note}.</div>` : '')
         );
       });
@@ -256,7 +258,7 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
         root: wrap,
         title: '',
         subtitle: '',
-        ariaLabel: `Stacked bars showing how children were distributed at the End of Year round on ${items.length} competencies.`,
+        ariaLabel: `Stacked bars showing how children were distributed at the March EoY on ${items.length} competencies.`,
         sourceNote: sourceNoteFor('nonstacking_competency_views.csv'),
         columns: [
           { key: 'competency', label: 'Competency' },
@@ -314,8 +316,8 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
               spec.map((s) => `<div class="tt__row">${s.label()}: <strong>${pct1(item.values[s.metric] ?? null)}</strong></div>`).join('') +
               (isMissing(item.baseline) ? '' :
                 `<hr class="tt__rule"><div class="tt__row tt__muted">${strings.did.baseline}: ${item.baseline.toFixed(1)}% correct. ` +
-                `The End of Year report gives no stated mean for this task` +
-                (isMissing(item.qlr) ? ', so there is nothing to compare it against.' : `; the chart above compares the baseline with the QLR (${item.qlr.toFixed(1)}% correct) instead.`) +
+                `The March EoY report gives no stated mean for this task` +
+                (isMissing(item.qlr) ? ', so there is nothing to compare it against.' : `; the chart above compares the Baseline with the ${strings.did.qlr} (${item.qlr.toFixed(1)}% correct) instead.`) +
                 `</div>`) +
               `<hr class="tt__rule"><div class="tt__row tt__muted">${sourceLabel(item.bandSource)}</div>`
             );
@@ -338,7 +340,7 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
   if (baselineOnly.length) {
     const note = el('div', 'notice');
     note.append(el('p', null,
-      `The DiD baseline also measured ` +
+      `The Baseline also measured ` +
       `${list(baselineOnly.map((r) => competency(r.std_competency, { domain: r.domain }).name))}, ` +
       `which neither later round repeated. Those have a baseline figure and nothing to compare it with.`));
     wrap.append(note);

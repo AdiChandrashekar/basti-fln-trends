@@ -168,7 +168,7 @@ function buildPanels(views, { granularity, slots, filterIds }) {
     .sort((a, b) => a.sortKey - b.sortKey || a.instrument.localeCompare(b.instrument));
 }
 
-/** Reading-speed panels: ORF everywhere, plus the End of Year timed measures. */
+/** Reading-speed panels: ORF everywhere, plus the March EoY timed measures. */
 function fluencySection(root, ctx, { views, granularity, slots }) {
   // Every timed measure is a literacy task, so numeracy has nothing to show here.
   if (ctx.state.domain === 'numeracy') return;

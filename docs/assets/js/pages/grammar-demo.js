@@ -44,12 +44,12 @@ function legend(root) {
     { svg: '<line x1="2" y1="8" x2="30" y2="8" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>', label: 'Different test, task not quite the same' },
     { svg: '<circle cx="16" cy="8" r="8" fill="#fff" stroke="#DDE3EC"/><text x="16" y="12" text-anchor="middle" font-size="11" font-weight="600" fill="#4A5568">≠</text>', label: 'Not comparable, so no line is drawn' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'District assessment tool' },
-    { svg: `<path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'DiD baseline (% correct)' },
-    { svg: `<path d="${markerPath('square', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: '25-26 End of Year' },
+    { svg: `<path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'DiD study: March EoY, QLR Q2 \'26' },
+    { svg: `<path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="#fff" stroke="currentColor" stroke-width="2"/>`, label: 'Baseline: % correct, not % achieving' },
     { svg: `<path d="${markerPath('circle', 9)}" transform="translate(16,8)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/><path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="currentColor"/>`, label: 'Two instruments combined' },
-    { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="#fff" stroke="currentColor" stroke-width="2"/>`, label: 'Thin or unreported sample, or a ceiling' },
+    { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,8)" fill="currentColor" opacity="0.4"/>`, label: 'Faded: thin or unreported sample, or a ceiling' },
     { svg: `<path d="${markerPath('circle', 5)}" transform="translate(16,10)" fill="currentColor"/><line x1="16" y1="1" x2="16" y2="4" stroke="#FFC000" stroke-width="2.5" stroke-linecap="round"/>`, label: 'Achieving needs full marks' },
-    { svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token('--did-neutral')}" stroke-width="1.25" stroke-dasharray="1.5 4"/><path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="${token('--did-neutral')}"/>`, label: 'DiD baseline, shown beside the line for reference' },
+    { svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token('--did-neutral')}" stroke-width="1.25" stroke-dasharray="1.5 4"/><path d="${markerPath('diamond', 5)}" transform="translate(16,8)" fill="#fff" stroke="${token('--did-neutral')}" stroke-width="2"/>`, label: 'Baseline, shown beside the line for reference' },
     { svg: '<rect x="2" y="0" width="28" height="16" fill="rgba(255,192,0,0.14)"/>', label: 'The latest round' },
   ];
 
@@ -105,7 +105,7 @@ export async function mount(root, ctx) {
       return `${periodLabel(p.period, { granularity, quarterLabel: p.period_label })}: ${pct1(p.pct_students_cleared)}, ${nLabel(p.n)}${bits.length ? ` — ${bits.join('; ')}` : ''}`;
     }),
     ...references.map((r) =>
-      `${periodLabel(r.period, { granularity, quarterLabel: r.period_label })}: DiD baseline ` +
+      `${periodLabel(r.period, { granularity, quarterLabel: r.period_label })}: Baseline ` +
       `${pct1(r.pct_students_cleared)} — a second reading beside the line, not on it`),
     ...segments.map((s) =>
       `${periodLabel(s.from.period, { granularity, quarterLabel: s.from.period_label })} → ` +

@@ -41,7 +41,7 @@ export function bandSpec({ isCpm = false, detail = 'tiers' } = {}) {
 }
 
 /**
- * True when a panel's bands were read off the End of Year report's charts
+ * True when a panel's bands were read off the March EoY report's charts
  * rather than computed from children's own scores. Those are rounded and sum to
  * 99–101, which is worth saying wherever they are shown.
  */

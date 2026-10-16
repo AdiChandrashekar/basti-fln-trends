@@ -2,34 +2,34 @@
   {
     "id": "q3-new-tool-new-schools",
     "title": "Oct 2026: a new tool, in different schools",
-    "body": "The Q3 2026 round used the Tangerine tool with 119 children in 27 RMEAL schools. Against Jul–Sep 2026, word reading is 38% achieving (was 65%), sentence reading 18% (was 30%) and word writing 28% (was 55%). The test and the schools both changed at once, so read these as a new starting point rather than a fall. The round also brings back 22 competencies last seen in the DiD study, among them word problems, money and timed reading.",
+    "body": "The Tangerine Q3 '26 round tested 119 children in 27 RMEAL schools. Against Jul–Sep 2026, word reading is 38% achieving (was 65%), sentence reading 18% (was 30%) and word writing 28% (was 55%). The test and the schools both changed at once, so read these as a new starting point rather than a fall. The round also brings back 22 competencies last seen in the DiD study, among them word problems, money and timed reading.",
     "link_hash": "#/map?sort=change",
     "as_of": "Q3_2026"
   },
   {
     "id": "same-test-lower-scores",
     "title": "Same test, lower scores",
-    "body": "From Apr–Jun to Jul–Sep 2026 the 2026 spot tool showed a lower share of children achieving on every one of its nine competencies. Patterns fell from 54% to 35%, sentence reading from 43% to 30%, and word reading from 77% to 65%. The gap spans the summer break, and the sample grew from 175 children to 1,544 across SSP and RMEAL schools.",
+    "body": "From Q1 '26 to Q2 '26 the spot tool showed a lower share of children achieving on every one of its nine competencies. Patterns fell from 54% to 35%, sentence reading from 43% to 30%, and word reading from 77% to 65%. The gap spans the summer break, and the sample grew from 175 children to 1,544 across SSP and RMEAL schools.",
     "link_hash": "#/map?sort=change",
     "as_of": "Q2_2026"
   },
   {
     "id": "sentence-reading-weakest",
     "title": "Sentence reading is the weakest literacy task on the spot tool",
-    "body": "30% of children achieved it in Jul–Sep 2026. The task has only two items, so achieving it means full marks — which holds it down relative to longer tasks. On the Tangerine tool's five-sentence task in Oct 2026, 18% achieved it.",
+    "body": "30% of children achieved it in Jul–Sep 2026. The task has only two items, so achieving it means full marks — which holds it down relative to longer tasks. On the five-sentence task in Tangerine Q3 '26, 18% achieved it.",
     "link_hash": "#/competency/sentence_reading",
     "as_of": "Q3_2026"
   },
   {
     "id": "writing-moved-most",
-    "title": "Writing moved most between the DiD baseline and the End of Year round",
-    "body": "Word writing rose from 38% to 58% correct between the Nov 2025 DiD baseline and the Mar 2026 End of Year assessment, the largest gain of any competency measured in both rounds. Oral reading fluency rose from 28.6 to 35 correct words per minute, still short of the 45 cpm benchmark.",
+    "title": "Writing moved most between the Baseline and the March EoY",
+    "body": "Word writing rose from 38% to 58% correct between the Baseline (Nov 2025) and the March EoY (Mar 2026), the largest gain of any competency measured in both rounds. Oral reading fluency rose from 28.6 to 35 correct words per minute, still short of the 45 cpm benchmark.",
     "link_hash": "#/did",
     "as_of": "Q4_2025"
   },
   {
     "id": "weakest-at-midline",
-    "title": "The weakest areas at the End of Year round",
+    "title": "The weakest areas at the March EoY",
     "body": "Number patterns 10% achieving, shapes 4%, 2-digit subtraction 25% and independent writing 28%. On shapes and independent writing, more than half the children scored nothing at all.",
     "link_hash": "#/distributions",
     "as_of": "Q4_2025"

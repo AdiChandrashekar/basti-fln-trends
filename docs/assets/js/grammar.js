@@ -149,8 +149,6 @@ export function markerPath(shape, r = R) {
       return `M0,${-r * 1.25} L${r * 1.15},0 L0,${r * 1.25} L${-r * 1.15},0 Z`;
     case 'square':
       return `M${-r},${-r} H${r} V${r} H${-r} Z`;
-    case 'triangle':
-      return `M0,${-r * 1.3} L${r * 1.2},${r * 0.8} L${-r * 1.2},${r * 0.8} Z`;
     default: {
       // Circle as a path, so every marker is one element type.
       const c = r * 0.5523;
@@ -167,24 +165,24 @@ export function referenceText(row) {
 
 /**
  * The full marker specification for one row, read entirely from its columns.
+ * One job per channel, so each can be read without the legend:
  *
- * hollow: the value is not to be leaned on — a thin sample, an unreported
+ * shape: which study — a circle for a district tool, a diamond for any DiD round.
+ *   Which round it is, and so the order, is in its name (Baseline, March EoY, QLR Q2 '26).
+ * hollow: not on the % achieving scale — the Baseline reports average % correct.
+ * faded: on the scale but not to be leaned on — a thin sample, an unreported
  *   sample size, or a ceiling where there is no room left to show change.
  * ring: the value combines two instruments assessed in the same period.
  * tick: achieving this task requires full marks.
  */
 export function markerFor(row) {
   const tools = row.source_tools || [];
-  let shape = 'circle';
-  if (!row.is_pooled) {
-    if (tools.includes('did_baseline')) shape = 'diamond';
-    else if (tools.includes('did_midline')) shape = 'square';
-    else if (tools.includes('did_qlr_sep2026')) shape = 'triangle';
-  }
+  const isDid = !row.is_pooled && tools.some((t) => t.startsWith('did'));
   const flags = row.reliability_flags || [];
   return {
-    shape,
-    hollow:
+    shape: isDid ? 'diamond' : 'circle',
+    hollow: !row.is_pooled && tools.includes('did_baseline'),
+    faded:
       row.stability_flag === 'thin' ||
       row.stability_flag === 'n_unknown' ||
       flags.includes('ceiling'),
@@ -192,6 +190,9 @@ export function markerFor(row) {
     tick: Boolean(row.perfect_score_required),
   };
 }
+
+/** Opacity for a faded marker: still there, visibly less certain. */
+const FADED = 0.4;
 
 /**
  * Draw one marker into `group`, with its ring and gold tick where the data
@@ -201,7 +202,7 @@ export function drawMarker(group, row, { x, y, colour, r = R, opacity = 1, strok
   const spec = markerFor(row);
   const node = group.append('g')
     .attr('transform', `translate(${x},${y})`)
-    .attr('opacity', opacity);
+    .attr('opacity', opacity * (spec.faded ? FADED : 1));
 
   if (spec.ring) {
     node.append('path')
@@ -409,7 +410,7 @@ export function drawReferencePoints(group, links, { x, y } = {}) {
       y: y(reference.pct_students_cleared),
       colour,
       // Larger and heavier than a marker on the line: this is the only mark
-      // the DiD baseline gets, and it is hollow (its n is unknown), so at the
+      // the Baseline gets, and it is hollow (% correct, not % achieving), so at the
       // default weight it reads as a white diamond on a white plot.
       r: R * 1.4,
       strokeWidth: 2.6,
@@ -615,6 +616,7 @@ export function drawGrammarLegend(root, {
     (dash ? ` stroke-dasharray="${dash}"` : '') + ' />';
   const mark = (shape, opts = {}) => {
     const r = opts.r || 5;
+    const fade = opts.faded ? ` opacity="${FADED}"` : '';
     const fill = opts.hollow ? token('--paper') : (opts.fill || ink);
     const ring = opts.ring
       ? `<path d="${markerPath(shape, r * 1.8)}" transform="translate(16,8)" fill="none" ` +
@@ -624,7 +626,7 @@ export function drawGrammarLegend(root, {
         'stroke-width="2.5" stroke-linecap="round"/>' : '';
     return ring +
       `<path d="${markerPath(shape, r)}" transform="translate(16,${opts.tick ? 10 : 8})" ` +
-      `fill="${fill}" stroke="${opts.fill || ink}" stroke-width="${opts.hollow ? 2 : 1}"/>` + tick;
+      `fill="${fill}" stroke="${opts.fill || ink}" stroke-width="${opts.hollow ? 2 : 1}"${fade}/>` + tick;
   };
 
   // --- how a step is drawn --------------------------------------------------
@@ -649,20 +651,23 @@ export function drawGrammarLegend(root, {
   if (has((pt) => !pt.is_pooled && !pt.is_did_point)) {
     items.push({ svg: mark('circle'), label: 'District assessment tool' });
   }
-  if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_baseline'))) {
-    items.push({ svg: mark('diamond'), label: `${strings.tools.did_baseline} (% correct)` });
+  // One diamond entry naming the DiD rounds on this chart, in the order they ran.
+  const didRounds = ['did_baseline', 'did_midline', 'did_qlr_sep2026']
+    .filter((tool) => has((pt) => !pt.is_pooled && (pt.source_tools || []).includes(tool)));
+  if (didRounds.some((tool) => tool !== 'did_baseline')) {
+    items.push({
+      svg: mark('diamond'),
+      label: `DiD study: ${didRounds.filter((t) => t !== 'did_baseline').map((t) => strings.tools[t]).join(', ')}`,
+    });
   }
-  if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_midline'))) {
-    items.push({ svg: mark('square'), label: strings.tools.did_midline });
-  }
-  if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_qlr_sep2026'))) {
-    items.push({ svg: mark('triangle'), label: strings.tools.did_qlr_sep2026 });
+  if (didRounds.includes('did_baseline')) {
+    items.push({ svg: mark('diamond', { hollow: true }), label: `${strings.tools.did_baseline}: % correct, not % achieving` });
   }
   if (has((pt) => pt.is_pooled)) {
     items.push({ svg: mark('circle', { ring: true }), label: 'Two instruments combined' });
   }
-  if (has((pt) => markerFor(pt).hollow)) {
-    items.push({ svg: mark('circle', { hollow: true }), label: 'Thin or unreported sample, or a ceiling' });
+  if (has((pt) => markerFor(pt).faded)) {
+    items.push({ svg: mark('circle', { faded: true }), label: 'Faded: thin or unreported sample, or a ceiling' });
   }
   if (has((pt) => pt.perfect_score_required)) {
     items.push({ svg: mark('circle', { tick: true }), label: strings.chart.perfectScoreTick });
@@ -670,11 +675,12 @@ export function drawGrammarLegend(root, {
 
   // --- context --------------------------------------------------------------
   // One entry per kind of reference on the chart: a line can carry both the
-  // baseline (diamond) and the QLR (triangle).
+  // Baseline (hollow diamond) and the QLR Q2 '26 (filled diamond).
   const referenceKinds = new Map();
   for (const ref of references) {
     const spec = markerFor(ref);
-    if (!referenceKinds.has(spec.shape)) referenceKinds.set(spec.shape, { spec, ref });
+    const kind = spec.hollow ? 'hollow' : 'filled';
+    if (!referenceKinds.has(kind)) referenceKinds.set(kind, { spec, ref });
   }
   for (const { spec, ref } of referenceKinds.values()) {
     items.push({
@@ -729,7 +735,7 @@ export function tooltipContent(row, { periodLabel, competency: name } = {}) {
 
   // The headline number, with its unit made explicit.
   const isCpm = row.measure_unit === 'cpm';
-  const valueLabel = row.metric_basis === 'did_pct_correct' ? '% correct (DiD baseline)' : strings.site.metric;
+  const valueLabel = row.metric_basis === 'did_pct_correct' ? `% correct (${strings.tools.did_baseline})` : strings.site.metric;
   parts.push(
     `<div class="tt__value"><strong>${pct1(row.pct_students_cleared)}</strong> ` +
     `<span class="tt__unit">${valueLabel}</span>` +

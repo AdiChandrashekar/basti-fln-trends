@@ -276,14 +276,13 @@ function latestStrip(root, { domainRows, granularity, quarterlyRows }) {
  * What to call the round a competency was last assessed in.
  *
  * District rounds get their quarter code, which is what everyone says out loud.
- * The two DiD rounds get their own names instead: calling the End of Year round
- * "Q4 2025" would be technically right and completely unhelpful, since it ran in
- * March 2026.
+ * The DiD rounds get their own names instead: calling the March EoY "Q4 2025"
+ * would be technically right and completely unhelpful, since it ran in March 2026.
  */
 function roundLabelFor(point, granularity) {
   const tools = point.source_tools || [];
-  if (tools.includes('did_midline')) return 'EoY';
-  if (tools.includes('did_baseline')) return 'DiD baseline';
+  const did = tools.find((t) => t.startsWith('did') && strings.tools[t]);
+  if (did) return strings.tools[did];
   if (granularity === 'monthly') return periodLabel(point.period, { granularity });
   return quarterAxisLabel(point.period, point.period_label).secondary;
 }

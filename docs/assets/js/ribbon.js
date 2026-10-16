@@ -10,7 +10,7 @@
  * present in each period, so a new instrument in a future round draws itself.
  *
  *      ┌────────────┬───────────────┬─────────┬──────────────────────┐
- *      │ July + Aug │ Q3 2025 tool ◆│ ■       │ 2026 spot tool       │
+ *      │ July + Aug │ Q3 '25      ◇│ ◆       │ Q1–Q2 '26            │
  *      └────────────┴───────────────┴─────────┴──────────────────────┘
  *                                              ▲ New Grade 2 cohort
  */
@@ -23,16 +23,16 @@ import { strings } from './strings.js';
  * Human labels for tool families, in the order the instruments were used.
  *
  * The order matters: where two instruments share a period, the ribbon reads
- * "July tool + Aug tool", which is the order they were actually administered.
- * Sorting alphabetically would print "Aug tool + July tool" and quietly imply
+ * "July '25 + Aug–Sep '25", which is the order they were actually administered.
+ * Sorting alphabetically would print them the other way round and quietly imply
  * the wrong sequence. Unknown families are humanised and sort to the end.
  */
 const FAMILY_LABELS = {
-  july_tool: 'July tool',
-  aug_tool: 'Aug tool',
-  q3_2025_tool: 'Q3 2025 tool',
-  '2026_tool': '2026 spot tool',
-  tangerine: 'Tangerine tool',
+  july_tool: 'July \'25',
+  aug_tool: 'Aug–Sep \'25',
+  q3_2025_tool: 'Q3 \'25',
+  '2026_tool': 'Q1–Q2 \'26',
+  tangerine: 'Tangerine Q3 \'26',
   did: 'DiD study',
 };
 
@@ -46,9 +46,9 @@ function familyRank(family) {
 /** Round to a tenth of a pixel: kills floating-point noise like 2.8e-14. */
 const px = (value) => Math.round(value * 10) / 10;
 
-/** Marker glyph for a DiD round, matching the chart marker shapes. */
-const DID_GLYPH = { did_baseline: '◆', did_midline: '■', did_qlr_sep2026: '▲' };
-const DID_LABEL = { did_baseline: 'DiD baseline', did_midline: '25-26 End of Year', did_qlr_sep2026: 'DiD QLR' };
+/** Marker glyph for a DiD round, matching the chart markers: a diamond, hollow for the Baseline's % correct. */
+const DID_GLYPH = { did_baseline: '◇', did_midline: '◆', did_qlr_sep2026: '◆' };
+const DID_LABEL = { did_baseline: 'Baseline', did_midline: 'March EoY', did_qlr_sep2026: 'QLR Q2 \'26' };
 
 function familyLabel(family) {
   if (FAMILY_LABELS[family]) return FAMILY_LABELS[family];
@@ -138,7 +138,7 @@ export function ribbonModel(slots) {
 }
 
 /**
- * The period where the 2026 spot tool first appears — a new cohort of Grade 2
+ * The period where the Q1 '26 spot tool first appears — a new cohort of Grade 2
  * children. Derived from the data so it moves if the instrument timeline does.
  */
 export function cohortBoundary(slots) {
@@ -166,11 +166,18 @@ export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort
   const left = (index) => px(x(slots[index].key) - bandWidth / 2);
   const right = (index) => px(x(slots[index].key) + bandWidth / 2);
 
+  const notchWidth = Math.min(bandWidth * 0.42, 34);
+  const inset = compact ? 1 : 2;
+
   segments.forEach((segment, order) => {
     const x0 = left(segment.startIndex);
     const x1 = right(segment.endIndex);
     const width = px(x1 - x0);
     const isDid = segment.key === 'did';
+    // The label keeps clear of any DiD notches inset into this segment.
+    const segmentKeys = new Set(segment.slots.map((slot) => slot.key));
+    const notched = notches.filter((notch) => segmentKeys.has(notch.slotKey)).length;
+    const labelWidth = px(width - notched * (notchWidth + inset));
 
     const block = ribbon.append('g').attr('class', 'ribbon__segment');
 
@@ -193,11 +200,11 @@ export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort
     const label = segment.label;
     const fontSize = compact ? 9.5 : display ? 13 : 11;
     // Roughly 0.55em per character: enough to know whether the label will fit.
-    const fits = width > label.length * fontSize * 0.55 + 8;
+    const fits = labelWidth > label.length * fontSize * 0.55 + 8;
 
     if (fits) {
       const text = block.append('text')
-        .attr('x', x0 + width / 2)
+        .attr('x', x0 + labelWidth / 2)
         .attr('y', height / 2)
         .attr('dy', display ? '-0.1em' : '0.35em')
         .attr('text-anchor', 'middle')
@@ -208,7 +215,7 @@ export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort
       if (display && detail) {
         text.attr('font-weight', 600);
         block.append('text')
-          .attr('x', x0 + width / 2)
+          .attr('x', x0 + labelWidth / 2)
           .attr('y', height / 2)
           .attr('dy', '1.15em')
           .attr('text-anchor', 'middle')
@@ -228,8 +235,6 @@ export function drawRibbon(group, { slots, x, bandWidth, height = 14, showCohort
   // as "and also this", not "instead of this".
   for (const notch of notches) {
     const cx = x(notch.slotKey);
-    const notchWidth = Math.min(bandWidth * 0.42, 34);
-    const inset = compact ? 1 : 2;
     const block = ribbon.append('g').attr('class', 'ribbon__notch');
     block.append('rect')
       .attr('x', cx + bandWidth / 2 - notchWidth - inset)
