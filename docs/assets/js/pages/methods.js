@@ -140,7 +140,7 @@ function timeline(root, { rows, quarterlyRows }) {
   wrap.append(tableWrap);
   wrap.append(el('p', 'section__subtitle',
     'Children is the largest number assessed by that instrument in any single round. ' +
-    'The 2026 sheets carry no school field, so those rounds show no school count.'));
+    'The DiD rounds report no school count per round.'));
 }
 
 /**
@@ -483,8 +483,9 @@ export async function mount(root, ctx) {
 
   const composition = section(root, { title: strings.methods.compositionTitle });
   prose(composition, [
-    'Consecutive months in 2025 share almost no schools, and the 2026 sheets carry no school ' +
-    'field at all. A month-to-month move within one tool therefore reflects which schools were ' +
+    'Consecutive months in 2025 share almost no schools. In 2026 the spot tool covers both the ' +
+    'SSP and the RMEAL schools, counted once where a school is on both lists, and the Q3 2026 ' +
+    'Tangerine round covers RMEAL schools only. A month-to-month move within one tool therefore reflects which schools were ' +
     'visited at least as much as anything that changed in classrooms. Quarterly is the steadier ' +
     'view, and the dashboard says so whenever monthly is selected.',
     'The domain rollups have the same problem in a different form: each instrument tested a ' +

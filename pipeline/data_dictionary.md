@@ -1,6 +1,6 @@
 # Basti Grade 2 FLN competency trends: data dictionary
 
-Scope: Grade 2 competency performance in Basti district, Aug 2025 to Aug 2026, from five district assessment tools plus the DiD baseline (Nov 2025) and the 25-26 End of Year assessment (Mar 2026). The round recorded as `did_midline` is called **25-26 End of Year** everywhere it is shown to a reader. Built by `build_trends.py`. Every definition below is implemented there. Do not re-derive any of it in the dashboard layer.
+Scope: Grade 2 competency performance in Basti district, Aug 2025 to Oct 2026, from six district assessment tools plus the DiD baseline (Nov 2025) and the 25-26 End of Year assessment (Mar 2026). The round recorded as `did_midline` is called **25-26 End of Year** everywhere it is shown to a reader. Built by `build_trends.py`. Every definition below is implemented there. Do not re-derive any of it in the dashboard layer.
 
 ## 1. Primary metric: % of students who cleared a competency
 
@@ -8,6 +8,7 @@ Scope: Grade 2 competency performance in Basti district, Aug 2025 to Aug 2026, f
 - **The tracked figure is `pct_students_cleared`:** the share of assessed students who cleared, from 0 to 100. The dashboard should plot this value everywhere.
 - **The 75% rule is applied to raw item scores in every tool, with one exception.** On the Q3 2025 three-item competencies (Addition, Subtraction, Counting in Bundles, Pattern), 2 of 3 counts as cleared, because that was the rule the tool used at the time (confirmed by Adi). This is set in `CLEAR_OVERRIDE_PCT` in the script config, and those rows carry `clearance_rule = ">=2 of 3 items (tool rule at the time)"`.
 - **For the 2026 tools, the rule reproduces the sheets' own Literacy % and Numeracy % exactly.** This was checked for all four months.
+- **The Tangerine tool (Q3 2026) uses the same rule on every task**, which is also the rule the Basti dashboard applies to it: a task is cleared at 75% of its items. On the two timed grids (letters and words, 50 items in 60 seconds) that means at least 38 correct in the minute. Passage reading (ORF) keeps the 45 cpm bar.
 - **Mean % score is secondary.** It is carried as `mean_pct_score` for reference only. It is not the tracked metric.
 
 **Consequence for short items.** Outside the Q3 2025 override, a competency with only 1, 2 or 3 items can only be cleared with full marks. These rows carry `perfect_score_required = True`:
@@ -15,14 +16,14 @@ Scope: Grade 2 competency performance in Basti district, Aug 2025 to Aug 2026, f
 - Aug tool: Writing /2 and Counting in Bundles /2.
 - 2026 tools: Pattern (3 items) and Sentence Reading (2 items).
 
-In each of these cases, full marks is also the rule the tool itself used. The 2026 Pattern item keeps 3 of 3 because the 2026 tool's own reported Literacy % and Numeracy % use 0.75. Switching it to 2 of 3 would raise Pattern from 54% to 75% in Q1 2026 and from 37% to 66% in Q2 2026; add its keys to `CLEAR_OVERRIDE_PCT` to do so.
+In each of these cases, full marks is also the rule the tool itself used. The 2026 Pattern item keeps 3 of 3 because the 2026 tool's own reported Literacy % and Numeracy % use 0.75. Switching it to 2 of 3 would raise Pattern from 54% to 75% in Q1 2026 and from 35% to 63% in Q2 2026; add its keys to `CLEAR_OVERRIDE_PCT` to do so.
 
 **Difference from the 2025 tool flags.** The original Yes/No flags are kept as `pct_cleared_tool_flag`. With the Q3 override, the pipeline matches them everywhere except one item: the Aug tool's Letter ID. The tool gave "Yes" from 4-5 of 8, while the 75% rule needs 6 of 8, which lowers the figure by 12 points (94% → 81%).
 
 ## 2. Design
 
 - **Repeated cross-section of Grade 2.** Each point describes whoever was in Grade 2 and assessed at that time. From April 2026 onward this is a new cohort. That is intentional.
-- **Fluency.** Only ORF has a clearance bar (45 cpm). Letter naming and word reading timed have no benchmark, so they carry no `pct_students_cleared`. Their `mean_cpm` and bands are kept.
+- **Fluency.** ORF is cleared at 45 cpm. In the DiD rounds, letter naming and word reading timed have no benchmark, so they carry no `pct_students_cleared`; their `mean_cpm` and bands are kept. On the Tangerine tool the same two timed grids are scored on items (75% of 50) and also carry `cpm` (correct ÷ minutes used), so their `mean_cpm` lines up with the DiD baseline's.
 
 ## 3. Files
 
@@ -46,18 +47,21 @@ In each of these cases, full marks is also the rule the tool itself used. The 20
 | `july_tool` | 4-8 Aug 2025 | 29 | Raw scores. The tool was built in July and used in early August. |
 | `aug_tool` | 11-13 Aug and 10-26 Sep 2025 | 22 + 59 | Raw scores. The switch from the July tool happened mid-August. August rows come from the Diag AUG block. |
 | `q3_2025_tool` | 10 Oct - 18 Dec 2025 | 123 | Raw scores. |
-| `q1_2026_tool` | Apr-May 2026 | 175 | Grade 2 battery only. Grade 1 and Grade 3 students are excluded. |
-| `q2_2026_tool` | Jul-Aug 2026 | 1,361 | Same 9-item battery as Q1 2026. |
+| `q1_2026_tool` | Apr-May 2026 | 175 | The 2026 spot tool ("old tool"), read from the raw backend tabs. Grade 2 battery only; Grade 1 and Grade 3 students are excluded. SSP and RMEAL schools bundled; every RMEAL record this quarter is also in the SSP tab. |
+| `q2_2026_tool` | Jul-Aug 2026 | 1,544 | Same 9-item battery. SSP (1,374) and RMEAL (352) bundled; 182 records sit in both tabs with identical scores and are counted once. |
+| `q3_2026_tangerine` | 1-7 Oct 2026 | 119 (27 schools) | Tangerine tool, Grade 2 form, RMEAL schools only. Raw item-level export; 27 tasks, of which 22 map to competencies the DiD study measured and 5 to the 2026 spot tool's. |
 | `did_baseline` | Nov 2025 | unknown | **DiD % correct used directly** (per Adi), taking the **Intervention arm only** (Control excluded). This is a mean score, not a 75% clearance rate, and rows carry `metric_basis = did_pct_correct`. The three CPM items (Letter Naming, Word Reading Timed, ORF) have no % value. |
 | `did_midline` | Mar 2026 | 177 (40 schools) | **25-26 End of Year assessment.** Slide chart top band: the "76-100%" or "More than 75%" band. For ORF it is the 45-59 plus 60+ bands. |
 
 **End of Year caveat.** The slide's top band is strictly above 75%. A student at exactly 75% (for example 3 of 4 items) is counted as cleared in the Excel data but not in the End of Year round. That round therefore understates clearance somewhat relative to the Excel tools. It is flagged `slide_band_gt75_not_ge75`.
 
-`tool_family` groups the two 2026 tools together as `2026_tool` and both DiD rounds together as `did`.
+`tool_family` groups the two 2026 spot-tool rounds together as `2026_tool`, both DiD rounds together as `did`, and the Tangerine rounds as `tangerine`.
+
+**Parallel tools.** Every record keeps its own `source_tool`. When two instruments measure the same competency in the same period, each keeps its own `source_detail` row and the `trend_point` pools them (n-weighted, `pooled_sources` flag, `tool_family` joined with `+`), which the dashboard draws as a ringed marker under a ribbon labelled with both tools. A competency only one of them measured comes from that tool alone. Any step into or out of such a period is flagged cross-tool.
 
 ## 5. Periods
 
-`month` is YYYY-MM. `quarter_code` follows the district cycle:
+`month` is YYYY-MM. `quarter_code` follows the Indian financial year (Q1 = Apr-Jun ... Q4 = Jan-Mar of the next calendar year) and is derived from the data: the axis runs from the first to the last quarter with data, with those two flagged partial. A new quarter needs no code change.
 
 | Code | Months | Partial | Months with data |
 |---|---|---|---|
@@ -65,15 +69,16 @@ In each of these cases, full marks is also the rule the tool itself used. The 20
 | Q3_2025 | Oct-Dec 2025 | no | Oct, Nov, Dec (Nov DiD baseline has no clearance value) |
 | Q4_2025 | Jan-Mar 2026 | no | Mar (End of Year) |
 | Q1_2026 | Apr-Jun 2026 | no | Apr, May |
-| Q2_2026 | Jul-Sep 2026 | yes (last) | Jul, Aug |
+| Q2_2026 | Jul-Sep 2026 | no | Jul, Aug |
+| Q3_2026 | Oct-Dec 2026 | yes (last) | Oct (Tangerine) |
 
-There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
+There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
 
 ## 6. Scoring rules
 
-- **`score_pct`** = raw score / max × 100 for the 2025 tools, and fraction × 100 for the 2026 tools.
+- **`score_pct`** = raw score / max × 100 for every district tool. For Tangerine, the raw score is the count of items marked 1; skipped tasks, items past a stop rule, 99 (no response) and UNDEFINED count as not correct. The export's `*.number_of_items_correct` columns are not used (they are wrong for auto-stopped untimed grids).
 - **`cleared`** = 1 if `score_pct` ≥ 75, otherwise 0. For ORF it is 1 if CPM ≥ 45.
-- **`n_items`** is the item count used for the perfect-score flag. For the 2025 tools it comes from the header max. For 2026 it was inferred from score steps: Letter ID 20, Word Reading 16, Sentence Reading 2, Word Writing 4, Number ID 12, Place Value 4, Pattern 3, Addition 4, Subtraction 4.
+- **`n_items`** is the item count used for the perfect-score flag. For the 2025 tools it comes from the header max. For the 2026 spot tool it is confirmed by the raw counts: Letter ID 20, Word Reading 16, Sentence Reading 2, Word Writing 4, Number ID 12, Place Value 4, Pattern 3, Addition 4, Subtraction 4. For Tangerine it is the task's item count.
 - **July tool Addition and Subtraction.** There is one combined raw score out of 2, which becomes `add_sub_1digit_combined` (clearance = 2/2). The separate Addition and Subtraction Achieved flags are kept only in `pct_cleared_tool_flag`.
 - **Bands** are aligned to the rule:
   - `b1_0`: score 0
@@ -206,7 +211,7 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
 
 ## 15. Caveats that must travel with the dashboard
 
-1. Consecutive months in 2025 share zero schools, and the 2026 sheets have no school field. Month-to-month moves within a tool largely reflect which schools were visited.
+1. Consecutive months in 2025 share zero schools. Q1-Q2 2026 cover SSP and RMEAL schools; Q3 2026 covers RMEAL schools only, on a different tool. Moves between periods reflect which schools were visited as much as classroom change.
 2. Every tool change coincides with a step change. The Nov 2025 calibration shows instrument gaps of up to 22 points on items with the same name.
 3. On the 2026 Pattern and Sentence Reading items, clearance requires full marks. This depresses them relative to longer items.
 4. The DiD baseline enters as % correct, the End of Year as its above-75% top band, and the Excel tools as clearance rates. Steps between the baseline and anything else are tagged `metric_basis_changed` and must not be drawn as real change.
@@ -216,7 +221,7 @@ There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
 ## 16. Re-running
 
 ```
-python build_trends.py Basti_All_Spots.xlsx inputs data
+python build_trends.py Basti_All_Spots.xlsx inputs data Basti_Dashboard_Backend.xlsx
 ```
 
 Edit `inputs/competency_crosswalk.csv` or the CONFIG block (`CLEAR_CUT_PCT`, `ORF_BENCHMARK_CPM`, thresholds), then re-run.

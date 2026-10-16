@@ -1,26 +1,26 @@
 {
-  "built_at": "2026-09-11T05:35:35+00:00",
+  "built_at": "2026-10-16T07:51:10+00:00",
   "generator": "scripts/sync_site_data.py",
   "files": {
     "quarterly_trends.csv": {
-      "rows": 186,
+      "rows": 240,
       "columns": 42,
-      "bytes": 74045
+      "bytes": 97919
     },
     "monthly_trends.csv": {
-      "rows": 278,
+      "rows": 332,
       "columns": 38,
-      "bytes": 100096
+      "bytes": 121695
     },
     "domain_level_trend.csv": {
-      "rows": 36,
+      "rows": 40,
       "columns": 26,
-      "bytes": 17352
+      "bytes": 20263
     },
     "nonstacking_competency_views.csv": {
-      "rows": 3298,
+      "rows": 4182,
       "columns": 16,
-      "bytes": 630439
+      "bytes": 798770
     },
     "did_baseline_midline_comparison.csv": {
       "rows": 32,
@@ -33,9 +33,9 @@
       "bytes": 1247
     },
     "competency_crosswalk.csv": {
-      "rows": 99,
+      "rows": 126,
       "columns": 12,
-      "bytes": 17502
+      "bytes": 22926
     }
   },
   "periods": {
@@ -44,6 +44,7 @@
       "Q2_2025",
       "Q2_2026",
       "Q3_2025",
+      "Q3_2026",
       "Q4_2025"
     ],
     "months": [
@@ -56,7 +57,8 @@
       "2026-04",
       "2026-05",
       "2026-07",
-      "2026-08"
+      "2026-08",
+      "2026-10"
     ]
   },
   "competencies": 39

@@ -209,7 +209,7 @@ export const strings = {
     metricTitle: 'What "% achieving" means',
     timelineTitle: 'Which instrument measured what, and when',
     timelineSubtitle:
-      'Seven assessment rounds over thirteen months. Every step in a trend line either sits ' +
+      'Eight assessment rounds over fifteen months. Every step in a trend line either sits ' +
       'inside one of these blocks or crosses between two, and that is the single most useful ' +
       'thing to know before reading any change on this site.',
     didTitle: 'How the DiD study enters',
@@ -262,6 +262,7 @@ export const strings = {
     q3_2025_tool: 'Q3 2025 tool',
     q1_2026_tool: 'Q1 2026 tool',
     q2_2026_tool: 'Q2 2026 tool',
+    q3_2026_tangerine: 'Q3 2026 Tangerine tool',
     did_baseline: 'DiD baseline',
     did_midline: '25-26 End of Year',
   },
@@ -281,6 +282,7 @@ export const strings = {
     did_midline: 'Mar 2026',
     q1_2026_tool: 'Apr–May 2026',
     q2_2026_tool: 'Jul–Aug 2026',
+    q3_2026_tangerine: '1–7 Oct 2026',
   },
 
   /** Reference points: a DiD round measured alongside a district tool. */

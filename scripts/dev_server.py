@@ -31,7 +31,7 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 
 
 def main() -> int:
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8099
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8110
     handler = partial(NoCacheHandler, directory=str(DOCS))
     with ThreadingHTTPServer(("127.0.0.1", port), handler) as server:
         print(f"Serving {DOCS} at http://localhost:{port}  (no-store)")

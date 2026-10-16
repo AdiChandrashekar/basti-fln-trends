@@ -161,9 +161,9 @@ def make_card() -> Image.Image:
 
         # --- the instrument ribbon, the site's signature device --------------
         ry, rh = py + ph + 18, 22
-        widths = [1, 1, 1, 2]          # Q2 25 | Q3 25 | EoY | 2026 SSP (two rounds)
-        fills = [SKY, SKY_LIGHT, NAVY, SKY_LIGHT]
-        labels = ["July + Aug", "Q3 2025 tool", "25-26 EoY", "2026 SSP"]
+        widths = [1, 1, 1, 2, 1]       # Q2 25 | Q3 25 | EoY | 2026 spot tool (two rounds) | Q3 26 Tangerine
+        fills = [SKY, SKY_LIGHT, NAVY, SKY_LIGHT, SKY]
+        labels = ["July + Aug", "Q3 2025 tool", "25-26 EoY", "2026 spot tool", "Tangerine"]
         unit = pw / sum(widths)
         x = px
         for w, fill, label in zip(widths, fills, labels):
@@ -177,7 +177,7 @@ def make_card() -> Image.Image:
             x += seg
 
         d.text((left, ry + rh + 22),
-               "% achieving  \u00b7  Aug 2025 to Aug 2026  \u00b7  seven assessment rounds",
+               "% achieving  \u00b7  Aug 2025 to Oct 2026  \u00b7  eight assessment rounds",
                font=font(24, 400), fill=SLATE)
 
     # The mark, top right, clear of the plot and the ribbon.

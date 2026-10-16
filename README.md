@@ -1,7 +1,7 @@
 # Basti Grade 2 competency trends
 
 A static dashboard showing how Grade 2 children in Basti district (Uttar Pradesh) perform on
-foundational literacy and numeracy competencies, August 2025 to August 2026.
+foundational literacy and numeracy competencies, August 2025 to October 2026.
 
 The unit of analysis is the **competency**. The tracked metric is the **share of children achieving**
 each competency — not the average score. Everything on screen answers one of five questions: where
@@ -64,11 +64,22 @@ DESIGN_PLAN.md               the design plan this build follows
 
 ## Running the pipeline
 
-Needs Python with pandas, and the source workbook (which is **not** in this repo).
+Needs Python with pandas, and two source workbooks (neither is in this repo):
+
+- `Basti_All_Spots.xlsx`: the "Basti All Spots" Google Sheet, for the 2025 rounds.
+- `Basti_Dashboard_Backend.xlsx`: the "Basti Dashboard Backend Sheet", downloaded as .xlsx. 2026
+  onwards is read straight from its raw tabs: `Sheet1` (SSP) and `Sheet2` (RMEAL) for the 2026
+  spot tool, bundled and de-duplicated, and `Q3` for the Tangerine export.
 
 ```bash
-python pipeline/build_trends.py Basti_All_Spots.xlsx pipeline/inputs pipeline/data
+python pipeline/build_trends.py Basti_All_Spots.xlsx pipeline/inputs pipeline/data Basti_Dashboard_Backend.xlsx
 ```
+
+A new round on an existing tool flows through on its own. A new tool, including one running in
+parallel with another in the same quarter, needs a reader in `build_trends.py` that calls `add()`
+with a new `source_tool`, a `TOOL_LABEL` and `TOOL_FAMILY` entry, and crosswalk rows for its items.
+Give it a display name in `strings.tools` and a family label in `ribbon.js` too, though it renders
+with the pipeline's label if you don't.
 
 Edit `pipeline/inputs/competency_crosswalk.csv` — the `std_competency` and `stacking_status`
 columns drive everything — or the `CONFIG` block at the top of `build_trends.py`, then re-run.

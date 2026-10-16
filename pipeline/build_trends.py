@@ -1,16 +1,23 @@
 """
-Basti Grade 2 FLN competency trend pipeline (Aug 2025 - Aug 2026).
+Basti Grade 2 FLN competency trend pipeline (Aug 2025 onwards).
 
 PRIMARY METRIC: % of students who cleared a competency = scored >=75% of its items
 (ORF: >=45 cpm). Mean % score is carried only as a secondary field.
 
-Inputs : Basti_All_Spots.xlsx, competency_crosswalk.csv,
+Inputs : Basti_All_Spots.xlsx (2025 rounds), Basti_Dashboard_Backend.xlsx (2026 onwards,
+         raw child-level tabs), competency_crosswalk.csv,
          baseline_nov2025_extraction.csv, march2026_extraction.csv
 Outputs: student_scores_long.csv, monthly_trends.csv, quarterly_trends.csv,
          domain_level_trend.csv, nonstacking_competency_views.csv,
          did_baseline_midline_comparison.csv
 Re-run after editing competency_crosswalk.csv (std_competency / stacking_status)
 and every downstream table updates. Parameters are in the CONFIG block.
+
+Parallel tools: every record carries its own source_tool, so two instruments in
+the same period are kept apart in source_detail rows and pooled (n-weighted,
+flagged) only in the trend point. To add an instrument: write a reader that
+calls add() with a new source_tool, give it a TOOL_LABEL and TOOL_FAMILY entry,
+and add its raw_keys to the crosswalk. Quarters are derived from the data.
 """
 import sys, numpy as np, pandas as pd
 from pathlib import Path
@@ -19,11 +26,12 @@ from pathlib import Path
 XLSX = sys.argv[1] if len(sys.argv) > 1 else "Basti_All_Spots.xlsx"
 IN = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(".")
 OUT = Path(sys.argv[3]) if len(sys.argv) > 3 else Path("out")
+# "Basti Dashboard Backend Sheet" on Drive, downloaded as .xlsx. Holds the raw 2026 tabs.
+BACKEND_XLSX = sys.argv[4] if len(sys.argv) > 4 else "Basti_Dashboard_Backend.xlsx"
 CLEAR_CUT_PCT = 75               # competency cleared = score >= 75% of items (all tools, uniform)
 # Per-item override: Q3 2025 three-item competencies cleared at 2/3, as that tool decided (confirmed by Adi).
 # 2026 three-item Pattern keeps the 2026 tool's own 0.75 rule (i.e. 3/3); add its keys here to switch.
 CLEAR_OVERRIDE_PCT = {"Q3_ADD": 200 / 3, "Q3_SUB": 200 / 3, "Q3_CIB": 200 / 3, "Q3_PAT": 200 / 3}
-ACHIEVE_CUT_2026 = 0.75          # same rule in fraction form; reproduces the 2026 sheets' Literacy %/Numeracy %
 ORF_BENCHMARK_CPM = 45           # reconciles with Q2/Q3 2025 ORF flags
 N_THIN, N_ROBUST = 30, 100       # stability thresholds
 CEILING_PCT = 95
@@ -42,23 +50,36 @@ TIERS = {"b1_0": "critical", "b2_lt25": "critical", "b3_25_50": "developing", "b
 TOOL_LABEL = {
     "july_tool": "July tool (used 4-8 Aug 2025)", "aug_tool": "Aug tool / Q2 2025 tool",
     "q3_2025_tool": "Q3 2025 tool", "q1_2026_tool": "Q1 2026 tool (G2 battery)",
-    "q2_2026_tool": "Q2 2026 tool", "did_baseline": "DiD baseline (Nov 2025)",
-    "did_midline": "25-26 End of Year (Mar 2026)"}
+    "q2_2026_tool": "Q2 2026 tool", "q3_2026_tangerine": "Q3 2026 Tangerine tool",
+    "did_baseline": "DiD baseline (Nov 2025)", "did_midline": "25-26 End of Year (Mar 2026)"}
 TOOL_FAMILY = {"july_tool": "july_tool", "aug_tool": "aug_tool", "q3_2025_tool": "q3_2025_tool",
-               "q1_2026_tool": "2026_tool", "q2_2026_tool": "2026_tool",
+               "q1_2026_tool": "2026_tool", "q2_2026_tool": "2026_tool", "q3_2026_tangerine": "tangerine",
                "did_baseline": "did", "did_midline": "did"}
-QUARTERS = [  # code, label, start, end, is_partial (first/last per spec)
-    ("Q2_2025", "Q2 2025 (Jul-Sep 2025)", "2025-07", "2025-09", True),
-    ("Q3_2025", "Q3 2025 (Oct-Dec 2025)", "2025-10", "2025-12", False),
-    ("Q4_2025", "Q4 2025 (Jan-Mar 2026)", "2026-01", "2026-03", False),
-    ("Q1_2026", "Q1 2026 (Apr-Jun 2026)", "2026-04", "2026-06", False),
-    ("Q2_2026", "Q2 2026 (Jul-Sep 2026)", "2026-07", "2026-09", True)]
-QORDER = {q[0]: i for i, q in enumerate(QUARTERS)}
+
+# Quarters follow the Indian financial year: Q1 = Apr-Jun, ..., Q4 = Jan-Mar of the next calendar year,
+# so Q4_2025 is Jan-Mar 2026. The axis is every quarter from the first to the last with data.
+MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 def month_to_quarter(m):
-    for code, _, s, e, _ in QUARTERS:
-        if s <= m <= e: return code
-    raise ValueError(m)
+    y, mo = int(m[:4]), int(m[5:7])
+    return f"Q{(mo - 4) % 12 // 3 + 1}_{y if mo >= 4 else y - 1}"
+
+def quarter_months(code):
+    q, fy = int(code[1]), int(code[3:])
+    first = pd.Period(f"{fy}-04", freq="M") + 3 * (q - 1)
+    return first.strftime("%Y-%m"), (first + 2).strftime("%Y-%m")
+
+def quarter_axis(months):
+    """(code, label, start, end, is_partial) for every quarter spanning `months`; first/last flagged partial."""
+    first, last = (month_to_quarter(m) for m in (min(months), max(months)))
+    p, out = pd.Period(quarter_months(first)[0], freq="M"), []
+    while True:
+        code = month_to_quarter(p.strftime("%Y-%m")); s, e = quarter_months(code)
+        out.append((code, f"Q{code[1]} {code[3:]} ({MON[int(s[5:]) - 1]}-{MON[int(e[5:]) - 1]} {e[:4]})", s, e, False))
+        if code == last: break
+        p += 3
+    out[0] = out[0][:4] + (True,); out[-1] = out[-1][:4] + (True,)
+    return out
 
 # ---------------- LOAD ----------------
 cw = pd.read_csv(IN / "competency_crosswalk.csv")
@@ -66,7 +87,8 @@ xl = pd.ExcelFile(XLSX)
 yn = lambda v: {"Yes": 1, "No": 0}.get(v, np.nan)
 recs = []
 
-def add(rec_base, key, raw, mx, tool_flag, unit="pct", n_items=None):
+def add(rec_base, key, raw, mx, tool_flag, unit="pct", n_items=None, cpm=np.nan):
+    """cpm: for a timed grid scored on items (pct), its correct-per-minute, carried alongside."""
     raw = pd.to_numeric(raw, errors="coerce")
     r = dict(rec_base, raw_key=key, raw_score=raw, raw_max=mx, unit=unit, achieved_tool_flag=tool_flag)
     if unit == "cpm":
@@ -76,7 +98,7 @@ def add(rec_base, key, raw, mx, tool_flag, unit="pct", n_items=None):
         r["clearance_rule"] = f">={ORF_BENCHMARK_CPM} cpm"
     else:
         r["score_pct"] = np.nan if (pd.isna(raw) or mx is None) else 100 * raw / mx
-        r["cpm"] = np.nan
+        r["cpm"] = cpm
         cut = CLEAR_OVERRIDE_PCT.get(key, CLEAR_CUT_PCT)
         r["cleared"] = np.nan if pd.isna(r["score_pct"]) else float(r["score_pct"] >= cut - 1e-6)
         r["clearance_rule"] = ">=2 of 3 items (tool rule at the time)" if key in CLEAR_OVERRIDE_PCT else f">={CLEAR_CUT_PCT}% of items"
@@ -141,21 +163,80 @@ for i, r in q3.iterrows():
         add(b, key, r[rc], mx, yn(r[ac]))
     add(b, "Q3_ORF", r["ORF.1"], None, None, "cpm")
 
-# --- 2026 sheets (Grade 2 battery only; G1/G3 excluded per Adi)
-# item counts inferred from observed score steps (e.g. Pattern moves in thirds, Sentence Reading in halves)
-ITEMS_2026 = {"Letter Identification": 20, "Word Reading": 16, "Sentence Reading": 2, "Word Writing": 4,
-              "Number ID": 12, "Place Value": 4, "Pattern": 3, "Addition": 4, "Subtraction": 4}
-G2_BATTERY = ["Letter Identification", "Word Reading", "Sentence Reading", "Word Writing",
-              "Number ID", "Place Value", "Pattern", "Addition", "Subtraction"]
-for sheet, tool, pre in [("G2 Q1 2026", "q1_2026_tool", "N1"), ("G2 Q2 2026", "q2_2026_tool", "N2")]:
-    df = pd.read_excel(xl, sheet)
-    for i, r in df[df["Grade"] == 2].iterrows():
-        b = dict(record_id=f"{pre}_r{i+2}", source_sheet=sheet, source_block="single", excel_row=i + 2,
-                 source_tool=tool, date=r["Date"], school_name=None, school_name_alt=None, block=None,
-                 student_name=r["Student Name"], grade_battery=2)
-        for c in G2_BATTERY:
-            v = pd.to_numeric(r[c], errors="coerce")
-            add(b, f"{pre}_{c}", v, 1, np.nan if pd.isna(v) else float(v >= ACHIEVE_CUT_2026 - 1e-9), n_items=ITEMS_2026[c])
+# --- 2026 onwards: raw child-level tabs of the dashboard backend workbook (Grade 2 only; G1/G3 excluded per Adi).
+# School names stay private (student_scores_long.csv is never published); school_name holds the UDISE code,
+# which is what n_schools counts.
+bx = pd.ExcelFile(BACKEND_XLSX)
+
+# 2026 spot tool ("old tool"). The SSP and RMEAL tabs are bundled into one sample per Adi. A school on both
+# lists appears in both tabs with the identical record (same _id, same scores), so it is counted once.
+SPOT_2026_TABS = [("Sheet1", "ssp"), ("Sheet2", "rmeal")]
+SPOT_2026_TOOL = {"Q1_2026": ("q1_2026_tool", "N1"), "Q2_2026": ("q2_2026_tool", "N2")}  # quarter -> source_tool, raw_key prefix
+SPOT_2026_ITEMS = [  # raw column, battery name (crosswalk key), items
+    ("letter_matra_recognition_g2", "Letter Identification", 20), ("word_reading_g2", "Word Reading", 16),
+    ("sentence_reading_g2", "Sentence Reading", 2), ("word_writing_g2", "Word Writing", 4),
+    ("number_recognition_0_99", "Number ID", 12), ("place_value_g2", "Place Value", 4), ("pattern_g2", "Pattern", 3),
+    ("addition_one_digit", "Addition", 4), ("subtraction_one_digit", "Subtraction", 4)]
+spot = []
+for tab, program in SPOT_2026_TABS:
+    df = pd.read_excel(bx, tab)
+    df = df[pd.to_numeric(df["student_grade"], errors="coerce") == 2]
+    spot.append(df.assign(program=program, excel_row=df.index + 2))
+spot = pd.concat(spot, ignore_index=True)
+spot["program"] = spot.groupby("_id").program.transform(lambda s: "+".join(sorted(set(s))))
+spot = spot.drop_duplicates("_id")
+for _, r in spot.iterrows():
+    date = pd.Timestamp(r["date"]); qc = month_to_quarter(date.strftime("%Y-%m"))
+    if qc not in SPOT_2026_TOOL: raise ValueError(f"2026 spot-tool record in {qc}: add it to SPOT_2026_TOOL")
+    tool, pre = SPOT_2026_TOOL[qc]
+    b = dict(record_id=f"{pre}_{r['_id']}", source_sheet=f"backend {r['program']}", source_block="single", excel_row=r["excel_row"],
+             source_tool=tool, date=date, school_name=str(r["udise"]), school_name_alt=None, block=r["block"],
+             student_name=r["student_name"], grade_battery=2, program=r["program"])
+    for col, name, n in SPOT_2026_ITEMS:
+        v = pd.to_numeric(r[col], errors="coerce")
+        if pd.notna(v) and not 0 <= v <= n: raise ValueError(f"{col}={v} outside 0..{n} for {r['_id']}")
+        add(b, f"{pre}_{name}", v, n, np.nan if pd.isna(v) else float(v / n >= CLEAR_CUT_PCT / 100 - 1e-9))
+
+# Tangerine tool (Q3 2026 onwards): raw export, Grade 2 form, one row per child, RMEAL schools.
+# Each task's score = items marked 1 / items in the task. Skipped tasks (the form's gate logic), items past a
+# stop rule ('.'), 99 (no response) and UNDEFINED all count as not correct, as in the dashboard. The export's
+# *.number_of_items_correct columns are not used: they are wrong for auto-stopped untimed grids.
+TANGERINE_TABS = [("Q3", "q3_2026_tangerine", "rmeal")]
+TANGERINE_TASKS = [  # item prefix, items, timing: None | "grid" (timed, scored on items, cpm carried) | "orf" (cpm benchmark)
+    ("LC", 4, None), ("OV", 10, None), ("PC", 4, None), ("LNT", 50, "grid"), ("WRUT", 15, None), ("WRT", 50, "grid"),
+    ("SR", 5, None), ("ORF", 45, "orf"), ("RC", 5, None), ("LW", 5, None), ("WW", 5, None),
+    ("MSR", 4, None), ("CIB", 4, None), ("NIUT", 20, None), ("NC", 7, None), ("NP", 7, None), ("SP", 3, None),
+    ("ADD2", 6, None), ("SUB2", 6, None), ("WP", 3, None), ("WP_SUB", 3, None), ("MUL", 3, None), ("DH", 4, None),
+    ("SH1", 4, None), ("SH2", 3, None), ("MON", 3, None), ("NW", 5, None)]
+
+def tg_correct(r, prefix, n):
+    return sum(str(r[f"{prefix}_{i}"]).strip() in ("1", "1.0") for i in range(1, n + 1))
+
+def tg_cpm(r, prefix, correct):
+    """Correct per minute over the time actually used. A task the form skipped scores 0."""
+    dur, rem = pd.to_numeric(r[f"{prefix}.duration"], errors="coerce"), pd.to_numeric(r[f"{prefix}.time_remaining"], errors="coerce")
+    if pd.isna(dur) or pd.isna(rem) or dur - rem <= 0: return 0.0 if correct == 0 else np.nan
+    return correct * 60 / (dur - rem)
+
+for tab, tool, program in TANGERINE_TABS:
+    df = pd.read_excel(bx, tab)
+    df = df[(df["school_loc.District_label"].astype(str).str.strip().str.lower() == "basti") &
+            (df["Child_consent"].astype(str).str.strip().str.lower() != "no")]
+    for prefix, n, _ in TANGERINE_TASKS:
+        have = df.columns.str.fullmatch(rf"{prefix}_\d+").sum()
+        if have != n: raise ValueError(f"Tangerine task {prefix}: {have} item columns, expected {n}")
+    for i, r in df.iterrows():
+        b = dict(record_id=f"TG_{r['_id']}", source_sheet=f"backend {tab}", source_block="single", excel_row=i + 2,
+                 source_tool=tool, date=pd.Timestamp(r["start_date"]), school_name=str(r["school_loc.School_Name"]),
+                 school_name_alt=None, block=r["school_loc.Block_label"], student_name=r["student_name"], grade_battery=2,
+                 program=program)
+        for prefix, n, timing in TANGERINE_TASKS:
+            k = tg_correct(r, prefix, n)
+            if timing == "orf":
+                add(b, f"TG_{prefix}", tg_cpm(r, prefix, k), None, None, "cpm")
+            else:
+                add(b, f"TG_{prefix}", k, n, float(k / n >= CLEAR_CUT_PCT / 100 - 1e-9),
+                    cpm=tg_cpm(r, prefix, k) if timing == "grid" else np.nan)
 
 stu = pd.DataFrame(recs)
 stu["month"] = stu["date"].dt.strftime("%Y-%m")
@@ -199,6 +280,10 @@ for _, r in ml.iterrows():   # midline: clearance = slide top band(s)
                          unit=r.unit, clearance_rule=rule))
 did = pd.DataFrame(did_rows).merge(cw[["raw_key", "std_competency", "competency_family", "domain", "stacking_status"]], on="raw_key", how="left")
 assert did.std_competency.notna().all(), did.loc[did.std_competency.isna(), "raw_key"].tolist()
+
+QUARTERS = quarter_axis(list(stu.month) + list(did.month))   # code, label, start, end, is_partial
+QORDER = {q[0]: i for i, q in enumerate(QUARTERS)}
+MORDER = {m: i for i, m in enumerate(pd.period_range(QUARTERS[0][2], QUARTERS[-1][3], freq="M").strftime("%Y-%m"))}
 
 # ---------------- AGGREGATION ----------------
 KEYS_EXTRA = ["std_competency", "competency_family", "domain", "stacking_status"]
@@ -320,7 +405,6 @@ def add_changes(df, period_col, order):
             prev = r
     return df.drop(columns="_o")
 
-MORDER = {m: i for i, m in enumerate(pd.period_range("2025-07", "2026-09", freq="M").strftime("%Y-%m"))}
 mon = add_changes(build("month"), "month", MORDER).rename(columns={"change_pp": "mom_change_pp", "prev_period": "prev_month", "periods_gap": "months_gap"})
 mon["quarter_code"] = mon["month"].map(month_to_quarter)
 qtr = add_changes(build("quarter_code"), "quarter_code", QORDER).rename(columns={"change_pp": "qoq_change_pp", "prev_period": "prev_quarter", "periods_gap": "quarters_gap"})
