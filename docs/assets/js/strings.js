@@ -196,11 +196,12 @@ export const strings = {
     orfSubtitle:
       'Average correct per minute in each round: letters for letter naming, words for the ' +
       'passage. The 45 cpm benchmark is for passage reading.',
-    midlineOnlyTitle: 'March EoY only, or bands only',
-    midlineOnlySubtitle:
-      'The March EoY report gives a distribution for these tasks but no stated average, ' +
-      'so the Baseline cannot be compared with it here. Where the QLR Q2 \'26 measured the ' +
-      'task, the chart above compares the Baseline with it instead.',
+    bandsTitle: 'How children were spread, round by round',
+    bandsSubtitle:
+      'The share of children in each band on every task a round measured. Pick a round. ' +
+      "March EoY bands are read off the report's charts (rounded; the top band is above 75%). " +
+      "QLR Q2 '26 bands come from each child's own score (the top band is 75% and above).",
+    bandsRound: 'Round',
     baseline: 'Baseline',
     midline: 'March EoY',
     qlr: 'QLR Q2 \'26',

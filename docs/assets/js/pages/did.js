@@ -217,124 +217,69 @@ function domainSummary(root, { summaries }) {
 }
 
 // ---------------------------------------------------------------------------
-// Competencies with no like-for-like comparison
+// How children were spread, one DiD round at a time
 // ---------------------------------------------------------------------------
 
-function bandsOnlySection(root, ctx, { didRows, views }) {
-  const bandsOnly = didCompetencies(didRows).filter(
-    (r) => r.comparison_status === 'baseline_mean + midline_bands_only' || r.comparison_status === 'midline_only'
-  );
+/** DiD rounds with band data, in the order they ran. The Baseline has none. */
+const BAND_ROUNDS = [
+  { tool: 'did_midline', period: 'Q4_2025' },
+  { tool: 'did_qlr_sep2026', period: 'Q2_2026' },
+];
+
+function roundBandsSection(root, ctx, { didRows, views }) {
   const baselineOnly = didCompetencies(didRows, { status: 'baseline_only' }).filter((r) => isMissing(r.qlr_mean));
-  if (!bandsOnly.length && !baselineOnly.length) return;
+  const spec = bandSpec({ detail: 'tiers' });
+  const byId = new Map(didCompetencies(didRows).map((r) => [r.std_competency, r]));
 
-  const wrap = section(root, { title: strings.did.midlineOnlyTitle, subtitle: strings.did.midlineOnlySubtitle });
-
-  if (bandsOnly.length) {
-    const spec = bandSpec({ detail: 'tiers' });
-    const eoyBands = bandsFor(views, { granularity: 'quarterly', period: 'Q4_2025', sourceTool: 'did_midline' });
-    const byCompetency = d3.group(eoyBands, (d) => d.std_competency);
-
-    const items = bandsOnly
-      .map((row) => {
-        const rows = byCompetency.get(row.std_competency) || [];
-        return {
-          id: row.std_competency,
-          meta: competency(row.std_competency, { domain: row.domain }),
-          status: row.comparison_status,
-          baseline: row.baseline_mean,
-          qlr: row.qlr_mean,
-          values: Object.fromEntries(rows.map((r) => [r.metric, r.value])),
-          n: rows[0]?.n ?? null,
-          bandSource: rows[0]?.band_source,
-        };
-      })
+  // Items per round: every competency that round has tier bands for.
+  const rounds = BAND_ROUNDS.map((round) => {
+    const byCompetency = d3.group(
+      bandsFor(views, { granularity: 'quarterly', period: round.period, sourceTool: round.tool }),
+      (d) => d.std_competency
+    );
+    const items = [...byCompetency].map(([id, rows]) => {
+      const row = byId.get(id);
+      return {
+        id,
+        meta: competency(id, { domain: rows[0].domain }),
+        baseline: row?.baseline_mean ?? null,
+        values: Object.fromEntries(rows.map((r) => [r.metric, r.value])),
+        n: rows[0]?.n ?? null,
+        bandSource: rows[0]?.band_source,
+      };
+    })
       .filter((i) => spec.some((s) => i.values[s.metric] !== undefined))
       .sort((a, b) =>
         (a.meta.domain === 'literacy' ? 0 : 1) - (b.meta.domain === 'literacy' ? 0 : 1) || a.meta.order - b.meta.order);
+    return { ...round, label: strings.tools[round.tool], items };
+  }).filter((round) => round.items.length);
 
-    if (items.length) {
-      const ROW = 26;
-      chart({
-        root: wrap,
-        title: '',
-        subtitle: '',
-        ariaLabel: `Stacked bars showing how children were distributed at the March EoY on ${items.length} competencies.`,
-        sourceNote: sourceNoteFor('nonstacking_competency_views.csv'),
-        columns: [
-          { key: 'competency', label: 'Competency' },
-          { key: 'baseline', label: `${strings.did.baseline} (% correct)`, num: true },
-          ...spec.map((s) => ({ key: s.metric, label: s.label(), num: true })),
-        ],
-        rows: items.map((i) => ({
-          competency: i.meta.name,
-          baseline: isMissing(i.baseline) ? '—' : i.baseline.toFixed(1),
-          ...Object.fromEntries(spec.map((s) => [s.metric, pct1(i.values[s.metric] ?? null)])),
-        })),
-        height: () => items.length * ROW + 24,
-        render({ svg, width, container }) {
-          const margin = { top: 6, right: 12, bottom: 10, left: Math.min(230, Math.max(150, width * 0.28)) };
-          const innerWidth = Math.max(30, width - margin.left - margin.right);
-          const plot = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
-          const tooltip = createTooltip(container);
-          const x = d3.scaleLinear().domain([0, 100]).range([0, innerWidth]);
+  if (!rounds.length && !baselineOnly.length) return;
+  const wrap = section(root, { title: strings.did.bandsTitle, subtitle: strings.did.bandsSubtitle });
 
-          items.forEach((item, index) => {
-            const cy = index * ROW;
-            const link = plot.append('a')
-              .attr('href', ctx.hrefFor({ page: 'competency', competency: item.id }))
-              .attr('aria-label',
-                `${item.meta.name}: ` + spec.map((s) => `${s.label()} ${pct(item.values[s.metric] ?? 0)}`).join(', '));
-
-            link.append('text')
-              .attr('x', -10).attr('y', cy + ROW / 2).attr('dy', '0.32em').attr('text-anchor', 'end')
-              .attr('font-size', 12).attr('fill', token('--ink'))
-              .text(fitLabel(item.meta.name, margin.left - 14))
-              .append('title').text(item.meta.name);
-
-            let offset = 0;
-            for (const band of spec) {
-              const value = item.values[band.metric];
-              if (value === null || value === undefined) continue;
-              const w = x(value);
-              link.append('rect')
-                .attr('x', offset).attr('y', cy + 3).attr('width', Math.max(0, w)).attr('height', ROW - 9)
-                .attr('fill', token(band.colour))
-                .append('title').text(`${band.label()}: ${pct1(value)}`);
-              if (w > 30) {
-                link.append('text')
-                  .attr('x', offset + w / 2).attr('y', cy + ROW / 2).attr('dy', '0.32em')
-                  .attr('text-anchor', 'middle').attr('font-size', 10.5).attr('font-weight', 600)
-                  .attr('fill', token(band.ink)).attr('pointer-events', 'none')
-                  .text(pct(value, { suffix: '' }));
-              }
-              offset += w;
-            }
-
-            bindTooltip(link, tooltip, () =>
-              `<div class="tt__head">${item.meta.name}<span class="tt__period">${strings.did.midline}</span></div>` +
-              `<div class="tt__value"><span class="tt__n">${nLabel(item.n)}</span></div><hr class="tt__rule">` +
-              spec.map((s) => `<div class="tt__row">${s.label()}: <strong>${pct1(item.values[s.metric] ?? null)}</strong></div>`).join('') +
-              (isMissing(item.baseline) ? '' :
-                `<hr class="tt__rule"><div class="tt__row tt__muted">${strings.did.baseline}: ${item.baseline.toFixed(1)}% correct. ` +
-                `The March EoY report gives no stated mean for this task` +
-                (isMissing(item.qlr) ? ', so there is nothing to compare it against.' : `; the chart above compares the Baseline with the ${strings.did.qlr} (${item.qlr.toFixed(1)}% correct) instead.`) +
-                `</div>`) +
-              `<hr class="tt__rule"><div class="tt__row tt__muted">${sourceLabel(item.bandSource)}</div>`
-            );
-          });
-        },
-      });
-
-      const legendWrap = el('div', 'legend');
-      for (const band of spec) {
-        const item = el('span', 'legend__item');
-        item.innerHTML =
-          `<span aria-hidden="true" style="display:inline-block;width:14px;height:10px;background:${token(band.colour)}"></span>` +
-          `<span>${band.label()}</span>`;
-        legendWrap.append(item);
-      }
-      wrap.append(legendWrap);
+  if (rounds.length) {
+    // The round picker: a native select, so it works with a keyboard and on a phone.
+    const control = el('label', 'control');
+    control.append(el('span', 'control__label', strings.did.bandsRound));
+    const select = document.createElement('select');
+    select.className = 'select';
+    for (const round of rounds) {
+      const option = document.createElement('option');
+      option.value = round.tool;
+      option.textContent = `${round.label} (${round.items.length} competencies)`;
+      select.append(option);
     }
+    control.append(select);
+    wrap.append(control);
+
+    const holder = el('div');
+    wrap.append(holder);
+    const draw = () => {
+      holder.replaceChildren();
+      bandsChart(holder, ctx, { round: rounds.find((r) => r.tool === select.value), spec });
+    };
+    select.addEventListener('change', draw);
+    draw();
   }
 
   if (baselineOnly.length) {
@@ -345,6 +290,91 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
       `which neither later round repeated. Those have a baseline figure and nothing to compare it with.`));
     wrap.append(note);
   }
+}
+
+function bandsChart(root, ctx, { round, spec }) {
+  const { items, label } = round;
+  const ROW = 26;
+  chart({
+    root,
+    title: '',
+    subtitle: '',
+    ariaLabel: `Stacked bars showing how children were distributed at the ${label} on ${items.length} competencies.`,
+    sourceNote: sourceNoteFor('nonstacking_competency_views.csv'),
+    columns: [
+      { key: 'competency', label: 'Competency' },
+      { key: 'n', label: 'Children', num: true },
+      ...spec.map((s) => ({ key: s.metric, label: s.label(), num: true })),
+      { key: 'baseline', label: `${strings.did.baseline} (% correct)`, num: true },
+    ],
+    rows: items.map((i) => ({
+      competency: i.meta.name,
+      n: isMissing(i.n) ? '—' : int(i.n),
+      ...Object.fromEntries(spec.map((s) => [s.metric, pct1(i.values[s.metric] ?? null)])),
+      baseline: isMissing(i.baseline) ? '—' : i.baseline.toFixed(1),
+    })),
+    height: () => items.length * ROW + 24,
+    render({ svg, width, container }) {
+      const margin = { top: 6, right: 12, bottom: 10, left: Math.min(230, Math.max(150, width * 0.28)) };
+      const innerWidth = Math.max(30, width - margin.left - margin.right);
+      const plot = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+      const tooltip = createTooltip(container);
+      const x = d3.scaleLinear().domain([0, 100]).range([0, innerWidth]);
+
+      items.forEach((item, index) => {
+        const cy = index * ROW;
+        const link = plot.append('a')
+          .attr('href', ctx.hrefFor({ page: 'competency', competency: item.id }))
+          .attr('aria-label',
+            `${item.meta.name}: ` + spec.map((s) => `${s.label()} ${pct(item.values[s.metric] ?? 0)}`).join(', '));
+
+        link.append('text')
+          .attr('x', -10).attr('y', cy + ROW / 2).attr('dy', '0.32em').attr('text-anchor', 'end')
+          .attr('font-size', 12).attr('fill', token('--ink'))
+          .text(fitLabel(item.meta.name, margin.left - 14))
+          .append('title').text(item.meta.name);
+
+        let offset = 0;
+        for (const band of spec) {
+          const value = item.values[band.metric];
+          if (value === null || value === undefined) continue;
+          const w = x(value);
+          link.append('rect')
+            .attr('x', offset).attr('y', cy + 3).attr('width', Math.max(0, w)).attr('height', ROW - 9)
+            .attr('fill', token(band.colour))
+            .append('title').text(`${band.label()}: ${pct1(value)}`);
+          if (w > 30) {
+            link.append('text')
+              .attr('x', offset + w / 2).attr('y', cy + ROW / 2).attr('dy', '0.32em')
+              .attr('text-anchor', 'middle').attr('font-size', 10.5).attr('font-weight', 600)
+              .attr('fill', token(band.ink)).attr('pointer-events', 'none')
+              .text(pct(value, { suffix: '' }));
+          }
+          offset += w;
+        }
+
+        bindTooltip(link, tooltip, () =>
+          `<div class="tt__head">${item.meta.name}<span class="tt__period">${label}</span></div>` +
+          `<div class="tt__value"><span class="tt__n">${nLabel(item.n)}</span></div><hr class="tt__rule">` +
+          spec.map((s) => `<div class="tt__row">${s.label()}: <strong>${pct1(item.values[s.metric] ?? null)}</strong></div>`).join('') +
+          (isMissing(item.baseline) ? '' :
+            `<hr class="tt__rule"><div class="tt__row tt__muted">${strings.did.baseline}: ${item.baseline.toFixed(1)}% correct ` +
+            `(an average, so it has no bands).</div>`) +
+          `<hr class="tt__rule"><div class="tt__row tt__muted">${sourceLabel(item.bandSource)}</div>`
+        );
+      });
+    },
+  });
+
+  const legendWrap = el('div', 'legend');
+  for (const band of spec) {
+    const entry = el('span', 'legend__item');
+    entry.innerHTML =
+      `<span aria-hidden="true" style="display:inline-block;width:14px;height:10px;background:${token(band.colour)}"></span>` +
+      `<span>${band.label()}</span>`;
+    legendWrap.append(entry);
+  }
+  root.append(legendWrap);
 }
 
 // ---------------------------------------------------------------------------
@@ -397,7 +427,7 @@ export async function mount(root, ctx) {
     }
   }
 
-  if (views) bandsOnlySection(root, ctx, { didRows, views });
+  if (views) roundBandsSection(root, ctx, { didRows, views });
 }
 
 export function unmount() {}
