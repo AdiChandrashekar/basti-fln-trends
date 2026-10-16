@@ -18,7 +18,7 @@ import { timePlot } from '../timeplot.js';
 import {
   drawSeries, drawSourceSatellites, drawEndLabels, drawReferencePoints, drawMarker,
   token, domainColour, createTooltip, bindTooltip, tooltipContent, drawGrid,
-  drawGrammarLegend,
+  drawGrammarLegend, referenceText,
 } from '../grammar.js';
 import { controlBar, monthlyNotice, section, pickerItems } from '../controls.js';
 import { competency, competencyName, allCompetencies, familyName } from '../competencies.js';
@@ -155,7 +155,7 @@ function trendChart(root, ctx, { id, meta, rows, slots, granularity }) {
     n: p.n === null ? strings.units.nNotReported : int(p.n),
     instrument: instrumentLabel(p),
     basis: p.row_type === 'reference_point'
-      ? `${strings.reference.label} — beside the line, not on it`
+      ? `${referenceText(p).label} — beside the line, not on it`
       : (p.is_pooled ? strings.basis.pooled : strings.basis[p.metric_basis] || p.metric_basis),
     change: p.change_pp === null || p.change_pp === undefined ? '—' : p.change_pp.toFixed(1),
     comparable: p.change_defensibility ? strings.defensibility[p.change_defensibility] : '—',

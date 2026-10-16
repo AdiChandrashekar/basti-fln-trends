@@ -32,6 +32,7 @@ const LADDER = [
   { id: 'independent_writing', name: 'Independent writing', domain: 'literacy' },
   // --- Numeracy -------------------------------------------------------------
   { id: 'number_recognition', name: 'Number recognition', domain: 'numeracy' },
+  { id: 'number_identification_fluency', name: 'Number identification (timed)', domain: 'numeracy' },
   { id: 'number_comparison', name: 'Number comparison', domain: 'numeracy' },
   { id: 'number_writing', name: 'Number writing', domain: 'numeracy' },
   { id: 'place_value_bundles', name: 'Place value (counting in bundles)', domain: 'numeracy' },
@@ -52,6 +53,7 @@ const LADDER = [
   { id: 'shapes_1', name: 'Shapes 1 (matching)', domain: 'numeracy' },
   { id: 'shapes_2', name: 'Shapes 2 (properties)', domain: 'numeracy' },
   { id: 'shapes_midline_unspecified', name: 'Shapes (EoY)', domain: 'numeracy' },
+  { id: 'shapes_3d', name: '3D shapes (QLR)', domain: 'numeracy' },
   { id: 'measurement', name: 'Measurement', domain: 'numeracy' },
   { id: 'data_handling', name: 'Data handling', domain: 'numeracy' },
   { id: 'money', name: 'Money', domain: 'numeracy' },

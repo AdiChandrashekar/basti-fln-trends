@@ -149,6 +149,8 @@ export function markerPath(shape, r = R) {
       return `M0,${-r * 1.25} L${r * 1.15},0 L0,${r * 1.25} L${-r * 1.15},0 Z`;
     case 'square':
       return `M${-r},${-r} H${r} V${r} H${-r} Z`;
+    case 'triangle':
+      return `M0,${-r * 1.3} L${r * 1.2},${r * 0.8} L${-r * 1.2},${r * 0.8} Z`;
     default: {
       // Circle as a path, so every marker is one element type.
       const c = r * 0.5523;
@@ -156,6 +158,11 @@ export function markerPath(shape, r = R) {
              `C${-c},${r} ${-r},${c} ${-r},0 C${-r},${-c} ${-c},${-r} 0,${-r} Z`;
     }
   }
+}
+
+/** Label and legend text for a reference point, by the DiD round it came from. */
+export function referenceText(row) {
+  return (row.source_tools || []).includes('did_qlr_sep2026') ? strings.reference.qlr : strings.reference;
 }
 
 /**
@@ -172,6 +179,7 @@ export function markerFor(row) {
   if (!row.is_pooled) {
     if (tools.includes('did_baseline')) shape = 'diamond';
     else if (tools.includes('did_midline')) shape = 'square';
+    else if (tools.includes('did_qlr_sep2026')) shape = 'triangle';
   }
   const flags = row.reliability_flags || [];
   return {
@@ -647,6 +655,9 @@ export function drawGrammarLegend(root, {
   if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_midline'))) {
     items.push({ svg: mark('square'), label: strings.tools.did_midline });
   }
+  if (has((pt) => !pt.is_pooled && (pt.source_tools || []).includes('did_qlr_sep2026'))) {
+    items.push({ svg: mark('triangle'), label: strings.tools.did_qlr_sep2026 });
+  }
   if (has((pt) => pt.is_pooled)) {
     items.push({ svg: mark('circle', { ring: true }), label: 'Two instruments combined' });
   }
@@ -658,15 +669,22 @@ export function drawGrammarLegend(root, {
   }
 
   // --- context --------------------------------------------------------------
-  if (references.length) {
+  // One entry per kind of reference on the chart: a line can carry both the
+  // baseline (diamond) and the QLR (triangle).
+  const referenceKinds = new Map();
+  for (const ref of references) {
+    const spec = markerFor(ref);
+    if (!referenceKinds.has(spec.shape)) referenceKinds.set(spec.shape, { spec, ref });
+  }
+  for (const { spec, ref } of referenceKinds.values()) {
     items.push({
       // Match the marker the chart actually draws, hollow and all. A solid
       // swatch sends the reader looking for a filled diamond that is not there.
       svg: `<line x1="2" y1="8" x2="30" y2="8" stroke="${token('--did-neutral')}" stroke-width="1.25" stroke-dasharray="1.5 4"/>` +
-        `<path d="${markerPath('diamond', 6)}" transform="translate(16,8)" ` +
-        `fill="${markerFor(references[0]).hollow ? token('--paper') : token('--did-neutral')}" ` +
-        `stroke="${token('--did-neutral')}" stroke-width="${markerFor(references[0]).hollow ? 2.4 : 1}"/>`,
-      label: strings.reference.legend,
+        `<path d="${markerPath(spec.shape, 6)}" transform="translate(16,8)" ` +
+        `fill="${spec.hollow ? token('--paper') : token('--did-neutral')}" ` +
+        `stroke="${token('--did-neutral')}" stroke-width="${spec.hollow ? 2.4 : 1}"/>`,
+      label: referenceText(ref).legend,
     });
   }
   if (showLatest) {

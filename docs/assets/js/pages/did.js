@@ -1,10 +1,10 @@
 /**
- * DiD snapshot: the baseline-to-End-of-Year story, told like for like.
+ * DiD snapshot: the baseline to End of Year to QLR story, told like for like.
  *
  * The trend pages deliberately never join the DiD baseline to anything, because
  * it reports an average % correct while the rest of the dashboard reports the
  * share of children achieving. This page is where the two DiD rounds are
- * compared with each other, which is the one comparison that IS like for like —
+ * compared with each other on average % correct, the one comparison that IS like for like —
  * and it is drawn in a different colour so nobody carries the numbers back onto
  * the % achieving scale by mistake.
  */
@@ -28,6 +28,7 @@ function el(tag, className, text) {
 
 const BASELINE_COLOUR = '--change-flat';
 const EOY_COLOUR = '--did-neutral';
+const QLR_COLOUR = '--ribbon-did';
 
 /** Change colour, but only ever within this page's own neutral palette. */
 function changeInk(value) {
@@ -39,33 +40,50 @@ function changeInk(value) {
 // Dumbbells
 // ---------------------------------------------------------------------------
 
+/** The rounds a competency can carry, in order, with how each is marked. */
+const ROUNDS = [
+  { key: 'baseline_mean', label: () => strings.did.baseline, shape: 'circle', colour: BASELINE_COLOUR, hollow: true },
+  { key: 'midline_mean', label: () => strings.did.midline, shape: 'square', colour: EOY_COLOUR },
+  { key: 'qlr_mean', label: () => strings.did.qlr, shape: 'triangle', colour: QLR_COLOUR },
+];
+
+const signed = (v) => `${v > 0 ? '+' : '−'}${Math.abs(v).toFixed(1)}`;
+const fmt = (v) => (isMissing(v) ? '—' : v.toFixed(1));
+
+/** Rounds this item has a mean for, and the change from the baseline to the latest of them. */
+function withRounds(row) {
+  const rounds = ROUNDS.filter((r) => !isMissing(row[r.key]));
+  const latest = rounds.at(-1);
+  return { ...row, rounds, toLatest: row[latest.key] - row.baseline_mean, shortForm: Boolean(row.qlr_form_note) && row.unit === 'pct' };
+}
+
 function dumbbells(root, { items, title, subtitle, unit, domainMax }) {
   if (!items.length) return;
   const isCpmChart = unit === 'cpm';
-  const max = domainMax ?? Math.ceil(Math.max(...items.flatMap((i) => [i.baseline_mean, i.midline_mean])) / 10) * 10;
+  const values = items.flatMap((i) => i.rounds.map((r) => i[r.key]));
+  const max = domainMax ?? Math.ceil(Math.max(...values) / 10) * 10;
+  const unitLabel = isCpmChart ? 'cpm' : '% correct';
+  const name = (i) => `${i.meta.name}${i.shortForm ? ' *' : ''}`;
 
   chart({
     root,
     title,
     subtitle,
     ariaLabel:
-      `Dumbbell chart of ${items.length} competencies from the Nov 2025 DiD baseline to the ` +
-      `25-26 End of Year round: ` +
-      items.map((i) => `${i.meta.name} ${i.baseline_mean.toFixed(1)} to ${i.midline_mean.toFixed(1)}`).join(', ') + '.',
+      `Dot chart of ${items.length} competencies across the DiD rounds: ` +
+      items.map((i) => `${i.meta.name} ` + i.rounds.map((r) => `${r.label()} ${i[r.key].toFixed(1)}`).join(', ')).join('; ') + '.',
     sourceNote: sourceNoteFor('did_baseline_midline_comparison.csv'),
     columns: [
       { key: 'competency', label: 'Competency' },
-      { key: 'baseline', label: strings.did.baseline, num: true },
-      { key: 'midline', label: strings.did.midline, num: true },
-      { key: 'change', label: strings.did.change, num: true },
+      ...ROUNDS.map((r) => ({ key: r.key, label: r.label(), num: true })),
+      { key: 'change', label: strings.did.changeToLatest, num: true },
       { key: 'unit', label: 'Unit' },
     ],
     rows: items.map((i) => ({
-      competency: i.meta.name,
-      baseline: i.baseline_mean.toFixed(1),
-      midline: i.midline_mean.toFixed(1),
-      change: `${i.mean_change > 0 ? '+' : '−'}${Math.abs(i.mean_change).toFixed(1)}`,
-      unit: isCpmChart ? 'correct words per minute' : '% correct',
+      competency: name(i),
+      ...Object.fromEntries(ROUNDS.map((r) => [r.key, fmt(i[r.key])])),
+      change: signed(i.toLatest),
+      unit: isCpmChart ? 'correct per minute' : '% correct',
     })),
     height: () => items.length * 34 + 56,
     render({ svg, width, container }) {
@@ -82,41 +100,41 @@ function dumbbells(root, { items, title, subtitle, unit, domainMax }) {
         group.append('text')
           .attr('x', -10).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end')
           .attr('font-size', 12.8).attr('fill', token('--ink'))
-          .text(fitLabel(item.meta.name, margin.left - 14))
-          .append('title').text(item.meta.name);
+          .text(fitLabel(item.meta.name, margin.left - 14 - (item.shortForm ? 12 : 0)) + (item.shortForm ? ' *' : ''))
+          .append('title').text(name(item));
 
-        const xa = x(item.baseline_mean);
-        const xb = x(item.midline_mean);
+        // One connector per step between consecutive rounds, each in its own change colour.
+        item.rounds.slice(1).forEach((round, k) => {
+          const prev = item.rounds[k];
+          group.append('line')
+            .attr('x1', x(item[prev.key])).attr('x2', x(item[round.key])).attr('y1', cy).attr('y2', cy)
+            .attr('stroke', changeInk(item[round.key] - item[prev.key])).attr('stroke-width', 2.5)
+            .attr('opacity', 0.55);
+        });
 
-        // The connector carries the direction; the arrowhead is the change.
-        group.append('line')
-          .attr('x1', xa).attr('x2', xb).attr('y1', cy).attr('y2', cy)
-          .attr('stroke', changeInk(item.mean_change)).attr('stroke-width', 2.5)
-          .attr('opacity', 0.55);
-
-        group.append('path')
-          .attr('d', markerPath('circle', 5)).attr('transform', `translate(${xa},${cy})`)
-          .attr('fill', token('--paper')).attr('stroke', token(BASELINE_COLOUR)).attr('stroke-width', 2);
-        group.append('path')
-          .attr('d', markerPath('square', 5)).attr('transform', `translate(${xb},${cy})`)
-          .attr('fill', token(EOY_COLOUR));
+        for (const round of item.rounds) {
+          group.append('path')
+            .attr('d', markerPath(round.shape, 5)).attr('transform', `translate(${x(item[round.key])},${cy})`)
+            .attr('fill', round.hollow ? token('--paper') : token(round.colour))
+            .attr('stroke', token(round.colour)).attr('stroke-width', round.hollow ? 2 : 1);
+        }
 
         group.append('text')
           .attr('x', innerWidth + 10).attr('y', cy).attr('dy', '0.32em')
-          .attr('font-size', 12).attr('font-weight', 600).attr('fill', changeInk(item.mean_change))
-          .text(`${item.mean_change > 0 ? '+' : '−'}${Math.abs(item.mean_change).toFixed(1)}`);
+          .attr('font-size', 12).attr('font-weight', 600).attr('fill', changeInk(item.toLatest))
+          .text(signed(item.toLatest));
 
-        const unitLabel = isCpmChart ? 'cpm' : '% correct';
+        const latest = item.rounds.at(-1);
         bindTooltip(group, tooltip, () =>
-          `<div class="tt__head">${item.meta.name}<span class="tt__period">DiD baseline to 25-26 End of Year</span></div>` +
-          `<div class="tt__value"><strong>${item.mean_change > 0 ? '+' : '−'}${Math.abs(item.mean_change).toFixed(1)}</strong>` +
+          `<div class="tt__head">${item.meta.name}<span class="tt__period">DiD baseline to ${latest.label()}</span></div>` +
+          `<div class="tt__value"><strong>${signed(item.toLatest)}</strong>` +
           `<span class="tt__unit">${unitLabel}</span></div>` +
           `<hr class="tt__rule">` +
-          `<div class="tt__row">${strings.did.baseline}: ${item.baseline_mean.toFixed(1)} ${unitLabel}</div>` +
-          `<div class="tt__row">${strings.did.midline}: ${item.midline_mean.toFixed(1)} ${unitLabel}</div>` +
+          item.rounds.map((r) => `<div class="tt__row">${r.label()}: ${item[r.key].toFixed(1)} ${unitLabel}</div>`).join('') +
           (isMissing(item.midline_pct_zero_band) ? '' :
             `<hr class="tt__rule"><div class="tt__row tt__muted">` +
-            `${pct(item.midline_pct_zero_band)} scored zero at the End of Year round</div>`)
+            `${pct(item.midline_pct_zero_band)} scored zero at the End of Year round</div>`) +
+          (item.qlr_form_note ? `<hr class="tt__rule"><div class="tt__row tt__muted">${item.qlr_form_note}.</div>` : '')
         );
       });
 
@@ -134,20 +152,17 @@ function dumbbells(root, { items, title, subtitle, unit, domainMax }) {
   });
 
   const legend = el('div', 'legend');
-  for (const [shape, colour, label] of [
-    ['circle', BASELINE_COLOUR, strings.did.baseline],
-    ['square', EOY_COLOUR, strings.did.midline],
-  ]) {
+  for (const round of ROUNDS.filter((r) => items.some((i) => i.rounds.includes(r)))) {
     const entry = el('span', 'legend__item');
-    const hollow = shape === 'circle';
     entry.innerHTML =
       `<svg class="legend__swatch" width="20" height="16" viewBox="0 0 20 16" aria-hidden="true">` +
-      `<path d="${markerPath(shape, 5)}" transform="translate(10,8)" ` +
-      `fill="${hollow ? token('--paper') : token(colour)}" stroke="${token(colour)}" ` +
-      `stroke-width="${hollow ? 2 : 1}"/></svg><span>${label}</span>`;
+      `<path d="${markerPath(round.shape, 5)}" transform="translate(10,8)" ` +
+      `fill="${round.hollow ? token('--paper') : token(round.colour)}" stroke="${token(round.colour)}" ` +
+      `stroke-width="${round.hollow ? 2 : 1}"/></svg><span>${round.label()}</span>`;
     legend.append(entry);
   }
   root.append(legend);
+  if (items.some((i) => i.shortForm)) root.append(el('p', 'section__subtitle', strings.did.qlrFormNote));
 }
 
 // ---------------------------------------------------------------------------
@@ -179,6 +194,11 @@ function domainSummary(root, { summaries }) {
       `${row.mean_change > 0 ? '+' : '−'}${Math.abs(row.mean_change).toFixed(1)} points`);
     change.style.color = changeInk(row.mean_change);
     card.append(change);
+    if (!isMissing(row.qlr_mean)) {
+      card.append(el('p', 'did-summary__note',
+        `${strings.did.qlr}: ${pct1(row.qlr_mean)} on the same competencies ` +
+        `(${signed(row.qlr_mean_change_vs_baseline)} points from the baseline).`));
+    }
 
     // The note names exactly which competencies the average covers, which is
     // the difference between a domain summary and a domain claim.
@@ -186,7 +206,8 @@ function domainSummary(root, { summaries }) {
     if (covered.length) {
       card.append(el('p', 'did-summary__note',
         `Averaged over ${covered.length} ${covered.length === 1 ? 'competency' : 'competencies'} with a ` +
-        `stated mean in both rounds: ${list(covered.map((id) => competency(id).name))}.`));
+        `stated mean in both rounds: ${list(covered.map((id) => competency(id).name))}.` +
+        (isMissing(row.qlr_mean) ? ' The QLR did not measure all of them, so it has no figure here.' : '')));
     }
     grid.append(card);
   }
@@ -201,7 +222,7 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
   const bandsOnly = didCompetencies(didRows).filter(
     (r) => r.comparison_status === 'baseline_mean + midline_bands_only' || r.comparison_status === 'midline_only'
   );
-  const baselineOnly = didCompetencies(didRows, { status: 'baseline_only' });
+  const baselineOnly = didCompetencies(didRows, { status: 'baseline_only' }).filter((r) => isMissing(r.qlr_mean));
   if (!bandsOnly.length && !baselineOnly.length) return;
 
   const wrap = section(root, { title: strings.did.midlineOnlyTitle, subtitle: strings.did.midlineOnlySubtitle });
@@ -219,6 +240,7 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
           meta: competency(row.std_competency, { domain: row.domain }),
           status: row.comparison_status,
           baseline: row.baseline_mean,
+          qlr: row.qlr_mean,
           values: Object.fromEntries(rows.map((r) => [r.metric, r.value])),
           n: rows[0]?.n ?? null,
           bandSource: rows[0]?.band_source,
@@ -292,7 +314,9 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
               spec.map((s) => `<div class="tt__row">${s.label()}: <strong>${pct1(item.values[s.metric] ?? null)}</strong></div>`).join('') +
               (isMissing(item.baseline) ? '' :
                 `<hr class="tt__rule"><div class="tt__row tt__muted">${strings.did.baseline}: ${item.baseline.toFixed(1)}% correct. ` +
-                `The End of Year report gives no stated mean for this task, so there is nothing to compare it against.</div>`) +
+                `The End of Year report gives no stated mean for this task` +
+                (isMissing(item.qlr) ? ', so there is nothing to compare it against.' : `; the chart above compares the baseline with the QLR (${item.qlr.toFixed(1)}% correct) instead.`) +
+                `</div>`) +
               `<hr class="tt__rule"><div class="tt__row tt__muted">${sourceLabel(item.bandSource)}</div>`
             );
           });
@@ -316,7 +340,7 @@ function bandsOnlySection(root, ctx, { didRows, views }) {
     note.append(el('p', null,
       `The DiD baseline also measured ` +
       `${list(baselineOnly.map((r) => competency(r.std_competency, { domain: r.domain }).name))}, ` +
-      `which the End of Year round did not repeat. Those have a baseline figure and nothing to compare it with.`));
+      `which neither later round repeated. Those have a baseline figure and nothing to compare it with.`));
     wrap.append(note);
   }
 }
@@ -338,15 +362,13 @@ export async function mount(root, ctx) {
     return;
   }
 
-  // --- Like for like: both rounds state a mean --------------------------------
-  const bothMeans = didCompetencies(didRows, { status: 'both_means' })
-    .map((row) => ({ ...row, meta: competency(row.std_competency, { domain: row.domain }) }));
+  // --- Like for like: a baseline mean and at least one later mean ------------
+  const comparable = didCompetencies(didRows)
+    .filter((row) => !isMissing(row.baseline_mean) && (!isMissing(row.midline_mean) || !isMissing(row.qlr_mean)))
+    .map((row) => withRounds({ ...row, meta: competency(row.std_competency, { domain: row.domain }) }));
 
-  const pctItems = bothMeans
-    .filter((i) => i.unit === 'pct' && !isMissing(i.baseline_mean) && !isMissing(i.midline_mean))
-    .sort((a, b) => b.mean_change - a.mean_change);
-  const cpmItems = bothMeans
-    .filter((i) => i.unit === 'cpm' && !isMissing(i.baseline_mean) && !isMissing(i.midline_mean));
+  const pctItems = comparable.filter((i) => i.unit === 'pct').sort((a, b) => b.toLatest - a.toLatest);
+  const cpmItems = comparable.filter((i) => i.unit === 'cpm');
 
   const compare = section(root, {});
   dumbbells(compare, {
@@ -362,11 +384,15 @@ export async function mount(root, ctx) {
   if (cpmItems.length) {
     const fluency = section(root, { title: strings.did.orfTitle, subtitle: strings.did.orfSubtitle });
     dumbbells(fluency, { items: cpmItems, title: '', subtitle: '', unit: 'cpm', domainMax: 60 });
-    const benchmark = el('p', 'section__subtitle');
-    benchmark.textContent =
-      `Both rounds sit below the 45 cpm benchmark for Grade 2. ` +
-      `Children can decode when given time; they are not yet reading at the pace meaning-making needs.`;
-    fluency.append(benchmark);
+    // The 45 cpm benchmark is for passage reading only; say so only when every round is below it.
+    const orf = cpmItems.find((i) => i.std_competency === 'oral_reading_fluency');
+    if (orf && orf.rounds.every((r) => orf[r.key] < 45)) {
+      const benchmark = el('p', 'section__subtitle');
+      benchmark.textContent =
+        `Every round sits below the 45 cpm benchmark for oral reading fluency in Grade 2. ` +
+        `Children can decode when given time; they are not yet reading at the pace meaning-making needs.`;
+      fluency.append(benchmark);
+    }
   }
 
   if (views) bandsOnlySection(root, ctx, { didRows, views });

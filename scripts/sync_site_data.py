@@ -70,6 +70,8 @@ REQUIRED_COLUMNS: dict[str, set[str]] = {
         "std_competency", "domain", "unit", "baseline_value_in_series", "midline_value_in_series",
         "baseline_mean", "midline_mean", "mean_change", "midline_pct_zero_band",
         "comparison_status", "note",
+        "qlr_n", "qlr_mean", "qlr_value_in_series", "qlr_mean_change_vs_baseline",
+        "qlr_mean_change_vs_midline", "qlr_form_note",
     },
     "tool_calibration_nov2025.csv": {
         "std_competency", "measure_unit", "did_baseline_nov_mean", "q3_2025_tool_nov_mean",

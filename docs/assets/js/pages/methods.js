@@ -427,7 +427,7 @@ export async function mount(root, ctx) {
   // --- How the DiD study enters --------------------------------------------
   const did = section(root, { title: strings.methods.didTitle });
   prose(did, [
-    'The DiD study measured Grade 2 twice: a baseline in Nov 2025 and the 25-26 End of Year ' +
+    'The DiD study first measured Grade 2 twice: a baseline in Nov 2025 and the 25-26 End of Year ' +
     'assessment in Mar 2026, across 40 schools and 177 children. Only its Intervention arm is ' +
     'used in this dashboard; the Control arm is excluded.',
     'The two rounds report different kinds of number. The baseline gives an average % correct. ' +
@@ -442,9 +442,15 @@ export async function mount(root, ctx) {
     'the district value carries the trend line and the baseline sits beside it as a separate ' +
     'point, joined to its neighbours by a fine dotted link. That link shows where the other ' +
     'study sat. It is not a change, and no change is calculated from it.',
-    'The one genuinely like-for-like comparison is the baseline against the End of Year round, ' +
-    'on the competencies where the report states a mean for both. That is what the DiD snapshot ' +
-    'page shows, in its own colour so the figures are not carried back onto the % achieving scale.',
+    'The third DiD round, the QLR in Sep 2026, is different: it comes with every child’s own task ' +
+    'scores, so it is scored exactly like a district tool (75% of a task’s items) and sits on the ' +
+    'same % achieving scale. It covers 179 children in 37 Basti schools. Its form is a shortened ' +
+    'version of the baseline’s on a few tasks, and in Jul–Sep 2026, where the Q2 2026 tool also ' +
+    'measured a competency, the district value carries the line and the QLR sits beside it.',
+    'The one genuinely like-for-like comparison across the DiD rounds is average % correct: the ' +
+    'baseline against the End of Year round where the report states a mean, and against the QLR, ' +
+    'which has one for every task. That is what the DiD snapshot page shows, in its own colour so ' +
+    'the figures are not carried back onto the % achieving scale.',
   ]);
 
   // --- Cross-instrument changes --------------------------------------------

@@ -1,6 +1,6 @@
 # Basti Grade 2 FLN competency trends: data dictionary
 
-Scope: Grade 2 competency performance in Basti district, Aug 2025 to Oct 2026, from six district assessment tools plus the DiD baseline (Nov 2025) and the 25-26 End of Year assessment (Mar 2026). The round recorded as `did_midline` is called **25-26 End of Year** everywhere it is shown to a reader. Built by `build_trends.py`. Every definition below is implemented there. Do not re-derive any of it in the dashboard layer.
+Scope: Grade 2 competency performance in Basti district, Aug 2025 to Oct 2026, from six district assessment tools plus three DiD rounds: the baseline (Nov 2025), the 25-26 End of Year assessment (Mar 2026) and the QLR (Sep 2026). The round recorded as `did_midline` is called **25-26 End of Year** everywhere it is shown to a reader. Built by `build_trends.py`. Every definition below is implemented there. Do not re-derive any of it in the dashboard layer.
 
 ## 1. Primary metric: % of students who cleared a competency
 
@@ -31,12 +31,13 @@ In each of these cases, full marks is also the rule the tool itself used. The 20
 |---|---|---|
 | `inputs/competency_crosswalk.csv` | raw item per tool | Maps every raw item to `std_competency`. This file drives the pipeline: edit it and re-run. |
 | `inputs/baseline_nov2025_extraction.csv`, `inputs/march2026_extraction.csv` | competency | Values transcribed from the deck (tables, prose and chart labels). |
+| `QLR_G2_Sep26_Item_Analysis_Districts.xlsx` (not in the repo) | child | The DiD QLR workbook, read directly: Basti rows of its `Students` sheet. |
 | `data/student_scores_long.csv` | student x item | Cleaned scores with `cleared`, `achieved_tool_flag`, `band` and `tier`. |
 | `data/monthly_trends.csv` | competency x month x source | Monthly series with change vs the previous month. |
 | `data/quarterly_trends.csv` | competency x quarter x source | Quarterly series with QoQ change. |
 | `data/domain_level_trend.csv` | period x source | Literacy, numeracy and overall clearance rates. |
 | `data/nonstacking_competency_views.csv` | long | Small-multiples index, z-scores, percentiles, bands and tiers. |
-| `data/did_baseline_midline_comparison.csv` | competency | Standalone baseline vs End of Year comparison. |
+| `data/did_baseline_midline_comparison.csv` | competency | Standalone comparison of the three DiD rounds: baseline, End of Year and QLR. |
 | `data/tool_calibration_nov2025.csv` | competency | Same-month comparison of the district tool and the DiD baseline, on mean scores. |
 | `audit/*.csv` | row | Date corrections, duplicate log and raw column inventory. |
 
@@ -52,10 +53,13 @@ In each of these cases, full marks is also the rule the tool itself used. The 20
 | `q3_2026_tangerine` | 1-7 Oct 2026 | 119 (27 schools) | Tangerine tool, Grade 2 form, RMEAL schools only. Raw item-level export; 27 tasks, of which 22 map to competencies the DiD study measured and 5 to the 2026 spot tool's. |
 | `did_baseline` | Nov 2025 | unknown | **DiD % correct used directly** (per Adi), taking the **Intervention arm only** (Control excluded). This is a mean score, not a 75% clearance rate, and rows carry `metric_basis = did_pct_correct`. The three CPM items (Letter Naming, Word Reading Timed, ORF) have no % value. |
 | `did_midline` | Mar 2026 | 177 (40 schools) | **25-26 End of Year assessment.** Slide chart top band: the "76-100%" or "More than 75%" band. For ORF it is the 45-59 plus 60+ bands. |
+| `did_qlr_sep2026` | 14-28 Sep 2026 | 179 (37 schools, 14 blocks) | **DiD QLR.** Child-level task scores from the study's item-analysis workbook (Basti rows only; the workbook covers 10 districts and 2,889 children). Cleared at ≥75% of the task's items, exactly as for the district tools, so rows carry `metric_basis = pct_students_cleared`. ORF is the sheet's CWPM at ≥45 cpm (one child with invalid timer data is left out). The sheet's own "Proficient" band (≥75% of items) is carried as `pct_cleared_tool_flag` and agrees on every task. |
+
+**QLR caveats.** The workbook has no arm field. Basti is the Intervention district (confirmed by Adi), so all 179 Basti children are used, consistent with the baseline's Intervention-only value. The form is a shortened Tangerine battery: Counting in Bundles 3 items (baseline form 4), Number Comparison and Number Pattern 5 (7), ORF passage 42 words (45). Addition and Subtraction are Level 1 (4 items, two of them 2-digit with 1-digit) rather than the baseline's Level 2, so they map to `addition_1digit` / `subtraction_1digit`. Two tasks are new series: the timed 25-number grid (`number_identification_fluency`, ≥75% in 60s, CNPM carried) and Shapes (`shapes_3d`: two edge-count items and one 3D match). The QLR children are not the Oct 2026 Tangerine children (no names in common).
 
 **End of Year caveat.** The slide's top band is strictly above 75%. A student at exactly 75% (for example 3 of 4 items) is counted as cleared in the Excel data but not in the End of Year round. That round therefore understates clearance somewhat relative to the Excel tools. It is flagged `slide_band_gt75_not_ge75`.
 
-`tool_family` groups the two 2026 spot-tool rounds together as `2026_tool`, both DiD rounds together as `did`, and the Tangerine rounds as `tangerine`.
+`tool_family` groups the two 2026 spot-tool rounds together as `2026_tool`, all three DiD rounds together as `did`, and the Tangerine rounds as `tangerine`.
 
 **Parallel tools.** Every record keeps its own `source_tool`. When two instruments measure the same competency in the same period, each keeps its own `source_detail` row and the `trend_point` pools them (n-weighted, `pooled_sources` flag, `tool_family` joined with `+`), which the dashboard draws as a ringed marker under a ribbon labelled with both tools. A competency only one of them measured comes from that tool alone. Any step into or out of such a period is flagged cross-tool.
 
@@ -69,16 +73,16 @@ In each of these cases, full marks is also the rule the tool itself used. The 20
 | Q3_2025 | Oct-Dec 2025 | no | Oct, Nov, Dec (Nov DiD baseline has no clearance value) |
 | Q4_2025 | Jan-Mar 2026 | no | Mar (End of Year) |
 | Q1_2026 | Apr-Jun 2026 | no | Apr, May |
-| Q2_2026 | Jul-Sep 2026 | no | Jul, Aug |
+| Q2_2026 | Jul-Sep 2026 | no | Jul, Aug, Sep (QLR) |
 | Q3_2026 | Oct-Dec 2026 | yes (last) | Oct (Tangerine) |
 
-There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
+There is no data for Jul 2025, Jan-Feb 2026 or Jun 2026.
 
 ## 6. Scoring rules
 
 - **`score_pct`** = raw score / max × 100 for every district tool. For Tangerine, the raw score is the count of items marked 1; skipped tasks, items past a stop rule, 99 (no response) and UNDEFINED count as not correct. The export's `*.number_of_items_correct` columns are not used (they are wrong for auto-stopped untimed grids).
 - **`cleared`** = 1 if `score_pct` ≥ 75, otherwise 0. For ORF it is 1 if CPM ≥ 45.
-- **`n_items`** is the item count used for the perfect-score flag. For the 2025 tools it comes from the header max. For the 2026 spot tool it is confirmed by the raw counts: Letter ID 20, Word Reading 16, Sentence Reading 2, Word Writing 4, Number ID 12, Place Value 4, Pattern 3, Addition 4, Subtraction 4. For Tangerine it is the task's item count.
+- **`n_items`** is the item count used for the perfect-score flag. For the 2025 tools it comes from the header max. For the 2026 spot tool it is confirmed by the raw counts: Letter ID 20, Word Reading 16, Sentence Reading 2, Word Writing 4, Number ID 12, Place Value 4, Pattern 3, Addition 4, Subtraction 4. For Tangerine and the QLR it is the task's item count (the QLR's is checked against its `(/n)` column headers).
 - **July tool Addition and Subtraction.** There is one combined raw score out of 2, which becomes `add_sub_1digit_combined` (clearance = 2/2). The separate Addition and Subtraction Achieved flags are kept only in `pct_cleared_tool_flag`.
 - **Bands** are aligned to the rule:
   - `b1_0`: score 0
@@ -95,7 +99,7 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
 ## 7. Aggregation and pooling
 
 - **`metric_basis`** records which kind of number sits in `pct_students_cleared`:
-  - `pct_students_cleared`: Excel tools (share of students at 75% or more, or at 2 of 3 for the Q3 override items).
+  - `pct_students_cleared`: Excel tools (share of students at 75% or more, or at 2 of 3 for the Q3 override items), and the DiD QLR, which is scored the same way from its child-level data.
   - `did_pct_correct`: DiD baseline mean % correct.
   - `slide_top_band_gt75`: DiD End of Year top band.
   - Pooled rows list every basis involved.
@@ -105,12 +109,13 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
   - Where several **district** sources have a value in the same period, they are pooled n-weighted (Aug 2025: July tool + Aug tool).
   - `pooling_method` records the rule used.
 - **`reference_point` rows:** a DiD round that measured the same competency in the same period as a district tool. **Not pooled into the trend point and never part of the line** (`POOL_DID_WITH_DISTRICT = False`, confirmed by Adi).
-  - Today this is only Nov 2025 / Q3_2025, where the Q3 2025 tool and the DiD baseline both measured 5 competencies: reading comprehension, word reading, word writing, number recognition and place value.
+  - Nov 2025 / Q3_2025: the Q3 2025 tool and the DiD baseline both measured 5 competencies: reading comprehension, word reading, word writing, number recognition and place value.
+  - Q2_2026 (quarterly only): the Q2 2026 tool and the QLR both measured 4: sentence reading, word reading, word writing and place value. The QLR is the only source in the month of Sep 2026, so in the monthly file it is the trend point.
   - The district value carries the line; the baseline value sits beside it as a second reading. It carries **no change columns**, because the step between it and the line is not a change: the two sit on different bases.
-  - Where a DiD round is the **only** source in a period, it is still the `trend_point` (Q4_2025 End of Year, and the 19 competencies only the baseline measured).
-  - The domain rollup follows the same rule: `domain_level_trend.csv` carries a `reference_point` row for the Nov 2025 / Q3_2025 baseline.
+  - Where a DiD round is the **only** source in a period, it is still the `trend_point` (Q4_2025 End of Year, the 19 competencies only the baseline measured, the other 17 QLR competencies in Q2_2026, and every QLR competency in Sep 2026).
+  - The domain rollup follows the same rule: `domain_level_trend.csv` carries a `reference_point` row for the Nov 2025 / Q3_2025 baseline and for the QLR in Q2_2026.
   - Set `POOL_DID_WITH_DISTRICT = True` in the config to restore the old equal-weight pooling.
-- **DiD points** sit at 2025-11 / Q3_2025 (baseline) and 2026-03 / Q4_2025 (End of Year), marked with `is_did_point`.
+- **DiD points** sit at 2025-11 / Q3_2025 (baseline), 2026-03 / Q4_2025 (End of Year) and 2026-09 / Q2_2026 (QLR), marked with `is_did_point`.
 
 ## 8. Flags
 
@@ -130,7 +135,7 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
 
 - **`mom_change_pp` / `qoq_change_pp`:** the change in `pct_students_cleared` against the previous available trend point for the same competency. Gaps are recorded in `months_gap` / `quarters_gap`.
 - **`change_defensibility`** takes one of four values:
-  - `within_tool`: same tool family; the cleanest change.
+  - `within_tool`: same tool family; the cleanest change. The DiD rounds share the `did` family for display, but a step from one DiD round to another is never `within_tool`: each round is its own instrument.
   - `cross_tool_matched_construct`
   - `cross_tool_caveat`
   - `metric_basis_changed`: one end of the change is the DiD baseline's % correct and the other is a clearance rate. This covers every baseline → End of Year step. **Do not present these as real change.** Break the line or show the two points without a connector.
@@ -147,6 +152,7 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
   - It reproduces the 2026 sheets' Literacy % and Numeracy % exactly.
   - ORF (≥45 cpm) counts as a literacy competency wherever a tool tested it, matching how the 2025 tools built their own literacy counts.
 - **`overall_pct_cleared`** is the mean of the literacy and numeracy values.
+- **DiD QLR domain** is computed from the children's own scores, like a district tool: 10 literacy (with ORF) and 11 numeracy competencies.
 - **DiD End of Year domain** is the mean of competency clearance rates across the 11 literacy and 13 numeracy items with band data.
 - **DiD baseline domain** is the mean of the baseline's 24 % correct items. It is **not** pooled with the Q3 2025 tool: in Nov 2025 and Q3_2025 it is a `reference_point`, and the district tool alone carries the domain trend point. Q3_2025 overall is therefore **57.07** (district only), not the 59.33 the old equal-weight pooling produced.
 - **The competency set changes by tool.** It is recorded in `*_competencies` and `*_n_competencies`.
@@ -169,6 +175,8 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
   - `baseline_value_in_series`, `midline_value_in_series`: what each round contributes to the trend series (% correct and top band, respectively).
   - `midline_pct_zero_band`, `comparison_status`
 - **Use `mean_change` for any baseline-vs-End of Year claim.** The series values sit on different bases.
+- QLR columns: `qlr_n`, `qlr_mean` (mean % correct, or mean cpm on a cpm row, from the child-level data), `qlr_value_in_series` (% achieving), `qlr_mean_change_vs_baseline`, `qlr_mean_change_vs_midline`, and `qlr_form_note`, which says where the QLR task is shorter than the baseline form. Competencies only the QLR measured have `comparison_status = qlr_only`. The two domain summary rows also carry `qlr_mean` over the same competency set, left blank when the QLR lacks one of them (numeracy: it has no Level 2 arithmetic or untimed number identification).
+- **QLR vs baseline is mean % correct against mean % correct**, which is the like-for-like reading, but on tasks the QLR shortened (`qlr_form_note`) the item sets differ.
 
 ## 13. Corrections applied
 
@@ -194,6 +202,7 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
 - DiD baseline % correct is used directly as its value.
 - Grade 1 and Grade 3 students are excluded from Q1 2026.
 - DiD data is used in the analysis without the treatment/control split.
+- Basti is the DiD Intervention district, so the QLR's Basti rows are the Intervention sample.
 - The Diag AUG block is integrated.
 - The July tool is dated to August.
 - The Letter ID floor is genuine.
@@ -208,20 +217,21 @@ There is no data for Jul 2025, Jan-Feb 2026, Jun 2026 or Sep 2026.
 - District Addition and Subtraction kept separate from DiD 2-digit (same-month gap +28 / +22).
 - District Pattern kept separate from DiD Number Pattern.
 - March Shapes not paired with baseline Shapes 1 or 2.
+- QLR mapping: Level 1 Addition/Subtraction to the 1-digit series; timed number grid and Shapes as their own series.
 
 ## 15. Caveats that must travel with the dashboard
 
 1. Consecutive months in 2025 share zero schools. Q1-Q2 2026 cover SSP and RMEAL schools; Q3 2026 covers RMEAL schools only, on a different tool. Moves between periods reflect which schools were visited as much as classroom change.
 2. Every tool change coincides with a step change. The Nov 2025 calibration shows instrument gaps of up to 22 points on items with the same name.
 3. On the 2026 Pattern and Sentence Reading items, clearance requires full marks. This depresses them relative to longer items.
-4. The DiD baseline enters as % correct, the End of Year as its above-75% top band, and the Excel tools as clearance rates. Steps between the baseline and anything else are tagged `metric_basis_changed` and must not be drawn as real change.
+4. The DiD baseline enters as % correct, the End of Year as its above-75% top band, and the Excel tools and the DiD QLR as clearance rates. Steps between the baseline and anything else are tagged `metric_basis_changed` and must not be drawn as real change.
 5. The domain rollup changes composition across tools.
 6. April 2026 onward is a new Grade 2 cohort, by design.
 
 ## 16. Re-running
 
 ```
-python build_trends.py Basti_All_Spots.xlsx inputs data Basti_Dashboard_Backend.xlsx
+python build_trends.py Basti_All_Spots.xlsx inputs data Basti_Dashboard_Backend.xlsx QLR_G2_Sep26_Item_Analysis_Districts.xlsx
 ```
 
 Edit `inputs/competency_crosswalk.csv` or the CONFIG block (`CLEAR_CUT_PCT`, `ORF_BENCHMARK_CPM`, thresholds), then re-run.

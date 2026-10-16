@@ -286,6 +286,11 @@ function parseDidRow(row) {
     midline_mean: num(row.midline_mean),
     mean_change: num(row.mean_change),
     midline_pct_zero_band: num(row.midline_pct_zero_band),
+    qlr_n: num(row.qlr_n),
+    qlr_mean: num(row.qlr_mean),
+    qlr_value_in_series: num(row.qlr_value_in_series),
+    qlr_mean_change_vs_baseline: num(row.qlr_mean_change_vs_baseline),
+    qlr_form_note: str(row.qlr_form_note),
     comparison_status: str(row.comparison_status),
     note: str(row.note),
     /** The two _domain_matched_set_* rows are summaries, not competencies. */

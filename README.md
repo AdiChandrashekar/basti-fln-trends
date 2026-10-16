@@ -64,15 +64,17 @@ DESIGN_PLAN.md               the design plan this build follows
 
 ## Running the pipeline
 
-Needs Python with pandas, and two source workbooks (neither is in this repo):
+Needs Python with pandas, and three source workbooks (none is in this repo):
 
 - `Basti_All_Spots.xlsx`: the "Basti All Spots" Google Sheet, for the 2025 rounds.
 - `Basti_Dashboard_Backend.xlsx`: the "Basti Dashboard Backend Sheet", downloaded as .xlsx. 2026
   onwards is read straight from its raw tabs: `Sheet1` (SSP) and `Sheet2` (RMEAL) for the 2026
   spot tool, bundled and de-duplicated, and `Q3` for the Tangerine export.
+- `QLR_G2_Sep26_Item_Analysis_Districts.xlsx`: the DiD study's Sep 2026 QLR item analysis. Its
+  `Students` sheet is read directly, Basti rows only.
 
 ```bash
-python pipeline/build_trends.py Basti_All_Spots.xlsx pipeline/inputs pipeline/data Basti_Dashboard_Backend.xlsx
+python pipeline/build_trends.py Basti_All_Spots.xlsx pipeline/inputs pipeline/data Basti_Dashboard_Backend.xlsx QLR_G2_Sep26_Item_Analysis_Districts.xlsx
 ```
 
 A new round on an existing tool flows through on its own. A new tool, including one running in

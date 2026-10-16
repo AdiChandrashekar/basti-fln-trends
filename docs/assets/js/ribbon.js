@@ -47,8 +47,8 @@ function familyRank(family) {
 const px = (value) => Math.round(value * 10) / 10;
 
 /** Marker glyph for a DiD round, matching the chart marker shapes. */
-const DID_GLYPH = { did_baseline: '◆', did_midline: '■' };
-const DID_LABEL = { did_baseline: 'DiD baseline', did_midline: '25-26 End of Year' };
+const DID_GLYPH = { did_baseline: '◆', did_midline: '■', did_qlr_sep2026: '▲' };
+const DID_LABEL = { did_baseline: 'DiD baseline', did_midline: '25-26 End of Year', did_qlr_sep2026: 'DiD QLR' };
 
 function familyLabel(family) {
   if (FAMILY_LABELS[family]) return FAMILY_LABELS[family];

@@ -199,6 +199,174 @@ small_multiples_index,quarter,Q2_2025,july_tool,Q2_2025|july_tool|all,all,shapes
 small_multiples_index,quarter,Q2_2025,july_tool,Q2_2025|july_tool|all,all,shapes_2d,numeracy,29.0,single_source,thin_n;perfect_score_required;single_source,8.0,z_within_panel,0.9906801321840806,,
 small_multiples_index,quarter,Q2_2025,july_tool,Q2_2025|july_tool|all,all,shapes_2d,numeracy,29.0,single_source,thin_n;perfect_score_required;single_source,8.0,percentile_within_panel,87.5,,
 small_multiples_index,quarter,Q2_2025,july_tool,Q2_2025|july_tool|all,all,shapes_2d,numeracy,29.0,single_source,thin_n;perfect_score_required;single_source,8.0,rank_within_panel,2.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,pct_students_cleared,13.966480446927374,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,z_within_panel,-0.8929725320559038,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,percentile_within_panel,40.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,rank_within_panel,7.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,pct_students_cleared,65.92178770949721,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,z_within_panel,0.6915605199698471,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,percentile_within_panel,70.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,rank_within_panel,4.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,pct_students_cleared,82.12290502793296,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,z_within_panel,1.1856622243649737,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,percentile_within_panel,90.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,rank_within_panel,2.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,10.674157303370785,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-0.9933818090629725,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,30.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,8.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,pct_students_cleared,77.6536312849162,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,z_within_panel,1.0493583059111458,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,percentile_within_panel,80.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,rank_within_panel,3.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,pct_students_cleared,97.76536312849163,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,z_within_panel,1.6627259389533722,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,percentile_within_panel,100.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,rank_within_panel,1.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-1.0292764505097318,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,15.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,9.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,24.022346368715084,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-0.5862887155347907,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,50.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,6.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,41.340782122905026,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-0.05811103152620716,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,60.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,5.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,z_within_panel,-1.0292764505097318,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,percentile_within_panel,15.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,rank_within_panel,9.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,60.33519553072626,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,0.902545109268087,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,90.9090909090909,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,2.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,pct_students_cleared,96.08938547486034,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,z_within_panel,2.2346032998859755,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,percentile_within_panel,100.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,rank_within_panel,1.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,54.18994413407822,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,0.6735976077556374,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,81.81818181818183,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,3.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,pct_students_cleared,35.19553072625698,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,z_within_panel,-0.034058306010116245,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,percentile_within_panel,54.54545454545454,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,rank_within_panel,6.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,-1.1371689951155555,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,22.727272727272727,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,9.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,pct_students_cleared,33.5195530726257,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,z_within_panel,-0.0964985336953298,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,percentile_within_panel,45.45454545454545,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,rank_within_panel,7.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,z_within_panel,-1.1371689951155555,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,percentile_within_panel,22.727272727272727,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,rank_within_panel,9.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,pct_students_cleared,0.5586592178770949,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,z_within_panel,-1.3244896781711961,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,percentile_within_panel,9.090909090909092,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,rank_within_panel,11.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,45.2513966480447,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,0.3405830601011651,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,72.72727272727273,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,4.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,pct_students_cleared,38.547486033519554,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,z_within_panel,0.09082214936031087,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,percentile_within_panel,63.63636363636363,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,rank_within_panel,5.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,pct_students_cleared,22.3463687150838,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,z_within_panel,-0.51276671826342,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,percentile_within_panel,36.36363636363637,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,rank_within_panel,8.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,pct_students_cleared,13.966480446927374,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,z_within_panel,-0.8504181029507085,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,percentile_within_panel,33.33333333333333,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,rank_within_panel,15.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,pct_students_cleared,65.92178770949721,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,z_within_panel,0.8794588817078711,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,percentile_within_panel,80.95238095238095,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,rank_within_panel,5.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,pct_students_cleared,82.12290502793296,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,z_within_panel,1.4188828876766753,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,percentile_within_panel,90.47619047619048,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,rank_within_panel,3.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,10.674157303370785,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-0.9600375880846248,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,28.57142857142857,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,16.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,pct_students_cleared,77.6536312849162,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,z_within_panel,1.2700762653404534,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,percentile_within_panel,85.71428571428571,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,rank_within_panel,4.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,pct_students_cleared,97.76536312849163,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,z_within_panel,1.9397060658534522,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,percentile_within_panel,100.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,rank_within_panel,1.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-0.9992247252869304,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,21.428571428571427,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,17.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,24.022346368715084,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-0.5156032026942092,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,42.857142857142854,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,13.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,41.340782122905026,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.06102245885865052,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,61.904761904761905,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,9.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,z_within_panel,-0.9992247252869304,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,percentile_within_panel,21.428571428571427,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,rank_within_panel,17.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,60.33519553072626,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.6934506037875937,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,76.19047619047619,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,6.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,pct_students_cleared,96.08938547486034,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,z_within_panel,1.8839035824773687,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,percentile_within_panel,95.23809523809523,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,rank_within_panel,2.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,54.18994413407822,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.4888414980752887,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,71.42857142857143,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,7.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,pct_students_cleared,35.19553072625698,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,z_within_panel,-0.1435866468536545,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,percentile_within_panel,52.38095238095239,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,rank_within_panel,11.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-1.1294305198311245,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,11.904761904761903,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,19.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,pct_students_cleared,33.5195530726257,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,z_within_panel,-0.19938913022973773,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,percentile_within_panel,47.61904761904761,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,rank_within_panel,12.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,z_within_panel,-1.1294305198311245,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,percentile_within_panel,11.904761904761903,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,rank_within_panel,19.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,pct_students_cleared,0.5586592178770949,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,z_within_panel,-1.2968379699593742,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,percentile_within_panel,4.761904761904762,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,rank_within_panel,21.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,45.2513966480447,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.19122825340284488,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,66.66666666666666,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,8.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,pct_students_cleared,38.547486033519554,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,z_within_panel,-0.03198168010148804,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,percentile_within_panel,57.14285714285714,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,rank_within_panel,10.0,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,pct_students_cleared,22.3463687150838,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,z_within_panel,-0.5714056860702924,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,percentile_within_panel,38.095238095238095,,
+small_multiples_index,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,rank_within_panel,14.0,,
 small_multiples_index,quarter,Q2_2026,q2_2026_tool,Q2_2026|q2_2026_tool|literacy,literacy,letter_recognition,literacy,1544.0,stack,,4.0,pct_students_cleared,75.71243523316062,,
 small_multiples_index,quarter,Q2_2026,q2_2026_tool,Q2_2026|q2_2026_tool|literacy,literacy,letter_recognition,literacy,1544.0,stack,,4.0,z_within_panel,1.1430872114380173,,
 small_multiples_index,quarter,Q2_2026,q2_2026_tool,Q2_2026|q2_2026_tool|literacy,literacy,letter_recognition,literacy,1544.0,stack,,4.0,percentile_within_panel,100.0,,
@@ -2055,6 +2223,174 @@ small_multiples_index,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool|all,all,su
 small_multiples_index,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool|all,all,subtraction,numeracy,408.0,stack_with_caveat,crosswalk_caveat,9.0,z_within_panel,0.5538253141568223,,
 small_multiples_index,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool|all,all,subtraction,numeracy,408.0,stack_with_caveat,crosswalk_caveat,9.0,percentile_within_panel,72.22222222222221,,
 small_multiples_index,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool|all,all,subtraction,numeracy,408.0,stack_with_caveat,crosswalk_caveat,9.0,rank_within_panel,3.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,pct_students_cleared,13.966480446927374,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,z_within_panel,-0.8929725320559038,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,percentile_within_panel,40.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_naming_fluency,literacy,179.0,stack,,10.0,rank_within_panel,7.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,pct_students_cleared,65.92178770949721,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,z_within_panel,0.6915605199698471,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,percentile_within_panel,70.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,letter_writing,literacy,179.0,stack,,10.0,rank_within_panel,4.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,pct_students_cleared,82.12290502793296,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,z_within_panel,1.1856622243649737,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,percentile_within_panel,90.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,listening_comprehension,literacy,179.0,stack,,10.0,rank_within_panel,2.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,10.674157303370785,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-0.9933818090629725,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,30.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,8.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,pct_students_cleared,77.6536312849162,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,z_within_panel,1.0493583059111458,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,percentile_within_panel,80.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,oral_vocabulary,literacy,179.0,stack,,10.0,rank_within_panel,3.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,pct_students_cleared,97.76536312849163,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,z_within_panel,1.6627259389533722,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,percentile_within_panel,100.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,picture_comprehension,literacy,179.0,stack,ceiling,10.0,rank_within_panel,1.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-1.0292764505097318,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,15.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,9.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,24.022346368715084,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-0.5862887155347907,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,50.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,6.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,pct_students_cleared,41.340782122905026,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,z_within_panel,-0.05811103152620716,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,percentile_within_panel,60.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,10.0,rank_within_panel,5.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,z_within_panel,-1.0292764505097318,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,percentile_within_panel,15.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|literacy,literacy,word_writing,literacy,179.0,stack,,10.0,rank_within_panel,9.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,60.33519553072626,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,0.902545109268087,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,90.9090909090909,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,2.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,pct_students_cleared,96.08938547486034,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,z_within_panel,2.2346032998859755,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,percentile_within_panel,100.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,measurement,numeracy,179.0,stack,ceiling,11.0,rank_within_panel,1.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,54.18994413407822,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,0.6735976077556374,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,81.81818181818183,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,3.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,pct_students_cleared,35.19553072625698,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,z_within_panel,-0.034058306010116245,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,percentile_within_panel,54.54545454545454,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_identification_fluency,numeracy,179.0,single_source,single_source,11.0,rank_within_panel,6.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,-1.1371689951155555,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,22.727272727272727,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,9.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,pct_students_cleared,33.5195530726257,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,z_within_panel,-0.0964985336953298,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,percentile_within_panel,45.45454545454545,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,11.0,rank_within_panel,7.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,z_within_panel,-1.1371689951155555,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,percentile_within_panel,22.727272727272727,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shape_pattern,numeracy,179.0,stack,perfect_score_required,11.0,rank_within_panel,9.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,pct_students_cleared,0.5586592178770949,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,z_within_panel,-1.3244896781711961,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,percentile_within_panel,9.090909090909092,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,11.0,rank_within_panel,11.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,pct_students_cleared,45.2513966480447,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,z_within_panel,0.3405830601011651,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,percentile_within_panel,72.72727272727273,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,11.0,rank_within_panel,4.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,pct_students_cleared,38.547486033519554,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,z_within_panel,0.09082214936031087,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,percentile_within_panel,63.63636363636363,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_addition,numeracy,179.0,stack,perfect_score_required,11.0,rank_within_panel,5.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,pct_students_cleared,22.3463687150838,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,z_within_panel,-0.51276671826342,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,percentile_within_panel,36.36363636363637,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|numeracy,numeracy,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,11.0,rank_within_panel,8.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,pct_students_cleared,13.966480446927374,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,z_within_panel,-0.8504181029507085,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,percentile_within_panel,33.33333333333333,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_naming_fluency,literacy,179.0,stack,,21.0,rank_within_panel,15.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,pct_students_cleared,65.92178770949721,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,z_within_panel,0.8794588817078711,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,percentile_within_panel,80.95238095238095,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,letter_writing,literacy,179.0,stack,,21.0,rank_within_panel,5.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,pct_students_cleared,82.12290502793296,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,z_within_panel,1.4188828876766753,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,percentile_within_panel,90.47619047619048,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,listening_comprehension,literacy,179.0,stack,,21.0,rank_within_panel,3.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,10.674157303370785,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-0.9600375880846248,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,28.57142857142857,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_reading_fluency,literacy,178.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,16.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,pct_students_cleared,77.6536312849162,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,z_within_panel,1.2700762653404534,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,percentile_within_panel,85.71428571428571,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,oral_vocabulary,literacy,179.0,stack,,21.0,rank_within_panel,4.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,pct_students_cleared,97.76536312849163,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,z_within_panel,1.9397060658534522,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,percentile_within_panel,100.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,picture_comprehension,literacy,179.0,stack,ceiling,21.0,rank_within_panel,1.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-0.9992247252869304,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,21.428571428571427,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,reading_comprehension,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,17.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,24.022346368715084,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-0.5156032026942092,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,42.857142857142854,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,sentence_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,13.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,41.340782122905026,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.06102245885865052,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,61.904761904761905,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_reading,literacy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,9.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,pct_students_cleared,9.497206703910614,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,z_within_panel,-0.9992247252869304,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,percentile_within_panel,21.428571428571427,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_writing,literacy,179.0,stack,,21.0,rank_within_panel,17.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,60.33519553072626,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.6934506037875937,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,76.19047619047619,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,addition_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,6.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,pct_students_cleared,96.08938547486034,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,z_within_panel,1.8839035824773687,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,percentile_within_panel,95.23809523809523,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,measurement,numeracy,179.0,stack,ceiling,21.0,rank_within_panel,2.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,54.18994413407822,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.4888414980752887,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,71.42857142857143,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_comparison,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,7.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,pct_students_cleared,35.19553072625698,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,z_within_panel,-0.1435866468536545,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,percentile_within_panel,52.38095238095239,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_identification_fluency,numeracy,179.0,single_source,single_source,21.0,rank_within_panel,11.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,-1.1294305198311245,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,11.904761904761903,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,number_pattern,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,19.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,pct_students_cleared,33.5195530726257,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,z_within_panel,-0.19938913022973773,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,percentile_within_panel,47.61904761904761,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,place_value_bundles,numeracy,179.0,stack_with_caveat,perfect_score_required;crosswalk_caveat,21.0,rank_within_panel,12.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,pct_students_cleared,5.58659217877095,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,z_within_panel,-1.1294305198311245,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,percentile_within_panel,11.904761904761903,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shape_pattern,numeracy,179.0,stack,perfect_score_required,21.0,rank_within_panel,19.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,pct_students_cleared,0.5586592178770949,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,z_within_panel,-1.2968379699593742,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,percentile_within_panel,4.761904761904762,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,shapes_3d,numeracy,179.0,single_source,perfect_score_required;single_source,21.0,rank_within_panel,21.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,pct_students_cleared,45.2513966480447,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,z_within_panel,0.19122825340284488,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,percentile_within_panel,66.66666666666666,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,subtraction_1digit,numeracy,179.0,stack_with_caveat,crosswalk_caveat,21.0,rank_within_panel,8.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,pct_students_cleared,38.547486033519554,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,z_within_panel,-0.03198168010148804,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,percentile_within_panel,57.14285714285714,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_addition,numeracy,179.0,stack,perfect_score_required,21.0,rank_within_panel,10.0,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,pct_students_cleared,22.3463687150838,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,z_within_panel,-0.5714056860702924,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,percentile_within_panel,38.095238095238095,,
+small_multiples_index,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026|all,all,word_problem_subtraction,numeracy,179.0,stack,perfect_score_required,21.0,rank_within_panel,14.0,,
 small_multiples_index,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine|literacy,literacy,letter_naming_fluency,literacy,119.0,stack,,11.0,pct_students_cleared,27.73109243697479,,
 small_multiples_index,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine|literacy,literacy,letter_naming_fluency,literacy,119.0,stack,,11.0,z_within_panel,-0.4970077529012139,,
 small_multiples_index,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine|literacy,literacy,letter_naming_fluency,literacy,119.0,stack,,11.0,percentile_within_panel,50.0,,
@@ -2455,6 +2791,166 @@ mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,word_writing,literacy
 mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,word_writing,literacy,29.0,stack_with_caveat,,,pct_students_tier_critical,13.793103448275861,3.0,student_level_scores (top band = >=75%)
 mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,word_writing,literacy,29.0,stack_with_caveat,,,pct_students_tier_developing,31.03448275862069,3.0,student_level_scores (top band = >=75%)
 mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,word_writing,literacy,29.0,stack_with_caveat,,,pct_students_tier_cleared,55.172413793103445,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,21.22905027932961,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,16.75977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,1.675977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,60.33519553072626,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,21.22905027932961,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,18.435754189944134,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,60.33519553072626,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b1_0,10.614525139664805,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b2_lt25,32.402234636871505,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b3_25_50,20.670391061452513,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b4_50_75,22.3463687150838,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b5_75plus,13.966480446927374,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_tier_critical,43.01675977653631,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_tier_developing,43.01675977653631,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_tier_cleared,13.966480446927374,51.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b1_0,14.525139664804469,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b2_lt25,3.35195530726257,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b3_25_50,3.35195530726257,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b4_50_75,12.849162011173185,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b5_75plus,65.92178770949721,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_tier_critical,17.877094972067038,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_tier_developing,16.201117318435752,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_tier_cleared,65.92178770949721,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b1_0,1.675977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b3_25_50,3.910614525139665,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b4_50_75,12.29050279329609,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b5_75plus,82.12290502793296,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_tier_critical,1.675977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_tier_developing,16.201117318435752,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_tier_cleared,82.12290502793296,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b1_0,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b3_25_50,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b4_50_75,3.910614525139665,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b5_75plus,96.08938547486034,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_tier_critical,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_tier_developing,3.910614525139665,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_tier_cleared,96.08938547486034,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,14.525139664804469,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,12.29050279329609,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,2.793296089385475,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,16.201117318435752,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,54.18994413407821,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,26.81564245810056,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,18.99441340782123,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,54.18994413407821,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b1_0,2.793296089385475,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b2_lt25,19.553072625698324,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b3_25_50,21.787709497206706,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b4_50_75,20.670391061452513,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b5_75plus,35.19553072625698,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_tier_critical,22.3463687150838,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_tier_developing,42.45810055865922,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_tier_cleared,35.19553072625698,25.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,57.54189944134078,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,32.402234636871505,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,3.35195530726257,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,1.1173184357541899,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,5.58659217877095,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,89.94413407821229,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,4.4692737430167595,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,5.58659217877095,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b1_0,0.0,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b2_lt25,0.5586592178770949,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b3_25_50,0.5586592178770949,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b4_50_75,21.22905027932961,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b5_75plus,77.6536312849162,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_tier_critical,0.5586592178770949,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_tier_developing,21.787709497206706,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_tier_cleared,77.6536312849162,8.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b1_0,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b2_lt25,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b3_25_50,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b4_50_75,2.2346368715083798,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b5_75plus,97.76536312849161,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_tier_critical,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_tier_developing,2.2346368715083798,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_tier_cleared,97.76536312849161,3.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,17.318435754189945,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,28.491620111731844,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,20.670391061452513,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,33.5195530726257,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,17.318435754189945,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,49.16201117318436,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,33.5195530726257,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b1_0,52.513966480446925,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b2_lt25,10.05586592178771,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b3_25_50,10.05586592178771,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b4_50_75,17.877094972067038,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b5_75plus,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_tier_critical,62.56983240223464,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_tier_developing,27.932960893854748,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_tier_cleared,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b1_0,32.402234636871505,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b2_lt25,24.022346368715084,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b3_25_50,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b4_50_75,10.05586592178771,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b5_75plus,24.022346368715084,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_critical,56.42458100558659,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_developing,19.553072625698324,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_cleared,24.022346368715084,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b1_0,47.486033519553075,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b3_25_50,28.491620111731844,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b4_50_75,18.435754189944134,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b5_75plus,5.58659217877095,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_tier_critical,47.486033519553075,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_tier_developing,46.927374301675975,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_tier_cleared,5.58659217877095,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b1_0,18.99441340782123,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b3_25_50,79.88826815642459,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b4_50_75,0.5586592178770949,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b5_75plus,0.5586592178770949,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_tier_critical,18.99441340782123,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_tier_developing,80.44692737430168,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_tier_cleared,0.5586592178770949,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,37.98882681564246,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,12.849162011173185,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,3.910614525139665,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,45.25139664804469,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,37.98882681564246,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,16.75977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,45.25139664804469,5.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b1_0,40.78212290502793,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b3_25_50,2.2346368715083798,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b4_50_75,18.435754189944134,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b5_75plus,38.547486033519554,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_tier_critical,40.78212290502793,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_tier_developing,20.670391061452513,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_tier_cleared,38.547486033519554,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b1_0,56.42458100558659,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b3_25_50,6.145251396648045,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b4_50_75,15.083798882681565,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b5_75plus,22.3463687150838,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_tier_critical,56.42458100558659,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_tier_developing,21.22905027932961,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_tier_cleared,22.3463687150838,4.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b1_0,17.877094972067038,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b2_lt25,20.11173184357542,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b3_25_50,2.793296089385475,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b4_50_75,17.877094972067038,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b5_75plus,41.340782122905026,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_critical,37.98882681564246,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_developing,20.670391061452513,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_cleared,41.340782122905026,16.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b1_0,31.28491620111732,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b2_lt25,21.787709497206706,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b3_25_50,25.69832402234637,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b4_50_75,11.731843575418994,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b5_75plus,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_tier_critical,53.072625698324025,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_tier_developing,37.43016759776536,6.0,student_level_scores (top band = >=75%)
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_tier_cleared,9.497206703910615,6.0,student_level_scores (top band = >=75%)
 mastery_bands,quarter,Q2_2026,q2_2026_tool,Q2_2026|q2_2026_tool,,addition,numeracy,1544.0,stack_with_caveat,,,pct_students_b1_0,15.025906735751295,5.0,student_level_scores (top band = >=75%)
 mastery_bands,quarter,Q2_2026,q2_2026_tool,Q2_2026|q2_2026_tool,,addition,numeracy,1544.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
 mastery_bands,quarter,Q2_2026,q2_2026_tool,Q2_2026|q2_2026_tool,,addition,numeracy,1544.0,stack_with_caveat,,,pct_students_b3_25_50,2.2020725388601035,5.0,student_level_scores (top band = >=75%)
@@ -2819,6 +3315,24 @@ mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,oral_reading_fluency,
 mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,oral_reading_fluency,literacy,29.0,,,,pct_students_cpm_30-44,17.24137931034483,,student_level_cpm
 mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,oral_reading_fluency,literacy,29.0,,,,pct_students_cpm_45-59,13.793103448275861,,student_level_cpm
 mastery_bands,quarter,Q2_2025,july_tool,Q2_2025|july_tool,,oral_reading_fluency,literacy,29.0,,,,pct_students_cpm_60+,20.689655172413794,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_0,10.614525139664805,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_1-15,38.547486033519554,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_16-29,24.022346368715084,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_30-44,19.553072625698324,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_45-59,6.145251396648045,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_60+,1.1173184357541899,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_0,2.808988764044944,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_1-15,43.258426966292134,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_16-29,42.13483146067416,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_30-44,8.426966292134832,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_45-59,3.3707865168539324,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_60+,0.0,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_0,34.26966292134831,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_1-15,30.337078651685392,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_16-29,14.606741573033707,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_30-44,10.112359550561798,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_45-59,6.179775280898877,,student_level_cpm
+mastery_bands,quarter,Q2_2026,did_qlr_sep2026,Q2_2026|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_60+,4.49438202247191,,student_level_cpm
 mastery_bands,quarter,Q3_2025,q3_2025_tool,Q3_2025|q3_2025_tool,,oral_reading_fluency,literacy,123.0,,,,pct_students_cpm_0,13.008130081300813,,student_level_cpm
 mastery_bands,quarter,Q3_2025,q3_2025_tool,Q3_2025|q3_2025_tool,,oral_reading_fluency,literacy,123.0,,,,pct_students_cpm_1-15,21.951219512195124,,student_level_cpm
 mastery_bands,quarter,Q3_2025,q3_2025_tool,Q3_2025|q3_2025_tool,,oral_reading_fluency,literacy,123.0,,,,pct_students_cpm_16-29,22.764227642276424,,student_level_cpm
@@ -3515,6 +4029,166 @@ mastery_bands,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool,,word_writing,lite
 mastery_bands,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool,,word_writing,literacy,408.0,stack,,,pct_students_tier_critical,19.607843137254903,5.0,student_level_scores (top band = >=75%)
 mastery_bands,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool,,word_writing,literacy,408.0,stack,,,pct_students_tier_developing,24.264705882352942,5.0,student_level_scores (top band = >=75%)
 mastery_bands,month,2026-08,q2_2026_tool,2026-08|q2_2026_tool,,word_writing,literacy,408.0,stack,,,pct_students_tier_cleared,56.127450980392155,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,21.22905027932961,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,16.75977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,1.675977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,60.33519553072626,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,21.22905027932961,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,18.435754189944134,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,addition_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,60.33519553072626,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b1_0,10.614525139664805,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b2_lt25,32.402234636871505,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b3_25_50,20.670391061452513,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b4_50_75,22.3463687150838,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_b5_75plus,13.966480446927374,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_tier_critical,43.01675977653631,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_tier_developing,43.01675977653631,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,stack,,,pct_students_tier_cleared,13.966480446927374,51.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b1_0,14.525139664804469,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b2_lt25,3.35195530726257,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b3_25_50,3.35195530726257,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b4_50_75,12.849162011173185,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_b5_75plus,65.92178770949721,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_tier_critical,17.877094972067038,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_tier_developing,16.201117318435752,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_writing,literacy,179.0,stack,,,pct_students_tier_cleared,65.92178770949721,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b1_0,1.675977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b3_25_50,3.910614525139665,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b4_50_75,12.29050279329609,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_b5_75plus,82.12290502793296,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_tier_critical,1.675977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_tier_developing,16.201117318435752,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,listening_comprehension,literacy,179.0,stack,,,pct_students_tier_cleared,82.12290502793296,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b1_0,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b3_25_50,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b4_50_75,3.910614525139665,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_b5_75plus,96.08938547486034,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_tier_critical,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_tier_developing,3.910614525139665,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,measurement,numeracy,179.0,stack,,,pct_students_tier_cleared,96.08938547486034,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,14.525139664804469,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,12.29050279329609,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,2.793296089385475,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,16.201117318435752,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,54.18994413407821,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,26.81564245810056,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,18.99441340782123,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_comparison,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,54.18994413407821,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b1_0,2.793296089385475,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b2_lt25,19.553072625698324,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b3_25_50,21.787709497206706,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b4_50_75,20.670391061452513,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_b5_75plus,35.19553072625698,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_tier_critical,22.3463687150838,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_tier_developing,42.45810055865922,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,numeracy,179.0,single_source,,,pct_students_tier_cleared,35.19553072625698,25.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,57.54189944134078,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,32.402234636871505,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,3.35195530726257,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,1.1173184357541899,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,5.58659217877095,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,89.94413407821229,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,4.4692737430167595,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_pattern,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,5.58659217877095,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b1_0,0.0,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b2_lt25,0.5586592178770949,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b3_25_50,0.5586592178770949,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b4_50_75,21.22905027932961,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_b5_75plus,77.6536312849162,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_tier_critical,0.5586592178770949,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_tier_developing,21.787709497206706,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_vocabulary,literacy,179.0,stack,,,pct_students_tier_cleared,77.6536312849162,8.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b1_0,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b2_lt25,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b3_25_50,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b4_50_75,2.2346368715083798,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_b5_75plus,97.76536312849161,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_tier_critical,0.0,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_tier_developing,2.2346368715083798,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,picture_comprehension,literacy,179.0,stack,,,pct_students_tier_cleared,97.76536312849161,3.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,17.318435754189945,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,28.491620111731844,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,20.670391061452513,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,33.5195530726257,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,17.318435754189945,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,49.16201117318436,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,place_value_bundles,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,33.5195530726257,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b1_0,52.513966480446925,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b2_lt25,10.05586592178771,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b3_25_50,10.05586592178771,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b4_50_75,17.877094972067038,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_b5_75plus,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_tier_critical,62.56983240223464,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_tier_developing,27.932960893854748,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,reading_comprehension,literacy,179.0,stack_with_caveat,,,pct_students_tier_cleared,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b1_0,32.402234636871505,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b2_lt25,24.022346368715084,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b3_25_50,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b4_50_75,10.05586592178771,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_b5_75plus,24.022346368715084,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_critical,56.42458100558659,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_developing,19.553072625698324,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,sentence_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_cleared,24.022346368715084,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b1_0,47.486033519553075,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b3_25_50,28.491620111731844,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b4_50_75,18.435754189944134,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_b5_75plus,5.58659217877095,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_tier_critical,47.486033519553075,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_tier_developing,46.927374301675975,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shape_pattern,numeracy,179.0,stack,,,pct_students_tier_cleared,5.58659217877095,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b1_0,18.99441340782123,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b3_25_50,79.88826815642459,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b4_50_75,0.5586592178770949,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_b5_75plus,0.5586592178770949,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_tier_critical,18.99441340782123,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_tier_developing,80.44692737430168,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,shapes_3d,numeracy,179.0,single_source,,,pct_students_tier_cleared,0.5586592178770949,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b1_0,37.98882681564246,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b2_lt25,0.0,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b3_25_50,12.849162011173185,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b4_50_75,3.910614525139665,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_b5_75plus,45.25139664804469,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_critical,37.98882681564246,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_developing,16.75977653631285,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,subtraction_1digit,numeracy,179.0,stack_with_caveat,,,pct_students_tier_cleared,45.25139664804469,5.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b1_0,40.78212290502793,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b3_25_50,2.2346368715083798,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b4_50_75,18.435754189944134,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_b5_75plus,38.547486033519554,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_tier_critical,40.78212290502793,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_tier_developing,20.670391061452513,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_addition,numeracy,179.0,stack,,,pct_students_tier_cleared,38.547486033519554,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b1_0,56.42458100558659,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b2_lt25,0.0,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b3_25_50,6.145251396648045,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b4_50_75,15.083798882681565,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_b5_75plus,22.3463687150838,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_tier_critical,56.42458100558659,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_tier_developing,21.22905027932961,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_problem_subtraction,numeracy,179.0,stack,,,pct_students_tier_cleared,22.3463687150838,4.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b1_0,17.877094972067038,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b2_lt25,20.11173184357542,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b3_25_50,2.793296089385475,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b4_50_75,17.877094972067038,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_b5_75plus,41.340782122905026,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_critical,37.98882681564246,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_developing,20.670391061452513,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_reading,literacy,179.0,stack_with_caveat,,,pct_students_tier_cleared,41.340782122905026,16.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b1_0,31.28491620111732,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b2_lt25,21.787709497206706,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b3_25_50,25.69832402234637,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b4_50_75,11.731843575418994,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_b5_75plus,9.497206703910615,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_tier_critical,53.072625698324025,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_tier_developing,37.43016759776536,6.0,student_level_scores (top band = >=75%)
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,word_writing,literacy,179.0,stack,,,pct_students_tier_cleared,9.497206703910615,6.0,student_level_scores (top band = >=75%)
 mastery_bands,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine,,addition_2digit,numeracy,119.0,stack,,,pct_students_b1_0,63.02521008403362,7.0,student_level_scores (top band = >=75%)
 mastery_bands,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine,,addition_2digit,numeracy,119.0,stack,,,pct_students_b2_lt25,2.5210084033613445,7.0,student_level_scores (top band = >=75%)
 mastery_bands,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine,,addition_2digit,numeracy,119.0,stack,,,pct_students_b3_25_50,6.722689075630252,7.0,student_level_scores (top band = >=75%)
@@ -3759,6 +4433,24 @@ mastery_bands,month,2025-12,q3_2025_tool,2025-12|q3_2025_tool,,oral_reading_flue
 mastery_bands,month,2025-12,q3_2025_tool,2025-12|q3_2025_tool,,oral_reading_fluency,literacy,37.0,,,,pct_students_cpm_30-44,13.513513513513514,,student_level_cpm
 mastery_bands,month,2025-12,q3_2025_tool,2025-12|q3_2025_tool,,oral_reading_fluency,literacy,37.0,,,,pct_students_cpm_45-59,10.81081081081081,,student_level_cpm
 mastery_bands,month,2025-12,q3_2025_tool,2025-12|q3_2025_tool,,oral_reading_fluency,literacy,37.0,,,,pct_students_cpm_60+,21.62162162162162,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_0,10.614525139664805,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_1-15,38.547486033519554,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_16-29,24.022346368715084,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_30-44,19.553072625698324,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_45-59,6.145251396648045,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,letter_naming_fluency,literacy,179.0,,,,pct_students_cpm_60+,1.1173184357541899,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_0,2.808988764044944,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_1-15,43.258426966292134,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_16-29,42.13483146067416,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_30-44,8.426966292134832,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_45-59,3.3707865168539324,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,number_identification_fluency,literacy,178.0,,,,pct_students_cpm_60+,0.0,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_0,34.26966292134831,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_1-15,30.337078651685392,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_16-29,14.606741573033707,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_30-44,10.112359550561798,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_45-59,6.179775280898877,,student_level_cpm
+mastery_bands,month,2026-09,did_qlr_sep2026,2026-09|did_qlr_sep2026,,oral_reading_fluency,literacy,178.0,,,,pct_students_cpm_60+,4.49438202247191,,student_level_cpm
 mastery_bands,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine,,letter_naming_fluency,literacy,119.0,,,,pct_students_cpm_0,10.084033613445378,,student_level_cpm
 mastery_bands,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine,,letter_naming_fluency,literacy,119.0,,,,pct_students_cpm_1-15,25.210084033613445,,student_level_cpm
 mastery_bands,month,2026-10,q3_2026_tangerine,2026-10|q3_2026_tangerine,,letter_naming_fluency,literacy,119.0,,,,pct_students_cpm_16-29,24.369747899159663,,student_level_cpm

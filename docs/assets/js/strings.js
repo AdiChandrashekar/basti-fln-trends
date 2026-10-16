@@ -179,26 +179,33 @@ export const strings = {
   did: {
     title: 'DiD snapshot',
     contextHeader:
-      'Nov 2025 DiD baseline and the 25-26 End of Year assessment in Mar 2026: 40 schools ' +
-      'and 177 children. Intervention arm only; Control arm excluded. Whether ' +
-      'the same children were assessed in both rounds has not been confirmed.',
+      'Three DiD rounds: the Nov 2025 baseline (Intervention arm only; Control arm excluded), ' +
+      'the 25-26 End of Year assessment in Mar 2026 (40 schools, 177 children) and the QLR in ' +
+      'Sep 2026 (37 schools, 179 children; Basti is the Intervention district). Whether the same children were assessed ' +
+      'in more than one round has not been confirmed.',
     metricNote:
       'These are average % correct, not % achieving. They are shown in a different colour ' +
       'so they are not read as the same measure as the rest of the dashboard.',
-    dumbbellTitle: 'Baseline to End of Year, like for like',
+    dumbbellTitle: 'Baseline to End of Year to QLR, like for like',
     dumbbellSubtitle:
-      'Average % correct in both rounds, for the competencies where the report states a ' +
-      'mean for each round.',
+      'Average % correct in each round that states one. The QLR figure is the mean of its ' +
+      'children’s own scores. Where a QLR task is shorter than the baseline’s, its row is marked *.',
+    qlrFormNote: '* The QLR task has fewer items than the baseline form, so the item sets differ.',
     domainTitle: 'By domain',
-    orfTitle: 'Oral reading fluency',
-    orfSubtitle: 'Average correct words per minute in each round. The benchmark is 45.',
+    orfTitle: 'Reading fluency',
+    orfSubtitle:
+      'Average correct per minute in each round: letters for letter naming, words for the ' +
+      'passage. The 45 cpm benchmark is for passage reading.',
     midlineOnlyTitle: 'End of Year only, or bands only',
     midlineOnlySubtitle:
       'The End of Year report gives a distribution for these tasks but no stated average, ' +
-      'so there is nothing to compare the baseline against.',
+      'so the baseline cannot be compared with it here. Where the QLR measured the task, the ' +
+      'chart above compares the baseline with the QLR instead.',
     baseline: 'DiD baseline, Nov 2025',
     midline: '25-26 End of Year, Mar 2026',
+    qlr: 'DiD QLR, Sep 2026',
     change: 'Change',
+    changeToLatest: 'Change, baseline to latest',
   },
 
   methods: {
@@ -209,7 +216,7 @@ export const strings = {
     metricTitle: 'What "% achieving" means',
     timelineTitle: 'Which instrument measured what, and when',
     timelineSubtitle:
-      'Eight assessment rounds over fifteen months. Every step in a trend line either sits ' +
+      'Nine assessment rounds over fifteen months. Every step in a trend line either sits ' +
       'inside one of these blocks or crosses between two, and that is the single most useful ' +
       'thing to know before reading any change on this site.',
     didTitle: 'How the DiD study enters',
@@ -265,6 +272,7 @@ export const strings = {
     q3_2026_tangerine: 'Q3 2026 Tangerine tool',
     did_baseline: 'DiD baseline',
     did_midline: '25-26 End of Year',
+    did_qlr_sep2026: 'DiD QLR (Sep 2026)',
   },
 
   /**
@@ -282,6 +290,7 @@ export const strings = {
     did_midline: 'Mar 2026',
     q1_2026_tool: 'Apr–May 2026',
     q2_2026_tool: 'Jul–Aug 2026',
+    did_qlr_sep2026: '14–28 Sep 2026',
     q3_2026_tangerine: '1–7 Oct 2026',
   },
 
@@ -293,6 +302,11 @@ export const strings = {
       'The DiD study measured this competency in the same period as the district tool. ' +
       'Its number is an average % correct, not the share of children achieving, so it sits ' +
       'beside the line rather than on it. The dotted link shows where it sat; it is not a change.',
+    /** The QLR is % achieving, but a different study's sample, so it still sits beside the line. */
+    qlr: {
+      label: 'DiD QLR (% achieving)',
+      legend: 'DiD QLR — a second reading in the same quarter, shown for reference',
+    },
   },
 
   /** Comparability, in plain words. Keyed by stacking_status. */

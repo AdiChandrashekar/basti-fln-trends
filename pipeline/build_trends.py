@@ -6,7 +6,8 @@ PRIMARY METRIC: % of students who cleared a competency = scored >=75% of its ite
 
 Inputs : Basti_All_Spots.xlsx (2025 rounds), Basti_Dashboard_Backend.xlsx (2026 onwards,
          raw child-level tabs), competency_crosswalk.csv,
-         baseline_nov2025_extraction.csv, march2026_extraction.csv
+         baseline_nov2025_extraction.csv, march2026_extraction.csv,
+         QLR_G2_Sep26_Item_Analysis_Districts.xlsx (DiD QLR, Sep 2026, child-level)
 Outputs: student_scores_long.csv, monthly_trends.csv, quarterly_trends.csv,
          domain_level_trend.csv, nonstacking_competency_views.csv,
          did_baseline_midline_comparison.csv
@@ -28,6 +29,8 @@ IN = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(".")
 OUT = Path(sys.argv[3]) if len(sys.argv) > 3 else Path("out")
 # "Basti Dashboard Backend Sheet" on Drive, downloaded as .xlsx. Holds the raw 2026 tabs.
 BACKEND_XLSX = sys.argv[4] if len(sys.argv) > 4 else "Basti_Dashboard_Backend.xlsx"
+# The DiD study's Sep 2026 QLR item-analysis workbook (all districts; Basti rows are used).
+QLR_XLSX = sys.argv[5] if len(sys.argv) > 5 else "QLR_G2_Sep26_Item_Analysis_Districts.xlsx"
 CLEAR_CUT_PCT = 75               # competency cleared = score >= 75% of items (all tools, uniform)
 # Per-item override: Q3 2025 three-item competencies cleared at 2/3, as that tool decided (confirmed by Adi).
 # 2026 three-item Pattern keeps the 2026 tool's own 0.75 rule (i.e. 3/3); add its keys here to switch.
@@ -51,10 +54,11 @@ TOOL_LABEL = {
     "july_tool": "July tool (used 4-8 Aug 2025)", "aug_tool": "Aug tool / Q2 2025 tool",
     "q3_2025_tool": "Q3 2025 tool", "q1_2026_tool": "Q1 2026 tool (G2 battery)",
     "q2_2026_tool": "Q2 2026 tool", "q3_2026_tangerine": "Q3 2026 Tangerine tool",
-    "did_baseline": "DiD baseline (Nov 2025)", "did_midline": "25-26 End of Year (Mar 2026)"}
+    "did_baseline": "DiD baseline (Nov 2025)", "did_midline": "25-26 End of Year (Mar 2026)",
+    "did_qlr_sep2026": "DiD QLR (Sep 2026)"}
 TOOL_FAMILY = {"july_tool": "july_tool", "aug_tool": "aug_tool", "q3_2025_tool": "q3_2025_tool",
                "q1_2026_tool": "2026_tool", "q2_2026_tool": "2026_tool", "q3_2026_tangerine": "tangerine",
-               "did_baseline": "did", "did_midline": "did"}
+               "did_baseline": "did", "did_midline": "did", "did_qlr_sep2026": "did"}
 
 # Quarters follow the Indian financial year: Q1 = Apr-Jun, ..., Q4 = Jan-Mar of the next calendar year,
 # so Q4_2025 is Jan-Mar 2026. The axis is every quarter from the first to the last with data.
@@ -238,6 +242,44 @@ for tab, tool, program in TANGERINE_TABS:
                 add(b, f"TG_{prefix}", k, n, float(k / n >= CLEAR_CUT_PCT / 100 - 1e-9),
                     cpm=tg_cpm(r, prefix, k) if timing == "grid" else np.nan)
 
+# --- DiD QLR (Sep 2026): the study's own child-level scores, Basti rows of the 'Students' sheet.
+# Unlike the two earlier DiD rounds (a mean % correct; a slide band), every child's task score is here,
+# so clearance is computed exactly as for the district tools: >=75% of the task's items (ORF: >=45 cpm).
+# The sheet's own band ("Proficient" = >=75% of items) is carried as the tool flag, as a cross-check.
+# The form is a shortened Tangerine battery: several tasks have fewer items than the baseline form
+# (TANGERINE_TASKS), which the DiD comparison table notes per competency.
+QLR_TOOL = "did_qlr_sep2026"
+QLR_TASKS = [  # sheet column prefix, items, timing (as TANGERINE_TASKS), fluency column
+    ("LC", 4, None, None), ("OV", 10, None, None), ("PC", 4, None, None), ("LNT", 50, "grid", "CLPM"),
+    ("WRUT", 15, None, None), ("SR", 5, None, None), ("ORF", 42, "orf", "CWPM"), ("RC", 5, None, None),
+    ("LW", 5, None, None), ("WW", 5, None, None), ("MSR", 4, None, None), ("CIB", 3, None, None),
+    ("NIT", 25, "grid", "CNPM"), ("NC", 5, None, None), ("NP", 5, None, None), ("SP", 3, None, None),
+    ("ADD1", 4, None, None), ("SUB1", 4, None, None), ("WP", 3, None, None), ("WP_SUB", 3, None, None),
+    ("SH", 3, None, None)]
+QLR_BASELINE_FORM = {"NIT": "NIUT"}   # QLR task -> the baseline (Tangerine) form's task, where the prefix differs
+
+# Header row 4 holds "LC\n(/4)", "LC\nband", "CWPM\n(words/min)"; checking "(/n)" pins each task's item count.
+qraw = pd.read_excel(QLR_XLSX, "Students", header=3)
+for prefix, n, _, _ in QLR_TASKS:
+    if f"{prefix}\n(/{n})" not in qraw.columns: raise ValueError(f"QLR task {prefix}: no '{prefix} (/{n})' column")
+score = {p: f"{p}\n(/{n})" for p, n, _, _ in QLR_TASKS}
+bandc = {p: f"{p}\nband" for p, _, _, _ in QLR_TASKS}
+fluc = {f: next(c for c in qraw.columns if str(c).startswith(f + "\n")) for *_, f in QLR_TASKS if f}
+qraw = qraw[qraw["District"].astype(str).str.strip().str.lower() == "basti"]
+for i, r in qraw.iterrows():
+    b = dict(record_id=f"QLR_{r['_id (export)']}", source_sheet="QLR Students", source_block="single", excel_row=i + 5,
+             source_tool=QLR_TOOL, date=pd.Timestamp(r["Date"]), school_name=str(r["UDISE"]), school_name_alt=None,
+             block=r["Block"], student_name=r["Child"], grade_battery=2, program="did")
+    for prefix, n, timing, flu in QLR_TASKS:
+        k = pd.to_numeric(r[score[prefix]], errors="coerce")
+        if pd.notna(k) and not 0 <= k <= n: raise ValueError(f"QLR {prefix}={k} outside 0..{n} for {b['record_id']}")
+        flag = np.nan if pd.isna(r[bandc[prefix]]) else float(r[bandc[prefix]] == "Proficient")
+        fl = pd.to_numeric(r[fluc[flu]], errors="coerce") if flu else np.nan
+        if timing == "orf":
+            add(b, f"QLR_{prefix}", fl, None, None, "cpm")
+        else:
+            add(b, f"QLR_{prefix}", k, n, flag, cpm=fl if timing == "grid" else np.nan)
+
 stu = pd.DataFrame(recs)
 stu["month"] = stu["date"].dt.strftime("%Y-%m")
 stu["quarter_code"] = stu["month"].map(month_to_quarter)
@@ -396,7 +438,10 @@ def add_changes(df, period_col, order):
         prev = None
         for idx, r in g.iterrows():
             if prev is not None and r.stacking_status != "single_source":
-                same = r.tool_family == prev.tool_family and "+" not in r.tool_family
+                # DiD rounds share a family for display, but each round is its own instrument
+                # (slide bands, then a shortened form), so a step between two rounds is cross-tool.
+                same = (r.tool_family == prev.tool_family and "+" not in r.tool_family
+                        and (r.tool_family != "did" or r.source_tool == prev.source_tool))
                 df.at[idx, "prev_period"] = prev[period_col]; df.at[idx, "change_pp"] = r.value - prev.value
                 df.at[idx, "periods_gap"] = r._o - prev._o; df.at[idx, "same_tool_family_as_prev"] = same
                 basis_changed = ("did_pct_correct" in str(r.metric_basis)) != ("did_pct_correct" in str(prev.metric_basis))
@@ -481,9 +526,11 @@ def domain_rows(period_col):
     out = pd.concat([pd.DataFrame(tps), df], ignore_index=True)
     out["source_tool_label"] = out.source_tool.map(lambda x: " + ".join(TOOL_LABEL.get(t, t) for t in x.replace("pooled:", "").split("+")))
     out["includes_did"] = out.source_tool.str.contains("did")
-    out["coverage_note"] = np.select([out.source_tool.str.contains("did_baseline"), out.source_tool.str.contains("did_midline")],
+    out["coverage_note"] = np.select([out.source_tool.str.contains("did_baseline"), out.source_tool.str.contains("did_midline"),
+                                      out.source_tool.str.contains(QLR_TOOL)],
         ["Baseline value = DiD mean % correct taken directly (not a 75% clearance rate); 24 % items, CPM items excluded",
-         "Midline clearance = slide top band (>75%, strictly above); students at exactly 75% are not counted"], "")
+         "Midline clearance = slide top band (>75%, strictly above); students at exactly 75% are not counted",
+         "QLR clearance = child-level >=75% of items (ORF >=45 cpm), as for the district tools; 21 tasks of a shortened form"], "")
     return out
 
 frames = []
@@ -597,11 +644,36 @@ for scn in list(dict.fromkeys(list(bsc.std_competency) + list(mlm.std_competency
                     note=("In the trend series the baseline enters as % correct and the midline as its >75% top band; "
                           "compare like with like via baseline_mean vs midline_mean") if br is not None and mr is not None else ""))
 cmpdf = pd.DataFrame(cmp)
+# QLR (Sep 2026): its mean comes from the child-level records, so every task has one. A CPM row compares in cpm.
+q = stu[stu.source_tool == QLR_TOOL].groupby(["std_competency", "domain"]).agg(
+    qlr_raw_key=("raw_key", "first"), qlr_n=("cleared", "count"), qlr_mean_pct=("score_pct", "mean"),
+    qlr_mean_cpm=("cpm", "mean"), qlr_cleared=("cleared", "mean"), unit=("unit", "first")).reset_index()
+cmpdf = pd.concat([cmpdf, q.loc[~q.std_competency.isin(cmpdf.std_competency), ["std_competency", "domain", "unit"]]
+                   .assign(comparison_status="qlr_only")], ignore_index=True)
+cmpdf = cmpdf.merge(q.drop(columns="unit"), on=["std_competency", "domain"], how="left")
+cmpdf["qlr_raw_name"] = cmpdf.qlr_raw_key.map(dict(zip(cw.raw_key, cw.raw_name)))
+cmpdf["qlr_mean"] = np.where(cmpdf.unit == "cpm", cmpdf.qlr_mean_cpm, cmpdf.qlr_mean_pct)
+cmpdf["qlr_value_in_series"] = 100 * cmpdf.qlr_cleared
+cmpdf["qlr_mean_change_vs_baseline"] = cmpdf.qlr_mean - cmpdf.baseline_mean
+cmpdf["qlr_mean_change_vs_midline"] = cmpdf.qlr_mean - cmpdf.midline_mean
+# The baseline form is the Tangerine form (crosswalk), so its task lengths are TANGERINE_TASKS.
+tg_items = {p: n for p, n, _ in TANGERINE_TASKS}; qlr_items = {p: n for p, n, _, _ in QLR_TASKS}
+def qlr_form_note(r):
+    if pd.isna(r.qlr_raw_key) or pd.isna(r.baseline_mean): return ""
+    p = r.qlr_raw_key[4:]; m = tg_items.get(QLR_BASELINE_FORM.get(p, p))
+    if p == "ORF": return f"QLR passage has {qlr_items[p]} words, the baseline form {m}; cpm is still comparable"
+    if m is not None and m != qlr_items[p]:
+        return f"QLR task has {qlr_items[p]} items, the baseline form {m}: mean % correct is not strictly like for like"
+    return ""
+cmpdf["qlr_form_note"] = cmpdf.apply(qlr_form_note, axis=1)
+cmpdf = cmpdf.drop(columns=["qlr_raw_key", "qlr_mean_pct", "qlr_mean_cpm", "qlr_cleared"])
 for dom_ in ["literacy", "numeracy"]:
     mm_ = cmpdf[(cmpdf.domain == dom_) & (cmpdf.comparison_status == "both_means") & (cmpdf.unit == "pct")]
     cmpdf = pd.concat([cmpdf, pd.DataFrame([dict(std_competency=f"_domain_matched_set_{dom_}", domain=dom_, unit="pct",
         baseline_mean=mm_.baseline_mean.mean(), midline_mean=mm_.midline_mean.mean(), mean_change=mm_.midline_mean.mean() - mm_.baseline_mean.mean(),
         midline_value_in_series=mm_.midline_value_in_series.mean(), comparison_status="summary",
+        # QLR over the same set, so all three rounds average the same competencies (NaN if the QLR lacks one)
+        qlr_mean=mm_.qlr_mean.mean(skipna=False), qlr_mean_change_vs_baseline=mm_.qlr_mean.mean(skipna=False) - mm_.baseline_mean.mean(),
         note="Means over competencies with a stated mean in both rounds: " + "|".join(mm_.std_competency))])], ignore_index=True)
 
 # ---------------- SAME-MONTH CALIBRATION (mean score; the only metric both Nov sources share) ----------------
